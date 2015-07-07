@@ -17,22 +17,24 @@
     <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-<!--[if lt IE 8]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-    your browser</a> to improve your experience.</p>
-<![endif]-->
+    <!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+        your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-<form>
-    First name:<br>
-    <input type="text" name="firstname">
-    <br>
-    Last name:<br>
-    <input type="text" name="lastname">
-</form>
+    <form action="/create_account.html" method="POST" accept-charset="UTF-8">
+        First name:<br>
+        <input type="text" name="firstname">
+        <br>
+        Last name:<br>
+        <input type="text" name="lastname">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
-<script src="/resources/js/plugins.js"></script>
-<script src="/resources/js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+    <script src="/resources/js/plugins.js"></script>
+    <script src="/resources/js/main.js"></script>
 </body>
 </html>

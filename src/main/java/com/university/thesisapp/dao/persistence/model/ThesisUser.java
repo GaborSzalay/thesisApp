@@ -1,38 +1,42 @@
 package com.university.thesisapp.dao.persistence.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "thesis_user")
 public class ThesisUser {
 
-	protected Long thesisUserId;
+    protected Long thesisUserId;
+    protected String firstName;
+    protected String lastName;
 
-	protected String name;
+    @Id
+    @Column(name = "thesis_user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long getThesisUserId() {
+        return thesisUserId;
+    }
 
-	@Id
-	@Column(name = "thesis_user_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long getThesisUserId() {
-		return thesisUserId;
-	}
+    public void setThesisUserId(Long thesisUserId) {
+        this.thesisUserId = thesisUserId;
+    }
 
-	public void setThesisUserId(Long thesisUserId) {
-		this.thesisUserId = thesisUserId;
-	}
+    @Column(name = "first_name")
+    public String getFirstName() {
+        return firstName;
+    }
 
-	@Column(name = "user_name")
-	public String getName() {
-		return name;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @Column(name = "last_name")
+    public String getLastName() {
+        return lastName;
+    }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }
