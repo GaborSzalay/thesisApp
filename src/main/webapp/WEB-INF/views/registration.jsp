@@ -30,6 +30,7 @@
         <input type="text" name="lastname">
         <br><br>
         <input type="submit" value="Submit">
+        <jsp:include page="modules/security-check.jsp" />
     </form>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

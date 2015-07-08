@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
+<html xmlns:jsp="http://java.sun.com/JSP/Page">
 <head>
     <title>Login Page</title>
     <style>
@@ -67,8 +67,7 @@
             </tr>
         </table>
 
-        <input type="hidden" name="${_csrf.parameterName}"
-               value="${_csrf.token}" />
+        <jsp:include page="modules/security-check.jsp" />
 
     </form>
 </div>

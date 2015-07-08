@@ -1,6 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
-<html xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<html xmlns:c="http://www.w3.org/1999/XSL/Transform" xmlns:jsp="http://java.sun.com/JSP/Page">
 <body>
 <h1>Title : ${title}</h1>
 <h1>Message : ${message}</h1>
@@ -9,9 +9,7 @@
 
 <!-- csrt for log out-->
 <form action="${logoutUrl}" method="post" id="logoutForm">
-    <input type="hidden"
-           name="${_csrf.parameterName}"
-           value="${_csrf.token}" />
+    <jsp:include page="modules/security-check.jsp" />
 </form>
 
 <script>
