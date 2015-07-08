@@ -1,7 +1,7 @@
 <!doctype html>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page session="false" %>
-<html class="no-js" lang="" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://www.w3.org/1999/html">
+<html class="no-js">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -24,7 +24,7 @@
 <!-- Add your site or application content here -->
 <p>Hello world! This is HTML5 Boilerplate.</p>
 
-<a href="/registration.html">Are you new here? Let's create an account!</a>
+<a href="/registration.html"><spring:message code="messages.homepage.register" text="" /></a>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
