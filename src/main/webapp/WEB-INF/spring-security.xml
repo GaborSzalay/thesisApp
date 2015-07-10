@@ -1,20 +1,35 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
-             xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-    <http auto-config="true">
-        <intercept-url pattern="/admin**" access="ROLE_USER" />
+    <beans:bean id="roleVoter" class="org.springframework.security.access.vote.RoleHierarchyVoter">
+        <beans:constructor-arg ref="roleHierarchy"/>
+    </beans:bean>
+    <beans:bean id="roleHierarchy"
+                class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
+        <beans:property name="hierarchy">
+            <beans:value>
+                ROLE_ADMIN > ROLE_TEACHER
+                ROLE_TEACHER > ROLE_STUDENT
+            </beans:value>
+        </beans:property>
+    </beans:bean>
 
+    <http auto-config="true">
+        <intercept-url pattern="/admin**" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/teacher**" access="ROLE_TEACHER"/>
+        <intercept-url pattern="/student**" access="ROLE_STUDENT"/>
         <form-login
-                login-page="/login"
-                default-target-url="/welcome"
-                authentication-failure-url="/login?error"
-                username-parameter="username"
-                password-parameter="password" />
-        <logout logout-success-url="/login?logout"  />
+        login-page="/login"
+        default-target-url="/welcome"
+        authentication-failure-url="/login?error"
+        username-parameter="username"
+        password-parameter="password"/>
+        <logout logout-success-url="/login?logout"/>
         <!-- enable csrf protection -->
         <csrf/>
     </http>
@@ -22,9 +37,12 @@
     <authentication-manager>
         <authentication-provider>
             <user-service>
-                <user name="mkyong" password="123456" authorities="ROLE_USER" />
+                <user name="admin" password="123456" authorities="ROLE_ADMIN"/>
+                <user name="teacher" password="123456" authorities="ROLE_TEACHER"/>
+                <user name="student" password="123456" authorities="ROLE_STUDENT"/>
             </user-service>
         </authentication-provider>
     </authentication-manager>
+
 
 </beans:beans>

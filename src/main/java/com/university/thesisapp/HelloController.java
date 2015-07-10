@@ -25,7 +25,31 @@ public class HelloController {
 
         ModelAndView model = new ModelAndView();
         model.addObject("title", "Spring Security Custom Login Form");
-        model.addObject("message", "This is protected page!");
+        model.addObject("message", "This is an admin page!");
+        model.setViewName("admin");
+
+        return model;
+
+    }
+
+    @RequestMapping(value = "/teacher**", method = RequestMethod.GET)
+    public ModelAndView teacherPage() {
+
+        ModelAndView model = new ModelAndView();
+        model.addObject("title", "Spring Security Custom Login Form");
+        model.addObject("message", "This is a teacher page!");
+        model.setViewName("admin");
+
+        return model;
+
+    }
+
+    @RequestMapping(value = "/student**", method = RequestMethod.GET)
+    public ModelAndView studentPage() {
+
+        ModelAndView model = new ModelAndView();
+        model.addObject("title", "Spring Security Custom Login Form");
+        model.addObject("message", "This is a student page!");
         model.setViewName("admin");
 
         return model;
