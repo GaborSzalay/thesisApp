@@ -26,6 +26,7 @@ public class HelloController {
         ModelAndView model = new ModelAndView();
         model.addObject("title", "Spring Security Custom Login Form");
         model.addObject("message", "This is an admin page!");
+        model.addObject("user", "admin");
         model.setViewName("admin");
 
         return model;
@@ -38,6 +39,8 @@ public class HelloController {
         ModelAndView model = new ModelAndView();
         model.addObject("title", "Spring Security Custom Login Form");
         model.addObject("message", "This is a teacher page!");
+        model.addObject("sharedPageEnabled", true);
+        model.addObject("user", "teacher");
         model.setViewName("admin");
 
         return model;
@@ -50,6 +53,20 @@ public class HelloController {
         ModelAndView model = new ModelAndView();
         model.addObject("title", "Spring Security Custom Login Form");
         model.addObject("message", "This is a student page!");
+        model.addObject("sharedPageEnabled", true);
+        model.addObject("user", "student");
+        model.setViewName("admin");
+
+        return model;
+
+    }
+
+    @RequestMapping(value = {"/student/shared.html", "/teacher/shared.html"}, method = RequestMethod.GET)
+    public ModelAndView sharedPage() {
+
+        ModelAndView model = new ModelAndView();
+        model.addObject("title", "Spring Security Custom Login Form");
+        model.addObject("message", "This is a shared page between students and teachers!");
         model.setViewName("admin");
 
         return model;

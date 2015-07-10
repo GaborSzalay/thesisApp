@@ -4,7 +4,10 @@
 <body>
 <h1>Title : ${title}</h1>
 <h1>Message : ${message}</h1>
-
+<br>
+<c:if test="${sharedPageEnabled}">
+    <h1><a href="/${user}/shared.html">Shared page</a></h1>
+</c:if>
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
 
 <!-- csrt for log out-->

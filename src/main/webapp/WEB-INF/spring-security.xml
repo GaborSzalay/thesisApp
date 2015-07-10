@@ -6,6 +6,14 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
+    <beans:bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+        <beans:property name="decisionVoters">
+            <beans:list>
+                <beans:ref bean="roleVoter" />
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+
     <beans:bean id="roleVoter" class="org.springframework.security.access.vote.RoleHierarchyVoter">
         <beans:constructor-arg ref="roleHierarchy"/>
     </beans:bean>
