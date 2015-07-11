@@ -24,9 +24,9 @@
 <!-- Add your site or application content here -->
 <p>Hello world! This is HTML5 Boilerplate.</p>
 
-<a href="${context.registrationLink.url}"><spring:message code="${context.registrationLink.messageKey}" text="" /></a>
-<a href="${context.loginStudentLink.url}"><spring:message code="${context.loginStudentLink.messageKey}" text="" /></a>
-<a href="${context.loginTeacherLink.url}"><spring:message code="${context.loginTeacherLink.messageKey}" text="" /></a>
+<a href="${context.registrationLink.url}"><spring:message code="${context.registrationLink.message.key}" text="" /></a>
+<a href="${context.loginStudentLink.url}"><spring:message code="${context.loginStudentLink.message.key}" text="" /></a>
+<a href="${context.loginTeacherLink.url}"><spring:message code="${context.loginTeacherLink.message.key}" text="" /></a>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>

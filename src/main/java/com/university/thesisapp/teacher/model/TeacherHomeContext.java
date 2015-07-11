@@ -1,16 +1,18 @@
 package com.university.thesisapp.teacher.model;
 
+import com.university.thesisapp.web.messages.Message;
+
 /**
  * Created by Gábor on 2015.07.11..
  */
 public class TeacherHomeContext {
-    private String welcomeMessage;
+    private Message welcomeMessage;
 
-    public String getWelcomeMessage() {
+    public Message getWelcomeMessage() {
         return welcomeMessage;
     }
 
-    public void setWelcomeMessage(String welcomeMessage) {
+    public void setWelcomeMessage(Message welcomeMessage) {
         this.welcomeMessage = welcomeMessage;
     }
 }

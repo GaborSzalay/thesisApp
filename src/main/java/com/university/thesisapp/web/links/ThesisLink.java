@@ -1,18 +1,20 @@
 package com.university.thesisapp.web.links;
 
+import com.university.thesisapp.web.messages.Message;
+
 /**
  * Created by Gábor on 2015.07.11..
  */
 public class ThesisLink {
-    private String messageKey;
+    private Message message;
     private String url;
 
-    public String getMessageKey() {
-        return messageKey;
+    public Message getMessage() {
+        return message;
     }
 
-    public void setMessageKey(String messageKey) {
-        this.messageKey = messageKey;
+    public void setMessage(Message message) {
+        this.message = message;
     }
 
     public String getUrl() {

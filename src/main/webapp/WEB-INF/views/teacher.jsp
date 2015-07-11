@@ -3,7 +3,7 @@
 <%@page session="true"%>
 <html xmlns:c="http://www.w3.org/1999/XSL/Transform" xmlns:jsp="http://java.sun.com/JSP/Page">
     <body>
-        <h1><spring:message code="${context.welcomeMessage}" text="" /></h1>
+        <h1><spring:message code="${context.welcomeMessage.key}" arguments="${context.welcomeMessage.args.get(0)}" text="" /></h1>
         <br>
 
         <c:url value="/j_spring_security_logout" var="logoutUrl" />
