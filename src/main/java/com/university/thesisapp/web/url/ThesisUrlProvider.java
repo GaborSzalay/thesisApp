@@ -1,0 +1,28 @@
+package com.university.thesisapp.web.url;
+
+import org.springframework.stereotype.Component;
+
+/**
+ * Created by Gábor on 2015.07.11..
+ */
+@Component
+public class ThesisUrlProvider {
+    private String indexUrl;
+    private String registrationUrl;
+
+    public String getIndexUrl() {
+        return indexUrl;
+    }
+
+    public void setIndexUrl(String indexUrl) {
+        this.indexUrl = indexUrl;
+    }
+
+    public String getRegistrationUrl() {
+        return registrationUrl;
+    }
+
+    public void setRegistrationUrl(String registrationUrl) {
+        this.registrationUrl = registrationUrl;
+    }
+}
