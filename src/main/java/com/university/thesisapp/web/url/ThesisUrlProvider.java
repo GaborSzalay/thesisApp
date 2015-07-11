@@ -6,10 +6,11 @@ import org.springframework.stereotype.Component;
  * Created by Gábor on 2015.07.11..
  */
 @Component
-public class ThesisUrlProvider {
+public class ThesisUrlProvider implements UrlProvider {
     private String indexUrl;
     private String registrationUrl;
 
+    @Override
     public String getIndexUrl() {
         return indexUrl;
     }
@@ -18,6 +19,7 @@ public class ThesisUrlProvider {
         this.indexUrl = indexUrl;
     }
 
+    @Override
     public String getRegistrationUrl() {
         return registrationUrl;
     }

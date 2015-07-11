@@ -28,11 +28,11 @@
     </beans:bean>
 
     <http auto-config="true">
-        <intercept-url pattern="/admin**" access="ROLE_ADMIN"/>
-        <intercept-url pattern="/teacher**" access="ROLE_TEACHER"/>
-        <intercept-url pattern="/student**" access="ROLE_STUDENT"/>
+        <intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/teacher/**" access="ROLE_TEACHER"/>
+        <intercept-url pattern="/student/**" access="ROLE_STUDENT"/>
         <form-login
-        login-page="/login"
+    login-page="/login"
         default-target-url="/welcome"
         authentication-failure-url="/login?error"
         username-parameter="username"

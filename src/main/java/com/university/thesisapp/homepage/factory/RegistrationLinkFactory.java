@@ -1,7 +1,7 @@
 package com.university.thesisapp.homepage.factory;
 
 import com.university.thesisapp.web.links.ThesisLink;
-import com.university.thesisapp.web.url.ThesisUrlProvider;
+import com.university.thesisapp.web.url.UrlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,12 +13,12 @@ public class RegistrationLinkFactory {
 
     private static final String MESSAGES_HOMEPAGE_REGISTER = "messages.homepage.register";
     @Autowired
-    private ThesisUrlProvider thesisUrlProvider;
+    private UrlProvider urlProvider;
 
     public ThesisLink create() {
         ThesisLink link = new ThesisLink();
         link.setMessageKey(MESSAGES_HOMEPAGE_REGISTER);
-        link.setUrl(thesisUrlProvider.getRegistrationUrl());
+        link.setUrl(urlProvider.getRegistrationUrl());
         return link;
     }
 }
