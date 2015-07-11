@@ -33,7 +33,6 @@
         <intercept-url pattern="/student/**" access="ROLE_STUDENT"/>
         <form-login
     login-page="/login"
-        default-target-url="/welcome"
         authentication-failure-url="/login?error"
         username-parameter="username"
         password-parameter="password"/>
