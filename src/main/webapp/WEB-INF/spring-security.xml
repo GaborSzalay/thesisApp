@@ -42,14 +42,22 @@
     </http>
 
     <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="admin" password="123456" authorities="ROLE_ADMIN"/>
-                <user name="teacher" password="123456" authorities="ROLE_TEACHER"/>
-                <user name="student" password="123456" authorities="ROLE_STUDENT"/>
-            </user-service>
+        <authentication-provider user-service-ref="thesisUserService">
+            <password-encoder hash="bcrypt" />
         </authentication-provider>
     </authentication-manager>
 
+    <beans:bean id="encoder"
+                class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <beans:constructor-arg name="strength" value="11" />
+    </beans:bean>
+
+    <beans:bean id="authProvider"
+          class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <beans:property name="userDetailsService" ref="thesisUserService" />
+        <beans:property name="passwordEncoder" ref="encoder" />
+    </beans:bean>
+
+    <beans:bean id="thesisUserService" class="com.university.thesisapp.dao.persistence.service.ThesisUserService" />
 
 </beans:beans>
