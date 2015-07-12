@@ -7,8 +7,18 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ThesisUrlProvider implements UrlProvider {
+    private String homePageUrl;
     private String indexUrl;
     private String registrationUrl;
+
+    @Override
+    public String getHomePageUrl() {
+        return homePageUrl;
+    }
+
+    public void setHomePageUrl(String homePageUrl) {
+        this.homePageUrl = homePageUrl;
+    }
 
     @Override
     public String getIndexUrl() {

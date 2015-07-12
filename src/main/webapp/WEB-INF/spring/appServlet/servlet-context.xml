@@ -24,6 +24,7 @@
     <context:component-scan base-package="com.university.thesisapp"/>
 
     <bean id="thesisUrlProvider" class="com.university.thesisapp.web.url.ThesisUrlProvider">
+        <property name="homePageUrl" value="/"/>
         <property name="indexUrl" value="/index.html"/>
         <property name="registrationUrl" value="/registration.html"/>
     </bean>

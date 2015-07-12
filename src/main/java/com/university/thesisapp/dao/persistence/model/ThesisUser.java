@@ -7,9 +7,10 @@ import javax.persistence.*;
 @Table(name = "thesis_user")
 public class ThesisUser {
 
-    protected Long thesisUserId;
-    protected String firstName;
-    protected String lastName;
+    private Long thesisUserId;
+    private String userName;
+    private String password;
+    private String authority;
 
     @Id
     @Column(name = "thesis_user_id")
@@ -22,21 +23,30 @@ public class ThesisUser {
         this.thesisUserId = thesisUserId;
     }
 
-    @Column(name = "first_name")
-    public String getFirstName() {
-        return firstName;
+    @Column(name = "user_name")
+    public String getUserName() {
+        return userName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    @Column(name = "last_name")
-    public String getLastName() {
-        return lastName;
+    @Column(name = "password", length = 60)
+    public String getPassword() {
+        return password;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Column(name = "thesis_authority")
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
     }
 }
