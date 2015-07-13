@@ -22,6 +22,7 @@
     </bean>
 
     <context:component-scan base-package="com.university.thesisapp"/>
+    <context:annotation-config />
 
     <bean id="thesisUrlProvider" class="com.university.thesisapp.web.url.ThesisUrlProvider">
         <property name="homePageUrl" value="/"/>
