@@ -1,5 +1,6 @@
 package com.university.thesisapp.dao.persistence.dao;
 
+import com.university.thesisapp.createaccount.context.CreateAccountContext;
 import com.university.thesisapp.dao.persistence.model.ThesisUser;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
@@ -46,5 +47,15 @@ public class ThesisUserDao {
 
     public void setEntityManagerProvider(EntityManagerProvider entityManagerProvider) {
         this.entityManagerProvider = entityManagerProvider;
+    }
+
+    public void createThesisUser(CreateAccountContext createAccountContext) {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        ThesisUser thesisUser = new ThesisUser();
+        thesisUser.setUserName(createAccountContext.getUserName());
+        thesisUser.setPassword(createAccountContext.getPassword());
+        thesisUser.setAuthority(createAccountContext.getAuthority());
+        entityManagerParams.getEntityManager().persist(thesisUser);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
     }
 }
