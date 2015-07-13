@@ -1,7 +1,6 @@
 package com.university.thesisapp.createaccount.context;
 
 import com.university.thesisapp.web.url.UrlProvider;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -12,12 +11,10 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Component
 public class CreateAccountContextFactory {
-    @Autowired
-    UrlProvider urlProvider;
 
     public CreateAccountContext create(HttpServletRequest request) {
         CreateAccountContext createAccountContext = new CreateAccountContext();
-        createAccountContext.setHomePageUrl(urlProvider.getHomePageUrl());
+        createAccountContext.setHomePageUrl(UrlProvider.HOME_PAGE_URL);
         createAccountContext.setUserName(request.getParameter("username"));
         String password = request.getParameter("password");
         createAccountContext.setPassword(getHashedPassword(password));

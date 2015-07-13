@@ -3,6 +3,7 @@ package com.university.thesisapp.teacher.controller;
 import com.university.thesisapp.teacher.factory.TeacherHomeContextFactory;
 import com.university.thesisapp.teacher.model.TeacherHomeContext;
 import com.university.thesisapp.teacher.view.TeacherHomeControllerViewResolver;
+import com.university.thesisapp.web.url.UrlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +23,7 @@ public class TeacherHomeController {
     @Autowired
     private TeacherHomeControllerViewResolver teacherHomeControllerViewResolver;
 
-    @RequestMapping(value = "/teacher/index.html", method = RequestMethod.GET)
+    @RequestMapping(value = UrlProvider.TEACHER_PREFIX + UrlProvider.INDEX_URL, method = RequestMethod.GET)
     public ModelAndView showTeacherHomePage(Model model, HttpServletRequest request) {
         TeacherHomeContext teacherHomeContext = teacherHomeContextFactory.create(request);
         return teacherHomeControllerViewResolver.resolveView(model, teacherHomeContext);

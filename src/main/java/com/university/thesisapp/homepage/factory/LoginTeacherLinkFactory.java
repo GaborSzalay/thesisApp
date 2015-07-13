@@ -1,10 +1,8 @@
 package com.university.thesisapp.homepage.factory;
 
-import com.university.thesisapp.ThesisAuthority;
 import com.university.thesisapp.web.links.ThesisLink;
 import com.university.thesisapp.web.messages.Message;
 import com.university.thesisapp.web.url.UrlProvider;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,8 +12,7 @@ import org.springframework.stereotype.Component;
 public class LoginTeacherLinkFactory {
 
     private static final String MESSAGES_HOMEPAGE_LOGIN_TEACHER = "messages.homepage.login.teacher";
-    @Autowired
-    private UrlProvider urlProvider;
+
 
     public ThesisLink create() {
         ThesisLink link = new ThesisLink();
@@ -25,6 +22,6 @@ public class LoginTeacherLinkFactory {
     }
 
     private String getUrl() {
-        return ThesisAuthority.TEACHER.getUrl() + urlProvider.getIndexUrl();
+        return UrlProvider.TEACHER_PREFIX + UrlProvider.INDEX_URL;
     }
 }

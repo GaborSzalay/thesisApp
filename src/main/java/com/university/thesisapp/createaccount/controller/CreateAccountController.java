@@ -4,6 +4,7 @@ import com.university.thesisapp.createaccount.context.CreateAccountContext;
 import com.university.thesisapp.createaccount.context.CreateAccountContextFactory;
 import com.university.thesisapp.createaccount.view.CreateAccountViewResolver;
 import com.university.thesisapp.dao.persistence.dao.ThesisUserDao;
+import com.university.thesisapp.web.url.UrlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +27,7 @@ public class CreateAccountController {
     @Autowired
     private CreateAccountViewResolver createAccountViewResolver;
 
-    @RequestMapping(value = "/create_account.html", method = RequestMethod.POST)
+    @RequestMapping(value = UrlProvider.CREATE_ACCOUNT_URL, method = RequestMethod.POST)
     public ModelAndView createAccount(HttpServletRequest request, Model model) {
         CreateAccountContext createAccountContext = createAccountContextFactory.create(request);
         thesisUserDao.createThesisUser(createAccountContext);

@@ -3,6 +3,7 @@ package com.university.thesisapp.homepage.controller;
 import com.university.thesisapp.homepage.factory.HomeContextFactory;
 import com.university.thesisapp.homepage.model.HomeContext;
 import com.university.thesisapp.homepage.view.HomeControllerViewResolver;
+import com.university.thesisapp.web.url.UrlProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class HomeController {
     /**
      * Simply selects the home view to render by returning its name.
      */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = UrlProvider.HOME_PAGE_URL, method = RequestMethod.GET)
     public ModelAndView showHomePage(Model model, HttpServletRequest request) {
         HomeContext homeContext = homeContextFactory.create(request);
         return homeControllerViewResolver.resolveView(model, homeContext);

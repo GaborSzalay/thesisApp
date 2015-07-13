@@ -24,12 +24,6 @@
     <context:component-scan base-package="com.university.thesisapp"/>
     <context:annotation-config />
 
-    <bean id="thesisUrlProvider" class="com.university.thesisapp.web.url.ThesisUrlProvider">
-        <property name="homePageUrl" value="/"/>
-        <property name="indexUrl" value="/index.html"/>
-        <property name="registrationUrl" value="/registration.html"/>
-    </bean>
-
     <bean id="localeResolver"
           class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
         <property name="defaultLocale" value="en"/>
