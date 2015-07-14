@@ -5,7 +5,7 @@ As a teacher, I'd like to get an application where I can create my ideas about a
 ### There are a few different kind of thesis, for example it could be thesis, master's degree or laboratory of project etc. ###
 
 * Admin is able to create/modify/delete these kinds.
-* Teacher has to provide exactly one kind of thesis when she would like to create one.
+* Teacher has to provide exactly one kind of thesis when she would like to create a thesis.
 * Student has to choose from the available kinds when he makes a registration on the site. This means he will be just able to see theses by the given kind.
 
 ### How many semester required for writing the current theme ###
@@ -39,4 +39,3 @@ As a teacher, I'd like to get an application where I can create my ideas about a
 * Just an admin could create admins and teachers.
 * Also just an admin could delete admins and teachers.
 * A student could easily sign-up by filling a registration form.
- 
