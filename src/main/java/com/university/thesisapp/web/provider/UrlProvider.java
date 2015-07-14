@@ -1,4 +1,4 @@
-package com.university.thesisapp.web.url;
+package com.university.thesisapp.web.provider;
 
 /**
  * Created by Gábor on 2015.07.11..

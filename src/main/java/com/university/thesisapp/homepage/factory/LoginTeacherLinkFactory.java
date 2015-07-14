@@ -2,7 +2,7 @@ package com.university.thesisapp.homepage.factory;
 
 import com.university.thesisapp.web.links.ThesisLink;
 import com.university.thesisapp.web.messages.Message;
-import com.university.thesisapp.web.url.UrlProvider;
+import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.stereotype.Component;
 
 /**

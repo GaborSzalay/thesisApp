@@ -4,7 +4,7 @@ import com.university.thesisapp.createaccount.context.CreateAccountContext;
 import com.university.thesisapp.createaccount.context.CreateAccountContextFactory;
 import com.university.thesisapp.createaccount.view.CreateAccountViewResolver;
 import com.university.thesisapp.dao.persistence.dao.ThesisUserDao;
-import com.university.thesisapp.web.url.UrlProvider;
+import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

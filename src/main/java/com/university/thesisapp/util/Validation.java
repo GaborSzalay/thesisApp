@@ -11,4 +11,8 @@ public class Validation {
         }
         return empty;
     }
+
+    public static boolean notEmpty(Object object) {
+        return !Empty(object);
+    }
 }

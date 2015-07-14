@@ -3,7 +3,7 @@ package com.university.thesisapp.homepage.controller;
 import com.university.thesisapp.homepage.factory.HomeContextFactory;
 import com.university.thesisapp.homepage.model.HomeContext;
 import com.university.thesisapp.homepage.view.HomeControllerViewResolver;
-import com.university.thesisapp.web.url.UrlProvider;
+import com.university.thesisapp.web.provider.UrlProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

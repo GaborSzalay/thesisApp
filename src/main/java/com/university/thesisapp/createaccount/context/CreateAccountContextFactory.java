@@ -1,6 +1,6 @@
 package com.university.thesisapp.createaccount.context;
 
-import com.university.thesisapp.web.url.UrlProvider;
+import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
