@@ -1,6 +1,7 @@
 package com.university.thesisapp.teacher.factory;
 
 import com.university.thesisapp.teacher.model.TeacherHomeContext;
+import com.university.thesisapp.web.messages.WelcomeMessagefactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

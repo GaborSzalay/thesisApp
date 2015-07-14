@@ -1,6 +1,5 @@
-package com.university.thesisapp.teacher.factory;
+package com.university.thesisapp.web.messages;
 
-import com.university.thesisapp.web.messages.Message;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -13,7 +12,7 @@ import java.util.List;
  */
 @Component
 public class WelcomeMessagefactory {
-    private static final String MESSAGE_TEACHER_HOME_WELCOME = "message.teacher.home.welcome";
+    private static final String MESSAGE_TEACHER_HOME_WELCOME = "message.home.welcome";
 
     public Message create() {
         Message welcomeMessage = new Message(MESSAGE_TEACHER_HOME_WELCOME);

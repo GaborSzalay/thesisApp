@@ -1,10 +1,14 @@
 package com.university.thesisapp;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class HelloController {
@@ -47,19 +51,6 @@ public class HelloController {
 
     }
 
-    @RequestMapping(value = "/student/index.html", method = RequestMethod.GET)
-    public ModelAndView studentPage() {
-
-        ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security Custom Login Form");
-        model.addObject("message", "This is a student page!");
-        model.addObject("sharedPageEnabled", true);
-        model.addObject("user", "student");
-        model.setViewName("admin");
-
-        return model;
-
-    }
 
     @RequestMapping(value = {"/student/shared.html", "/teacher/shared.html"}, method = RequestMethod.GET)
     public ModelAndView sharedPage() {
@@ -77,8 +68,7 @@ public class HelloController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(
             @RequestParam(value = "error", required = false) String error,
-            @RequestParam(value = "logout", required = false) String logout) {
-
+            @RequestParam(value = "logout", required = false) String logout, HttpServletRequest request) {
         ModelAndView model = new ModelAndView();
         if (error != null) {
             model.addObject("error", "Invalid username and password!");
