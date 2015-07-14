@@ -26,7 +26,7 @@ As a teacher, I'd like to get an application where I can create my ideas about a
 * Admin could create/modify/delete it.
 * Teacher has to provide at least one or more kind of course when she would like to create a thesis.
 * Student has to choose from the available kind of courses when he makes a registration on the site. This means he will be just able to see theses by the given course.
-* Will be able to modify later by the own teacher.
+* Courses of a thesis Will be able to modify later by the own teacher.
 
 ### Title and description of the thesis on two different languages ###
 
