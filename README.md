@@ -11,7 +11,7 @@ As a teacher, I'd like to get an application where I can create my ideas about a
 ### How many semester required for writing the current theme ###
 
 * Teacher should give this information when she is creating a thesis.
-* Will be able to modify later.
+* Will be able to modify later by the own teacher.
 
 
 ### Maximum number of students who could work on the thesis ###
@@ -19,7 +19,7 @@ As a teacher, I'd like to get an application where I can create my ideas about a
 * Teacher has to give this number when she is creating a thesis.
 * Teacher could also give maximum number of students separately by major. (For example max 2 people from Business Informatics and also two people from Electrical Engineering) 
 * When a thesis is full with students at all or when it is just full by the current student's major we shouldn't show the thesis as a possible option.
-* Will be able to modify later.
+* Will be able to modify later by the own teacher.
 
 ### Course ###
 
@@ -31,7 +31,7 @@ As a teacher, I'd like to get an application where I can create my ideas about a
 ### Title and description of the thesis on two different languages ###
 
 * Teacher should provide it during creating thesis.
-* Able to modify it later.
+* Able to modify it later by the own teacher.
 * Student can see the related titles and descriptions which he is allowed to work with given by his major, course etc...
 
 ### Registration ###
