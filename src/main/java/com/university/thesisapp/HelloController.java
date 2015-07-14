@@ -47,7 +47,7 @@ public class HelloController {
 
     }
 
-    @RequestMapping(value = "/student**", method = RequestMethod.GET)
+    @RequestMapping(value = "/student/index.html", method = RequestMethod.GET)
     public ModelAndView studentPage() {
 
         ModelAndView model = new ModelAndView();
