@@ -38,4 +38,7 @@ As a teacher, I'd like to get an application where I can create my ideas about a
 
 * Just an admin could create admins and teachers.
 * Also just an admin could delete admins and teachers.
-* A student could easily sign-up by filling a registration form.
++ A student could easily sign-up by filling a registration form.
+    * Major
+    * Course
+    * Type of thesis (thesis, master's degree etc)
