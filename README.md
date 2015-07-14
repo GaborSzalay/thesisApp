@@ -2,11 +2,11 @@
 
 As a teacher, I'd like to get an application where I can create my ideas about a possible topics and students are able to pick up to make success their course.
 
-### There are a few different kind of thesis, for example it could be thesis, master's degree or laboratory of project etc. ###
+### There are a few different type of thesis, for example it could be thesis, master's degree or laboratory of project etc. ###
 
-* Admin is able to create/modify/delete these kinds.
-* Teacher has to provide exactly one kind of thesis when she would like to create a thesis.
-* Student has to choose from the available kinds when he makes a registration on the site. This means he will be just able to see theses by the given kind.
+* Admin is able to create/modify/delete these types.
+* Teacher has to provide exactly one type of thesis when she would like to create a thesis.
+* Student has to choose from the available types when he makes a registration on the site. This means he will be just able to see theses by the given kind.
 
 ### How many semester required for writing the current theme ###
 
