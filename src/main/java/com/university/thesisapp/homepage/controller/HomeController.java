@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +33,7 @@ public class HomeController {
     @RequestMapping(value = UrlProvider.HOME_PAGE_URL, method = RequestMethod.GET)
     public ModelAndView showHomePage(Model model, HttpServletRequest request) {
         HomeContext homeContext = homeContextFactory.create(request);
-        return homeControllerViewResolver.resolveView(model, homeContext);
+        return homeControllerViewResolver.resolveView(request, model, homeContext);
     }
 
 }
