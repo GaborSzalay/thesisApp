@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <html xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <title>Login Page</title>
@@ -71,6 +72,9 @@
 
     </form>
 </div>
+<a href="${context.registrationLink.url}"><spring:message code="${context.registrationLink.message.key}" text="" /></a>
+<c:if test="${not empty context.loginStudentLink}"><a href="${context.loginStudentLink.url}"><spring:message code="${context.loginStudentLink.message.key}" text="" /></a></c:if>
+<c:if test="${not empty context.loginTeacherLink}"><a href="${context.loginTeacherLink.url}"><spring:message code="${context.loginTeacherLink.message.key}" text="" /></a></c:if>
 
 </body>
 </html>
