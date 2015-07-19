@@ -22,7 +22,7 @@ public class ThesisUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         ThesisUser thesisUser = thesisUserDao.getThesisUserByUserName(username);
-        if (Validation.Empty(thesisUser)) {
+        if (Validation.empty(thesisUser)) {
             throw new UsernameNotFoundException("User not found: " + username);
         }
         User user = new User(thesisUser.getUserName(), thesisUser.getPassword(), true, true, true, true, getGrantedAuthorities(thesisUser));

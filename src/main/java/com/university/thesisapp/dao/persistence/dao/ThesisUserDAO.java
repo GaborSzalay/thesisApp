@@ -22,7 +22,7 @@ public class ThesisUserDao {
     public ThesisUser getThesisUserByUserName(String username) {
         Iterator<ThesisUser> thesisUserIterator = getAllThesisUsers().iterator();
         ThesisUser thesisUser = null;
-        while (thesisUserIterator.hasNext() && Validation.Empty(thesisUser)) {
+        while (thesisUserIterator.hasNext() && Validation.empty(thesisUser)) {
             ThesisUser currentThesisUser = thesisUserIterator.next();
             if (username.equals(currentThesisUser.getUserName())) {
                 thesisUser = currentThesisUser;
