@@ -20,7 +20,7 @@ public class HomeContextFactory {
     public HomeContext create(HttpServletRequest request) {
         HomeContext homeContext = new HomeContext();
         if (isContextCreationNeeded()) {
-            homeContext.setRegistrationLink(registrationLinkFactory.create());
+
         }
         return homeContext;
     }

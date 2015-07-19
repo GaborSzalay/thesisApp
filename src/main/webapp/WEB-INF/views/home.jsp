@@ -25,7 +25,6 @@
 <!-- Add your site or application content here -->
 <p>Hello world! This is HTML5 Boilerplate.</p>
 
-<a href="${context.registrationLink.url}"><spring:message code="${context.registrationLink.message.key}" text="" /></a>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
 
