@@ -13,16 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 public class HomeContextFactory {
     @Autowired
     private RegistrationLinkFactory registrationLinkFactory;
-    @Autowired
-    private LoginStudentLinkFactory loginStudentLinkFactory;
-    @Autowired
-    private LoginTeacherLinkFactory loginTeacherLinkFactory;
 
     public HomeContext create(HttpServletRequest request) {
         HomeContext homeContext = new HomeContext();
         homeContext.setRegistrationLink(registrationLinkFactory.create());
-        homeContext.setLoginStudentLink(loginStudentLinkFactory.create());
-        homeContext.setLoginTeacherLink(loginTeacherLinkFactory.create());
         return homeContext;
     }
 }

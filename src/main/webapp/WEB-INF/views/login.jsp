@@ -73,8 +73,6 @@
     </form>
 </div>
 <a href="${context.registrationLink.url}"><spring:message code="${context.registrationLink.message.key}" text="" /></a>
-<c:if test="${not empty context.loginStudentLink}"><a href="${context.loginStudentLink.url}"><spring:message code="${context.loginStudentLink.message.key}" text="" /></a></c:if>
-<c:if test="${not empty context.loginTeacherLink}"><a href="${context.loginTeacherLink.url}"><spring:message code="${context.loginTeacherLink.message.key}" text="" /></a></c:if>
 
 </body>
 </html>

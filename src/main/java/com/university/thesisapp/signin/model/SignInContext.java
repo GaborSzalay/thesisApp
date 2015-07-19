@@ -7,8 +7,7 @@ import com.university.thesisapp.web.links.ThesisLink;
  */
 public class SignInContext {
     private ThesisLink registrationLink;
-    private ThesisLink loginStudentLink;
-    private ThesisLink loginTeacherLink;
+
 
     public ThesisLink getRegistrationLink() {
         return registrationLink;
@@ -18,19 +17,4 @@ public class SignInContext {
         this.registrationLink = registrationLink;
     }
 
-    public ThesisLink getLoginStudentLink() {
-        return loginStudentLink;
-    }
-
-    public void setLoginStudentLink(ThesisLink loginStudentLink) {
-        this.loginStudentLink = loginStudentLink;
-    }
-
-    public ThesisLink getLoginTeacherLink() {
-        return loginTeacherLink;
-    }
-
-    public void setLoginTeacherLink(ThesisLink loginTeacherLink) {
-        this.loginTeacherLink = loginTeacherLink;
-    }
 }

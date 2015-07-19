@@ -1,4 +1,5 @@
 <!doctype html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page session="false" %>
 <html class="no-js">
@@ -25,8 +26,20 @@
 <p>Hello world! This is HTML5 Boilerplate.</p>
 
 <a href="${context.registrationLink.url}"><spring:message code="${context.registrationLink.message.key}" text="" /></a>
-<a href="${context.loginStudentLink.url}"><spring:message code="${context.loginStudentLink.message.key}" text="" /></a>
-<a href="${context.loginTeacherLink.url}"><spring:message code="${context.loginTeacherLink.message.key}" text="" /></a>
+
+<c:url value="/j_spring_security_logout" var="logoutUrl" />
+
+<!-- csrt for log out-->
+<form action="${logoutUrl}" method="post" id="logoutForm">
+    <jsp:include page="modules/security-check.jsp" />
+</form>
+<a href="javascript:formSubmit()"> Logout</a>
+<script>
+    function formSubmit() {
+        document.getElementById("logoutForm").submit();
+    }
+</script>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>

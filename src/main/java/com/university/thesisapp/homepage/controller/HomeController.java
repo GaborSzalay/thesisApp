@@ -7,6 +7,10 @@ import com.university.thesisapp.web.provider.UrlProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collection;
 
 /**
  * Handles requests for the application home page.
@@ -33,6 +38,11 @@ public class HomeController {
     @RequestMapping(value = UrlProvider.HOME_PAGE_URL, method = RequestMethod.GET)
     public ModelAndView showHomePage(Model model, HttpServletRequest request) {
         HomeContext homeContext = homeContextFactory.create(request);
+        SecurityContext context = SecurityContextHolder.getContext();
+        Authentication auth = context.getAuthentication();
+        Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
+        logger.info("" + authorities.size());
+        logger.info(authorities.toString());
         return homeControllerViewResolver.resolveView(request, model, homeContext);
     }
 
