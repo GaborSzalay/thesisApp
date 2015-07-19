@@ -8,7 +8,4 @@ public class UrlProvider {
     public static final String INDEX_URL = "/index.html";
     public static final String REGISTRATION_URL = "/registration.html";
     public static final String CREATE_ACCOUNT_URL = "/create_account.html";
-    public static final String TEACHER_PREFIX = "/teacher";
-    public static final String STUDENT_PREFIX = "/student";
-    public static final String ADMIN_PREFIX = "/admin";
 }
