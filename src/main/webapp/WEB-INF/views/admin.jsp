@@ -23,7 +23,11 @@
 <![endif]-->
 
 <p>Hello admin! Do what you have to do.</p>
-
+<div><a href="${context.listAdminsLink.url}"><spring:message code="${context.listAdminsLink.message.key}" text="" /></a></div>
+<div><a href="${context.listTeachersLink.url}"><spring:message code="${context.listTeachersLink.message.key}" text="" /></a></div>
+<div><a href="${context.listThesisTypesLink.url}"><spring:message code="${context.listThesisTypesLink.message.key}" text="" /></a></div>
+<div><a href="${context.listCoursesLink.url}"><spring:message code="${context.listCoursesLink.message.key}" text="" /></a></div>
+<div><a href="${context.listMajorsLink.url}"><spring:message code="${context.listMajorsLink.message.key}" text="" /></a></div>
 
 <c:url value="/j_spring_security_logout" var="logoutUrl" />
 

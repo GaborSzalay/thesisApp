@@ -33,7 +33,7 @@ public class HomeController {
     @RequestMapping(value = UrlProvider.HOME_PAGE_URL, method = RequestMethod.GET)
     public ModelAndView showHomePage(Model model, HttpServletRequest request) {
         HomeContext homeContext = homeContextFactory.create(request);
-        return homeControllerViewResolver.resolveView(request, model, homeContext);
+        return homeControllerViewResolver.resolveView(model, homeContext);
     }
 
 }

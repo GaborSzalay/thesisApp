@@ -9,8 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * Created by Gábor on 2015.07.11..
  */
@@ -22,7 +20,7 @@ public class HomeControllerViewResolver {
     @Autowired
     private ThesisUserAuthorityProvider thesisUserAuthorityProvider;
 
-    public ModelAndView resolveView(HttpServletRequest request, Model model, HomeContext homeContext) {
+    public ModelAndView resolveView(Model model, HomeContext homeContext) {
         model.addAttribute(CONTEXT, homeContext);
         return thesisUserAuthorityProvider.isAdmin() ? createRedirectView() : createNormalView(model);
     }
