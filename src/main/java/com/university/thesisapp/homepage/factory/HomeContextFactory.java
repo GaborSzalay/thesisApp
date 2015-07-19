@@ -1,5 +1,6 @@
 package com.university.thesisapp.homepage.factory;
 
+import com.university.thesisapp.dao.persistence.provider.ThesisUserAuthorityProvider;
 import com.university.thesisapp.homepage.model.HomeContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,10 +14,18 @@ import javax.servlet.http.HttpServletRequest;
 public class HomeContextFactory {
     @Autowired
     private RegistrationLinkFactory registrationLinkFactory;
+    @Autowired
+    private ThesisUserAuthorityProvider thesisUserAuthorityProvider;
 
     public HomeContext create(HttpServletRequest request) {
         HomeContext homeContext = new HomeContext();
-        homeContext.setRegistrationLink(registrationLinkFactory.create());
+        if (isContextCreationNeeded()) {
+            homeContext.setRegistrationLink(registrationLinkFactory.create());
+        }
         return homeContext;
+    }
+
+    private boolean isContextCreationNeeded() {
+        return !thesisUserAuthorityProvider.isAdmin();
     }
 }

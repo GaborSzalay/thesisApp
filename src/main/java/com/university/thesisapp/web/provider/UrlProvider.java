@@ -5,6 +5,7 @@ package com.university.thesisapp.web.provider;
  */
 public class UrlProvider {
     public static final String HOME_PAGE_URL = "/";
+    public static final String ADMIN_HOME_PAGE_URL = "/admin/";
     public static final String REGISTRATION_URL = "/registration.html";
     public static final String CREATE_ACCOUNT_URL = "/create_account.html";
 }
