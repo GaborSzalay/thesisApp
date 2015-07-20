@@ -11,6 +11,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="/resources/css/normalize.css">
+        <link href="/resources/css/footable.core.css" rel="stylesheet" type="text/css"/>
+        <link href="/resources/css/footable.standalone.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="/resources/css/main.css">
         <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
@@ -22,13 +24,36 @@
         <![endif]-->
 
         <p>Hello admin! Do what you have to do.</p>
-        <c:forEach var="admin" items="${context.admins}" varStatus="counter">
-            <div>${admin.userName}</div>
-            <div>${admin.password}</div>
-            <div>${admin.authority}</div>
-            <div>${admin.registrationDate}</div>
-            <br>
-        </c:forEach>
+
+        <table class="table table-bordered default footable-loaded footable" data-filter="#filter"
+               data-page-size="5" data-page-previous-text="prev" data-page-next-text="next">
+            <thead>
+                <tr>
+                    <th data-toggle="true" class="footable-first-column">
+                        User Name
+                    </th>
+                    <th>
+                        Password
+                    </th>
+                    <th data-hide="phone,tablet">
+                        Authority
+                    </th>
+                    <th data-hide="phone,tablet">
+                        Registration date
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="admin" items="${context.admins}" varStatus="counter">
+                    <tr>
+                        <td class="footable-first-column"><span class="footable-toggle"></span>${admin.userName}</td>
+                        <td><a href="#">${admin.password}</a></td>
+                        <td>${admin.authority}</td>
+                        <td data-value="78025368997">${admin.registrationDate}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
 
         <c:url value="/j_spring_security_logout" var="logoutUrl"/>
 
@@ -41,12 +66,15 @@
             function formSubmit() {
                 document.getElementById("logoutForm").submit();
             }
+
+
         </script>
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="/resources/js/plugins.js"></script>
+        <script src="/resources/js/footable.js" type="text/javascript"></script>
         <script src="/resources/js/main.js"></script>
     </body>
 </html>
