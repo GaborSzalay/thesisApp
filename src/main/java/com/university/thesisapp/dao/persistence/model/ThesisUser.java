@@ -2,6 +2,7 @@ package com.university.thesisapp.dao.persistence.model;
 
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "thesis_user")
@@ -11,6 +12,7 @@ public class ThesisUser {
     private String userName;
     private String password;
     private String authority;
+    private Date registrationDate;
 
     @Id
     @Column(name = "thesis_user_id")
@@ -48,5 +50,15 @@ public class ThesisUser {
 
     public void setAuthority(String authority) {
         this.authority = authority;
+    }
+
+    @Column(name = "registration_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
     }
 }

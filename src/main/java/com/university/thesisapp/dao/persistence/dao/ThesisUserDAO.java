@@ -1,5 +1,6 @@
 package com.university.thesisapp.dao.persistence.dao;
 
+import com.university.thesisapp.ThesisAuthority;
 import com.university.thesisapp.createaccount.context.CreateAccountContext;
 import com.university.thesisapp.dao.persistence.model.ThesisUser;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
@@ -8,6 +9,8 @@ import com.university.thesisapp.util.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -18,6 +21,13 @@ import java.util.List;
 public class ThesisUserDao {
     @Autowired
     private EntityManagerProvider entityManagerProvider;
+
+    public ThesisUser getThesisUserById(long id) {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        ThesisUser thesisUser = entityManagerParams.getEntityManager().find(ThesisUser.class, id);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        return thesisUser;
+    }
 
     public ThesisUser getThesisUserByUserName(String username) {
         Iterator<ThesisUser> thesisUserIterator = getAllThesisUsers().iterator();
@@ -31,11 +41,15 @@ public class ThesisUserDao {
         return thesisUser;
     }
 
-    public ThesisUser getThesisUserById(long id) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisUser thesisUser = entityManagerParams.getEntityManager().find(ThesisUser.class, id);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
-        return thesisUser;
+    public List<ThesisUser> getThesisUsersByAuthority(ThesisAuthority thesisAuthority) {
+        List<ThesisUser> thesisUsers = getAllThesisUsers();
+        List<ThesisUser> thesisUsersWithAuthority = new ArrayList<ThesisUser>();
+        for (ThesisUser thesisUser : thesisUsers) {
+            if (thesisAuthority.getRoleName().equals(thesisUser.getAuthority())) {
+                thesisUsersWithAuthority.add(thesisUser);
+            }
+        }
+        return thesisUsersWithAuthority;
     }
 
     public List<ThesisUser> getAllThesisUsers() {
@@ -45,17 +59,18 @@ public class ThesisUserDao {
         return thesisUsers;
     }
 
-    public void setEntityManagerProvider(EntityManagerProvider entityManagerProvider) {
-        this.entityManagerProvider = entityManagerProvider;
-    }
-
     public void createThesisUser(CreateAccountContext createAccountContext) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
         ThesisUser thesisUser = new ThesisUser();
         thesisUser.setUserName(createAccountContext.getUserName());
         thesisUser.setPassword(createAccountContext.getPassword());
         thesisUser.setAuthority(createAccountContext.getAuthority());
+        thesisUser.setRegistrationDate(new Date());
         entityManagerParams.getEntityManager().persist(thesisUser);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+    }
+
+    public void setEntityManagerProvider(EntityManagerProvider entityManagerProvider) {
+        this.entityManagerProvider = entityManagerProvider;
     }
 }
