@@ -17,9 +17,15 @@
     </head>
     <body>
         <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a
-                href="http://browsehappy.com/">upgrade
-            your browser</a> to improve your experience.</p>
+        <p class="browserupgrade">You are using an
+            <strong>outdated</strong>
+            browser. Please
+            <a
+                    href="http://browsehappy.com/">upgrade
+                your browser
+            </a>
+            to improve your experience.
+        </p>
         <![endif]-->
 
         <p>Hello admin! Do what you have to do.</p>
@@ -35,33 +41,23 @@
             </thead>
             <tbody>
                 <c:forEach var="admin" items="${context.admins}" varStatus="counter">
-                <tr>
-                    <td>${admin.userName}</td>
-                    <td>${admin.password}</td>
-                    <td>${admin.authority}</td>
-                    <td>${admin.registrationDate}</td>
-                </tr>
+                    <tr>
+                        <td>${admin.userName}</td>
+                        <td>${admin.password}</td>
+                        <td>${admin.authority}</td>
+                        <td>${admin.registrationDate}</td>
+                    </tr>
                 </c:forEach>
             </tbody>
         </table>
 
 
-        <c:url value="/j_spring_security_logout" var="logoutUrl"/>
-
-        <!-- csrt for log out-->
-        <form action="${logoutUrl}" method="post" id="logoutForm">
-            <jsp:include page="modules/security-check.jsp"/>
-        </form>
-        <a href="javascript:formSubmit()"> Logout</a>
-        <script>
-            function formSubmit() {
-                document.getElementById("logoutForm").submit();
-            }
-        </script>
+        <jsp:include page="modules/logout-form.jsp"/>
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="/resources/js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="/resources/js/vendor/jquery-1.11.3.min.js"><\/script>')
+        </script>
         <script src="/resources/js/jquery.dynatable.js"></script>
         <script src="/resources/js/plugins.js"></script>
         <script src="/resources/js/main.js"></script>
