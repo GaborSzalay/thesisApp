@@ -1,3 +1,5 @@
-$(function () {
-    $('.footable').footable();
+$('#my-table').dynatable({
+  table: {
+    defaultColumnIdStyle: 'trimDash'
+  }
 });
