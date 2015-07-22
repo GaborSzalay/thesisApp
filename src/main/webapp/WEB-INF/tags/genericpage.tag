@@ -3,6 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@attribute name="title" required="true" %>
+<%@attribute name="header" fragment="true" %>
+<%@attribute name="footer" fragment="true" %>
 <html>
     <head>
         <meta charset="utf-8">
@@ -14,6 +16,7 @@
         <link rel="stylesheet" href="/resources/css/normalize.css">
         <link rel="stylesheet" href="/resources/css/main.css">
         <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
+        <jsp:invoke fragment="header"/>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -27,11 +30,13 @@
         <div id="body">
             <jsp:doBody/>
         </div>
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="resources/js/vendor/jquery-1.11.3.min.js"><\/script>')
         </script>
         <script src="/resources/js/plugins.js"></script>
         <script src="/resources/js/main.js"></script>
+        <div id="pagefooter">
+            <jsp:invoke fragment="footer"/>
+        </div>
     </body>
 </html>
