@@ -8,33 +8,32 @@ import java.util.List;
  * Created by Gábor on 2015.07.24..
  */
 @Entity
-@Table(name = "major")
-public class Major {
-    private Long majorId;
-    private String majorName;
+@Table(name = "thesis_type")
+public class ThesisType {
+    private Long thesisTypeId;
+    private String typeName;
     private Date creationDate;
     private Date lastModifiedDate;
-    private List<StudentLimit> studentLimits;
     private List<ThesisStudent> thesisStudents;
 
     @Id
-    @Column(name = "major_id")
+    @Column(name = "thesis_type_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getMajorId() {
-        return majorId;
+    public Long getThesisTypeId() {
+        return thesisTypeId;
     }
 
-    public void setMajorId(Long majorId) {
-        this.majorId = majorId;
+    public void setThesisTypeId(Long thesisTypeId) {
+        this.thesisTypeId = thesisTypeId;
     }
 
-    @Column(name = "major_name")
-    public String getMajorName() {
-        return majorName;
+    @Column(name = "type_name")
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setMajorName(String majorName) {
-        this.majorName = majorName;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     @Column(name = "creation_date")
@@ -57,16 +56,7 @@ public class Major {
         this.lastModifiedDate = lastModifiedDate;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "major")
-    public List<StudentLimit> getStudentLimits() {
-        return studentLimits;
-    }
-
-    public void setStudentLimits(List<StudentLimit> studentLimits) {
-        this.studentLimits = studentLimits;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "major")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "thesisType")
     public List<ThesisStudent> getThesisStudents() {
         return thesisStudents;
     }

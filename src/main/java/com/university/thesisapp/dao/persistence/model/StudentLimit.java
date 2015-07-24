@@ -2,6 +2,7 @@ package com.university.thesisapp.dao.persistence.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Gábor on 2015.07.24..
@@ -14,6 +15,7 @@ public class StudentLimit {
     private Long limitOfStudents;
     private Date creationDate;
     private Date lastModifiedDate;
+    private List<Thesis> thesises;
 
     @Id
     @Column(name = "student_limit_id")
@@ -62,5 +64,14 @@ public class StudentLimit {
 
     public void setLastModifiedDate(Date lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
+    }
+
+    @ManyToMany(mappedBy = "studentLimits")
+    public List<Thesis> getThesises() {
+        return thesises;
+    }
+
+    public void setThesises(List<Thesis> thesises) {
+        this.thesises = thesises;
     }
 }
