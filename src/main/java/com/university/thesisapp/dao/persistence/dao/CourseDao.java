@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Gábor on 2015.07.24..
@@ -26,5 +27,12 @@ public class CourseDao {
         entityManagerParams.getEntityManager().persist(course);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return course;
+    }
+
+    public List<Course> getAllCourses() {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        List<Course> courses = entityManagerParams.getEntityManager().createQuery("SELECT c FROM Course c", Course.class).getResultList();
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        return courses;
     }
 }

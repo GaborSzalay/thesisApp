@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Gábor on 2015.07.24..
@@ -26,5 +27,12 @@ public class MajorDao {
         entityManagerParams.getEntityManager().persist(major);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return major;
+    }
+
+    public List<Major> getAllMajors() {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        List<Major> majors = entityManagerParams.getEntityManager().createQuery("SELECT m FROM Major m", Major.class).getResultList();
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        return majors;
     }
 }

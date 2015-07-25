@@ -35,4 +35,11 @@ public class ThesisDao {
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesis;
     }
+
+    public List<Thesis> getAllThesises() {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        List<Thesis> thesises = entityManagerParams.getEntityManager().createQuery("SELECT t FROM Thesis t", Thesis.class).getResultList();
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        return thesises;
+    }
 }

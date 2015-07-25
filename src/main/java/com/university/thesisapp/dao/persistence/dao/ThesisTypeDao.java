@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Gábor on 2015.07.25..
@@ -26,5 +27,12 @@ public class ThesisTypeDao {
         entityManagerParams.getEntityManager().persist(thesisType);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesisType;
+    }
+
+    public List<ThesisType> getAllThesisTypes() {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        List<ThesisType> thesisTypes = entityManagerParams.getEntityManager().createQuery("SELECT t FROM ThesisType t", ThesisType.class).getResultList();
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        return thesisTypes;
     }
 }
