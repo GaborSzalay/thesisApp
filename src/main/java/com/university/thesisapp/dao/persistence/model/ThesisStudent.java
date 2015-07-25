@@ -5,6 +5,8 @@ import javax.persistence.*;
 /**
  * Created by Gábor on 2015.07.24..
  */
+@Entity
+@Table(name = "thesis_student")
 public class ThesisStudent {
     private Long thesisStudentId;
     private ThesisUser thesisUser;

@@ -1,7 +1,6 @@
 package com.university.thesisapp.createaccount.context;
 
 import com.university.thesisapp.web.provider.UrlProvider;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,14 +15,10 @@ public class CreateAccountContextFactory {
         CreateAccountContext createAccountContext = new CreateAccountContext();
         createAccountContext.setHomePageUrl(UrlProvider.HOME_PAGE_URL);
         createAccountContext.setUserName(request.getParameter("username"));
-        String password = request.getParameter("password");
-        createAccountContext.setPassword(getHashedPassword(password));
+        createAccountContext.setPassword(request.getParameter("password"));
         createAccountContext.setAuthority(request.getParameter("authority"));
         return createAccountContext;
     }
 
-    private String getHashedPassword(String password) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        return passwordEncoder.encode(password);
-    }
+
 }

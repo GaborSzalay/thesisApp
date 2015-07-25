@@ -63,7 +63,7 @@ public class ThesisUser {
         this.registrationDate = registrationDate;
     }
 
-    @OneToOne(mappedBy = "thesisStudent", optional = false)
+    @OneToOne(mappedBy = "thesisUser", optional = true)
     public ThesisStudent getThesisStudent() {
         return thesisStudent;
     }

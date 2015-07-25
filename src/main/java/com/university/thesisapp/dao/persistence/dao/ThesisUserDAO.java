@@ -7,6 +7,7 @@ import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
 import com.university.thesisapp.util.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -63,7 +64,7 @@ public class ThesisUserDao {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
         ThesisUser thesisUser = new ThesisUser();
         thesisUser.setUserName(userName);
-        thesisUser.setPassword(password);
+        thesisUser.setPassword(getHashedPassword(password));
         thesisUser.setAuthority(authority);
         thesisUser.setRegistrationDate(new Date());
         entityManagerParams.getEntityManager().persist(thesisUser);
@@ -73,6 +74,11 @@ public class ThesisUserDao {
 
     public ThesisUser createThesisUser(CreateAccountContext createAccountContext) {
         return createThesisUser(createAccountContext.getUserName(), createAccountContext.getPassword(), createAccountContext.getAuthority());
+    }
+
+    private String getHashedPassword(String password) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        return passwordEncoder.encode(password);
     }
 
     public void setEntityManagerProvider(EntityManagerProvider entityManagerProvider) {
