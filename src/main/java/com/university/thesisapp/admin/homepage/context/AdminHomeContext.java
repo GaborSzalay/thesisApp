@@ -1,54 +1,52 @@
 package com.university.thesisapp.admin.homepage.context;
 
-import com.university.thesisapp.web.links.ThesisLink;
-
 /**
  * Created by Gábor on 2015.07.19..
  */
 public class AdminHomeContext {
-    private ThesisLink listAdminsLink;
-    private ThesisLink listTeachersLink;
-    private ThesisLink listThesisTypesLink;
-    private ThesisLink listCoursesLink;
-    private ThesisLink listMajorsLink;
+    private String listAdminsLink;
+    private String listTeachersLink;
+    private String listThesisTypesLink;
+    private String listCoursesLink;
+    private String listMajorsLink;
 
-    public ThesisLink getListAdminsLink() {
+    public String getListAdminsLink() {
         return listAdminsLink;
     }
 
-    public void setListAdminsLink(ThesisLink listAdminsLink) {
+    public void setListAdminsLink(String listAdminsLink) {
         this.listAdminsLink = listAdminsLink;
     }
 
-    public ThesisLink getListTeachersLink() {
+    public String getListTeachersLink() {
         return listTeachersLink;
     }
 
-    public void setListTeachersLink(ThesisLink listTeachersLink) {
+    public void setListTeachersLink(String listTeachersLink) {
         this.listTeachersLink = listTeachersLink;
     }
 
-    public ThesisLink getListThesisTypesLink() {
+    public String getListThesisTypesLink() {
         return listThesisTypesLink;
     }
 
-    public void setListThesisTypesLink(ThesisLink listThesisTypesLink) {
+    public void setListThesisTypesLink(String listThesisTypesLink) {
         this.listThesisTypesLink = listThesisTypesLink;
     }
 
-    public ThesisLink getListCoursesLink() {
+    public String getListCoursesLink() {
         return listCoursesLink;
     }
 
-    public void setListCoursesLink(ThesisLink listCoursesLink) {
+    public void setListCoursesLink(String listCoursesLink) {
         this.listCoursesLink = listCoursesLink;
     }
 
-    public ThesisLink getListMajorsLink() {
+    public String getListMajorsLink() {
         return listMajorsLink;
     }
 
-    public void setListMajorsLink(ThesisLink listMajorsLink) {
+    public void setListMajorsLink(String listMajorsLink) {
         this.listMajorsLink = listMajorsLink;
     }
 }

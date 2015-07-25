@@ -2,34 +2,39 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<t:genericpage title="Admin Home">
+<t:signedinuserpage title="Admin Home">
     <p>Hello admin! Do what you have to do.</p>
 
     <div>
-        <a href="${context.listAdminsLink.url}">
-            <spring:message code="${context.listAdminsLink.message.key}" text=""/>
+        <a href="${context.listAdminsLink}">
+            <spring:message code="messages.admin.homepage.list.admins" text=""/>
         </a>
     </div>
     <div>
-        <a href="${context.listTeachersLink.url}">
-            <spring:message code="${context.listTeachersLink.message.key}" text=""/>
+        <a href="${context.listTeachersLink}">
+            <spring:message code="messages.admin.homepage.list.teachers" text=""/>
         </a>
     </div>
     <div>
-        <a href="${context.listThesisTypesLink.url}">
-            <spring:message code="${context.listThesisTypesLink.message.key}" text=""/>
+        <a href="">
+            <spring:message code="messages.admin.homepage.list.students" text=""/>
         </a>
     </div>
     <div>
-        <a href="${context.listCoursesLink.url}">
-            <spring:message code="${context.listCoursesLink.message.key}" text=""/>
+        <a href="${context.listThesisTypesLink}">
+            <spring:message code="messages.admin.homepage.list.thesis_types" text=""/>
         </a>
     </div>
     <div>
-        <a href="${context.listMajorsLink.url}">
-            <spring:message code="${context.listMajorsLink.message.key}" text=""/>
+        <a href="${context.listCoursesLink}">
+            <spring:message code="messages.admin.homepage.list.courses" text=""/>
+        </a>
+    </div>
+    <div>
+        <a href="${context.listMajorsLink}">
+            <spring:message code="messages.admin.homepage.list.majors" text=""/>
         </a>
     </div>
 
-    <jsp:include page="modules/logout-form.jsp"/>
-</t:genericpage>
+
+</t:signedinuserpage>
