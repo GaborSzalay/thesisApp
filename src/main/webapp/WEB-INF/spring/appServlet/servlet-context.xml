@@ -37,7 +37,7 @@
 
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/" />
+            <mvc:mapping path="/login" />
             <bean class="com.university.thesisapp.dao.bootstrap.DatabaseInitializerInterceptor" />
         </mvc:interceptor>
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
