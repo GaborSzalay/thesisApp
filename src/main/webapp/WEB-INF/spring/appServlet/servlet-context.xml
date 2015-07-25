@@ -36,6 +36,10 @@
     </bean>
 
     <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/" />
+            <bean class="com.university.thesisapp.dao.bootstrap.DatabaseInitializerInterceptor" />
+        </mvc:interceptor>
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
             <property name="paramName" value="locale"/>
         </bean>

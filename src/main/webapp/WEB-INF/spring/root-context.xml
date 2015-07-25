@@ -6,6 +6,12 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
+    <beans:bean id="superUser" class="com.university.thesisapp.dao.persistence.model.ThesisUser">
+        <beans:property name="userName" value="superUser" />
+        <beans:property name="password" value="almafa1" />
+        <beans:property name="authority" value="ROLE_ADMIN" />
+    </beans:bean>
+
     <beans:bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
         <beans:property name="decisionVoters">
             <beans:list>
@@ -62,7 +68,9 @@
         <beans:property name="passwordEncoder" ref="encoder"/>
     </beans:bean>
 
+
     <beans:bean id="thesisUserService" class="com.university.thesisapp.dao.persistence.service.ThesisUserService">
+        <beans:property name="superUser" ref="superUser" />
         <beans:property name="thesisUserDao" ref="thesisUserDao"/>
     </beans:bean>
 

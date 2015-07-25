@@ -17,11 +17,21 @@ import java.util.List;
  * Created by Gábor on 2015.07.13..
  */
 public class ThesisUserService implements UserDetailsService {
+    private ThesisUser superUser;
     private ThesisUserDao thesisUserDao;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        ThesisUser thesisUser = thesisUserDao.getThesisUserByUserName(username);
+        ThesisUser thesisUser = null;
+        if (superUser.getUserName().equals(username)) {
+            thesisUser = thesisUserDao.getThesisUserByUserName(username);
+            if (Validation.empty(thesisUser)) {
+                thesisUser = thesisUserDao.createThesisUser(superUser.getUserName(), superUser.getPassword(), superUser.getAuthority());
+            }
+        } else {
+            thesisUser = thesisUserDao.getThesisUserByUserName(username);
+        }
+
         if (Validation.empty(thesisUser)) {
             throw new UsernameNotFoundException("User not found: " + username);
         }
@@ -33,6 +43,10 @@ public class ThesisUserService implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority(thesisUser.getAuthority()));
         return authorities;
+    }
+
+    public void setSuperUser(ThesisUser superUser) {
+        this.superUser = superUser;
     }
 
     public void setThesisUserDao(ThesisUserDao thesisUserDao) {
