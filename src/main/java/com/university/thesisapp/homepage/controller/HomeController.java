@@ -1,7 +1,5 @@
 package com.university.thesisapp.homepage.controller;
 
-import com.university.thesisapp.homepage.factory.HomeContextFactory;
-import com.university.thesisapp.homepage.model.HomeContext;
 import com.university.thesisapp.homepage.view.HomeControllerViewResolver;
 import com.university.thesisapp.web.provider.UrlProvider;
 import org.slf4j.Logger;
@@ -23,8 +21,6 @@ public class HomeController {
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
     @Autowired
-    private HomeContextFactory homeContextFactory;
-    @Autowired
     private HomeControllerViewResolver homeControllerViewResolver;
 
     /**
@@ -32,8 +28,7 @@ public class HomeController {
      */
     @RequestMapping(value = UrlProvider.HOME_PAGE_URL, method = RequestMethod.GET)
     public ModelAndView showHomePage(Model model, HttpServletRequest request) {
-        HomeContext homeContext = homeContextFactory.create(request);
-        return homeControllerViewResolver.resolveView(model, homeContext);
+        return homeControllerViewResolver.resolveView(model);
     }
 
 }

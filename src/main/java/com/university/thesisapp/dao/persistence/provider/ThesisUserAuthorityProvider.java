@@ -17,6 +17,14 @@ import java.util.Iterator;
 @Component
 public class ThesisUserAuthorityProvider {
 
+    public boolean isStudent() {
+        return hasAuthority(ThesisAuthority.STUDENT);
+    }
+
+    public boolean isTeacher() {
+        return hasAuthority(ThesisAuthority.TEACHER);
+    }
+
     public boolean isAdmin() {
         return hasAuthority(ThesisAuthority.ADMIN);
     }

@@ -38,6 +38,8 @@
         <intercept-url pattern="/resources/**" access="permitAll" />
         <intercept-url pattern="/registration.html" access="permitAll" />
         <intercept-url pattern="/create_account.html" access="permitAll" />
+        <intercept-url pattern="/student/**" access="hasRole('ROLE_STUDENT')"/>
+        <intercept-url pattern="/teacher/**" access="hasRole('ROLE_TEACHER')"/>
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/**" access="hasAnyRole('ROLE_ADMIN','ROLE_TEACHER','ROLE_STUDENT')"/>
 

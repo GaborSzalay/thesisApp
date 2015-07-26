@@ -8,7 +8,7 @@
 <t:genericpage title="${title}">
     <jsp:attribute name="header">
         <link rel="stylesheet" href="/resources/css/jquery.dynatable.css">
-        <link rel="stylesheet" href="/resources/css/admin.css">
+        <link rel="stylesheet" href="/resources/css/teacher.css">
     </jsp:attribute>
     <jsp:attribute name="footer">
         <script src="/resources/js/jquery.dynatable.js"></script>
@@ -25,21 +25,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/admin/">Thesis App</a>
+                    <a class="navbar-brand" href="/teacher/">Thesis App</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="${currentPage == 'admins' ? 'active' : ''}"><a href="${menu.listAdminsLink}"><spring:message code="messages.admin.homepage.list.admins" text=""/></a></li>
-                        <li class="${currentPage == 'teachers' ? 'active' : ''}"><a href="${menu.listTeachersLink}"><spring:message code="messages.admin.homepage.list.teachers" text=""/></a></li>
-                        <li class="${currentPage == 'students' ? 'active' : ''}"><a href="${menu.listStudentsLink}"><spring:message code="messages.admin.homepage.list.students" text=""/></a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><spring:message code="messages.admin.homepage.list.more" text=""/> <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li class="${currentPage == 'thesis_types' ? 'active' : ''}"><a href="${menu.listThesisTypesLink}"><spring:message code="messages.admin.homepage.list.thesis_types" text=""/></a></li>
-                                <li class="${currentPage == 'courses' ? 'active' : ''}"><a href="${menu.listCoursesLink}"><spring:message code="messages.admin.homepage.list.courses" text=""/></a></li>
-                                <li class="${currentPage == 'majors' ? 'active' : ''}"><a href="${menu.listMajorsLink}"><spring:message code="messages.admin.homepage.list.majors" text=""/></a></li>
-                            </ul>
-                        </li>
+                        <li class="${currentPage == 'createThesis' ? 'active' : ''}"><a href="${menu.createThesisLink}"><spring:message code="messages.teacher.menu.create_thesis" text=""/></a></li>
+
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><jsp:include page="modules/logout-form.jsp"/></li>

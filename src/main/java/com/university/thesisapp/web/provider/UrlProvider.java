@@ -7,6 +7,9 @@ public class UrlProvider {
     public static final String HOME_PAGE_URL = "/";
     public static final String LOGIN_PAGE_URL_WITH_CREATED = "/login?state=created";
     public static final String ADMIN_HOME_PAGE_URL = "/admin/";
+    public static final String TEACHER_HOME_PAGE_URL = "/teacher/";
+    public static final String CREATE_THESIS_PAGE_URL = "/teacher/create_thesis.html";
+    public static final String STUDENT_HOME_PAGE_URL = "/student/";
     public static final String REGISTRATION_URL = "/registration.html";
     public static final String CREATE_ACCOUNT_URL = "/create_account.html";
     public static final String LIST_ADMINS_URL = "/admin/list_admins.html";
