@@ -14,6 +14,6 @@
     </jsp:attribute>
     <jsp:body>
         <jsp:doBody/>
-        <jsp:include page="modules/logout-form.jsp"/>
+
     </jsp:body>
 </t:genericpage>

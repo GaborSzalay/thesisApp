@@ -6,7 +6,7 @@
 <form action="${logoutUrl}" method="post" id="logoutForm">
     <jsp:include page="security-check.jsp" />
 </form>
-<a href="javascript:formSubmit()"> Logout</a>
+<a href="javascript:formSubmit()"> <spring:message code="messages.logout" text=""/></a>
 <script>
     function formSubmit() {
         document.getElementById("logoutForm").submit();
