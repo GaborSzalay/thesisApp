@@ -6,6 +6,21 @@ import java.util.Collection;
  * Created by Gábor on 2015.07.13..
  */
 public class Validation {
+
+    public static boolean empty(String string) {
+        boolean empty = false;
+        if (string == null) {
+            empty = true;
+        } else if (string.length() == 0) {
+            empty = true;
+        }
+        return empty;
+    }
+
+    public static boolean notEmpty(String string) {
+        return !empty(string);
+    }
+
     public static boolean empty(Collection<? extends Object> collection) {
         boolean empty = false;
         if (collection == null) {

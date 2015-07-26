@@ -1,14 +1,14 @@
 package com.university.thesisapp.signin.controller;
 
-import com.university.thesisapp.signin.factory.SignInContextFactory;
-import com.university.thesisapp.signin.model.SignInContext;
+import com.university.thesisapp.signin.context.SignInContextFactory;
+import com.university.thesisapp.signin.context.SignInContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,23 +22,12 @@ public class SignInController {
 
     @Autowired
     private SignInContextFactory signInContextFactory;
+    @Autowired
+    private SignInControllerViewResolver signInControllerViewResolver;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView login(
-            @RequestParam(value = "error", required = false) String error,
-            @RequestParam(value = "logout", required = false) String logout, HttpServletRequest request) {
+    public ModelAndView login(HttpServletRequest request, Model model) {
         SignInContext signInContext = signInContextFactory.create(request);
-        ModelAndView model = new ModelAndView();
-        if (error != null) {
-            model.addObject("error", "Invalid username and password!");
-        }
-
-        if (logout != null) {
-            model.addObject("msg", "You've been logged out successfully.");
-        }
-
-        model.addObject("context", signInContext);
-        model.setViewName("login");
-        return model;
+        return signInControllerViewResolver.resolveView(model, signInContext);
     }
 }

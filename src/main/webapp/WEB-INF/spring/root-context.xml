@@ -43,10 +43,10 @@
 
         <form-login
                 login-page="/login"
-                authentication-failure-url="/login?error"
+                authentication-failure-url="/login?state=error"
                 username-parameter="username"
                 password-parameter="password"/>
-        <logout logout-success-url="/login?logout"/>
+        <logout logout-success-url="/login?state=logout"/>
         <!-- enable csrf protection -->
         <csrf/>
     </http>
