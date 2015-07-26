@@ -15,12 +15,12 @@
             </h2>
 
             <c:if test="${context.showErrorMessage}">
-                <div class="state-error">
+                <div class="bg-danger">
                     <spring:message code="messages.login.error" text=""/>
                 </div>
             </c:if>
             <c:if test="${context.showLogoutMessage}">
-                <div class="state-logout">
+                <div class="bg-success">
                     <spring:message code="messages.login.logout" text=""/>
                 </div>
             </c:if>
