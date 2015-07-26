@@ -35,6 +35,8 @@ public class DatabaseInitializerInterceptor extends HandlerInterceptorAdapter {
     ThesisTypeDao thesisTypeDao;
     @Autowired
     ThesisUserDao thesisUserDao;
+    @Autowired
+    ThesisTeacherDao thesisTeacherDao;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -97,21 +99,30 @@ public class DatabaseInitializerInterceptor extends HandlerInterceptorAdapter {
 
             }
 
+            if (empty(thesisTeacherDao.getAllThesisTeachers())) {
+                ThesisUser thesisUser = thesisUserDao.getThesisUserByEmail("teacher@thesis.hu");
+                if (notEmpty(thesisUser)) {
+                    thesisTeacherDao.createThesisTeacher(thesisUser);
+                    logger.info("Test teacher created.");
+                }
+            }
+
             if (empty(thesisDao.getAllThesises())) {
                 final List<Course> courses = courseDao.getAllCourses();
-                List<ThesisType> thesisTypes = thesisTypeDao.getAllThesisTypes();
+                final List<ThesisType> thesisTypes = thesisTypeDao.getAllThesisTypes();
                 final List<StudentLimit> studentLimits = studentLimitDao.getAllStudentLimits();
+                final List<ThesisTeacher> teachers = thesisTeacherDao.getAllThesisTeachers();
 
-                if (isCoursesValid(courses) && isThesisTypesValid(thesisTypes) && isStudentLimitsValid(studentLimits)) {
+                if (isCoursesValid(courses) && isThesisTypesValid(thesisTypes) && isStudentLimitsValid(studentLimits) && notEmpty(teachers)) {
                     List<Course> courses2 = new ArrayList<Course>() {{
                         add(courses.get(0));
                     }};
                     List<StudentLimit> studentLimits2 = new ArrayList<StudentLimit>() {{
                         add(studentLimits.get(0));
                     }};
-                    thesisDao.creaateThesis("HTML 5 alapok", "Basic of HTML 5", "Test HTML 5 szakdoli téma leírás", "Test description of HTML 5 thesis", (long) 2, thesisTypes.get(0), courses, studentLimits);
+                    thesisDao.creaateThesis("HTML 5 alapok", "Basic of HTML 5", "Test HTML 5 szakdoli téma leírás", "Test description of HTML 5 thesis", (long) 2, thesisTypes.get(0), courses, studentLimits, teachers.get(0));
                     logger.info("Test thesis 1 created.");
-                    thesisDao.creaateThesis("CSS 3 alapok", "Basic of CSS 3", "Test CSS 3 szakdoli téma leírás", "Test description of CSS 3 thesis", (long) 1, thesisTypes.get(1), courses2, studentLimits2);
+                    thesisDao.creaateThesis("CSS 3 alapok", "Basic of CSS 3", "Test CSS 3 szakdoli téma leírás", "Test description of CSS 3 thesis", (long) 1, thesisTypes.get(1), courses2, studentLimits2, teachers.get(0));
                     logger.info("Test thesis 2 created.");
                 }
 

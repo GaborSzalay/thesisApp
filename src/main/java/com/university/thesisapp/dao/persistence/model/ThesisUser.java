@@ -14,6 +14,7 @@ public class ThesisUser {
     private String authority;
     private Date registrationDate;
     private ThesisStudent thesisStudent;
+    private ThesisTeacher thesisTeacher;
 
     @Id
     @Column(name = "thesis_user_id")
@@ -70,5 +71,14 @@ public class ThesisUser {
 
     public void setThesisStudent(ThesisStudent thesisStudent) {
         this.thesisStudent = thesisStudent;
+    }
+
+    @OneToOne(mappedBy = "thesisUser", optional = true)
+    public ThesisTeacher getThesisTeacher() {
+        return thesisTeacher;
+    }
+
+    public void setThesisTeacher(ThesisTeacher thesisTeacher) {
+        this.thesisTeacher = thesisTeacher;
     }
 }

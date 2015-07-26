@@ -6,6 +6,7 @@ import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class ThesisDao {
     @Autowired
     private EntityManagerProvider entityManagerProvider;
 
-    public Thesis creaateThesis(String titleHu, String titleEn, String descriptionHu, String descriptionEn, Long requiredSemesters, ThesisType thesisType, List<Course> courses, List<StudentLimit> studentLimits) {
+    public Thesis creaateThesis(String titleHu, String titleEn, String descriptionHu, String descriptionEn, Long requiredSemesters, ThesisType thesisType, List<Course> courses, List<StudentLimit> studentLimits, ThesisTeacher thesisTeacher) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
         Thesis thesis = new Thesis();
         Date date = new Date();
@@ -31,6 +32,7 @@ public class ThesisDao {
         thesis.setThesisType(thesisType);
         thesis.setCourses(courses);
         thesis.setStudentLimits(studentLimits);
+        thesis.setThesisTeacher(thesisTeacher);
         entityManagerParams.getEntityManager().persist(thesis);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesis;
@@ -41,5 +43,16 @@ public class ThesisDao {
         List<Thesis> thesises = entityManagerParams.getEntityManager().createQuery("SELECT t FROM Thesis t", Thesis.class).getResultList();
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesises;
+    }
+
+    public List<Thesis> getThesisesByTeacher(ThesisTeacher thesisTeacher) {
+        List<Thesis> ownThesises = new ArrayList<Thesis>();
+        List<Thesis> allThesises = getAllThesises();
+        for (Thesis thesis : allThesises) {
+            if (thesis.getThesisTeacher().getThesisTeacherId().equals(thesisTeacher.getThesisTeacherId())) {
+                ownThesises.add(thesis);
+            }
+        }
+        return ownThesises;
     }
 }

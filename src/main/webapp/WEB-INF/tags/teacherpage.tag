@@ -30,7 +30,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="${currentPage == 'createThesis' ? 'active' : ''}"><a href="${menu.createThesisLink}"><spring:message code="messages.teacher.menu.create_thesis" text=""/></a></li>
-
+                        <li class="${currentPage == 'ownThesises' ? 'active' : ''}"><a href="${menu.listOwnThesisesLink}"><spring:message code="messages.teacher.menu.own_thesises" text=""/></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><jsp:include page="modules/logout-form.jsp"/></li>

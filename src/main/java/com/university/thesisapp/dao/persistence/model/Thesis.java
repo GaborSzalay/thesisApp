@@ -22,6 +22,7 @@ public class Thesis {
     private Date creationDate;
     private Date lastModifiedDate;
     private List<ThesisStudent> thesisStudents;
+    private ThesisTeacher thesisTeacher;
 
     @Id
     @Column(name = "thesis_id")
@@ -135,5 +136,14 @@ public class Thesis {
 
     public void setThesisStudents(List<ThesisStudent> thesisStudents) {
         this.thesisStudents = thesisStudents;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    public ThesisTeacher getThesisTeacher() {
+        return thesisTeacher;
+    }
+
+    public void setThesisTeacher(ThesisTeacher thesisTeacher) {
+        this.thesisTeacher = thesisTeacher;
     }
 }

@@ -5,6 +5,7 @@ package com.university.thesisapp.teacher.context;
  */
 public class TeacherMenuContext {
     private String createThesisLink;
+    private String listOwnThesisesLink;
 
     public String getCreateThesisLink() {
         return createThesisLink;
@@ -12,5 +13,13 @@ public class TeacherMenuContext {
 
     public void setCreateThesisLink(String createThesisLink) {
         this.createThesisLink = createThesisLink;
+    }
+
+    public String getListOwnThesisesLink() {
+        return listOwnThesisesLink;
+    }
+
+    public void setListOwnThesisesLink(String listOwnThesisesLink) {
+        this.listOwnThesisesLink = listOwnThesisesLink;
     }
 }
