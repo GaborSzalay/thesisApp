@@ -32,9 +32,11 @@
             <spring:message code="messages.login.email" text="" var="emailLabel"/>
             <spring:message code="messages.login.password" text="" var="passwordLabel"/>
             <label for="inputEmail" class="sr-only">${emailLabel}</label>
-            <input type="email" id="inputEmail" name="email" class="form-control" placeholder="${emailLabel}" required autofocus>
+            <input type="email" id="inputEmail" name="email" class="form-control" placeholder="${emailLabel}" required
+                   autofocus>
             <label for="inputPassword" class="sr-only">${passwordLabel}</label>
-            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="${passwordLabel}" required>
+            <input type="password" id="inputPassword" name="password" class="form-control"
+                   placeholder="${passwordLabel}" required>
             <div class="checkbox">
                 <label>
                     <input type="checkbox" value="remember-me">
@@ -46,11 +48,9 @@
             </button>
 
             <jsp:include page="modules/security-check.jsp"/>
-
+            <a href="${context.registrationLink}">
+                <spring:message code="messages.homepage.register" text=""/>
+            </a>
         </form>
-
-        <a href="${context.registrationLink.url}">
-            <spring:message code="${context.registrationLink.message.key}" text=""/>
-        </a>
     </div>
 </t:genericpage>

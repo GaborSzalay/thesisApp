@@ -1,8 +1,7 @@
 package com.university.thesisapp.signin.context;
 
-import com.university.thesisapp.homepage.factory.RegistrationLinkFactory;
 import com.university.thesisapp.util.Validation;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,13 +17,12 @@ public class SignInContextFactory {
     private static final String LOGOUT = "logout";
     private static final String CREATED = "created";
     private static final String EMAIL = "email";
-    @Autowired
-    private RegistrationLinkFactory registrationLinkFactory;
+
 
 
     public SignInContext create(HttpServletRequest request) {
         SignInContext signInContext = new SignInContext();
-        signInContext.setRegistrationLink(registrationLinkFactory.create());
+        signInContext.setRegistrationLink(UrlProvider.REGISTRATION_URL);
         String state = request.getParameter(STATE);
         if (Validation.notEmpty(state)) {
             if (ERROR.equals(state)) {

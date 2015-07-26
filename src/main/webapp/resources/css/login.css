@@ -61,3 +61,8 @@ body {
     font-size: medium;
     height: 62px;
 }
+
+.form-signin a {
+    display: inline-block;
+    padding-top: 10px;
+}

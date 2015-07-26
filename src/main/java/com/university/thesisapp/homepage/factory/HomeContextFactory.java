@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class HomeContextFactory {
     @Autowired
-    private RegistrationLinkFactory registrationLinkFactory;
-    @Autowired
     private ThesisUserAuthorityProvider thesisUserAuthorityProvider;
 
     public HomeContext create(HttpServletRequest request) {

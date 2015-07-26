@@ -1,21 +1,19 @@
 package com.university.thesisapp.signin.context;
 
-import com.university.thesisapp.web.links.ThesisLink;
-
 /**
  * Created by Gábor on 2015.07.15..
  */
 public class SignInContext {
-    private ThesisLink registrationLink;
+    private String registrationLink;
     private boolean showErrorMessage;
     private boolean showLogoutMessage;
     private String createdEmail;
 
-    public ThesisLink getRegistrationLink() {
+    public String getRegistrationLink() {
         return registrationLink;
     }
 
-    public void setRegistrationLink(ThesisLink registrationLink) {
+    public void setRegistrationLink(String registrationLink) {
         this.registrationLink = registrationLink;
     }
 
