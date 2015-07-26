@@ -10,6 +10,7 @@ public class UrlProvider {
     public static final String CREATE_ACCOUNT_URL = "/create_account.html";
     public static final String LIST_ADMINS_URL = "/admin/list_admins.html";
     public static final String LIST_TEACHERS_URL = "/admin/list_teachers.html";
+    public static final String LIST_STUDENTS_URL = "/admin/list_students.html";
     public static final String LIST_COURSES_URL = "/admin/list_courses.html";
     public static final String LIST_MAJORS_URL = "/admin/list_majors.html";
     public static final String LIST_THESIS_TYPES_URL = "/admin/list_thesis_types.html";

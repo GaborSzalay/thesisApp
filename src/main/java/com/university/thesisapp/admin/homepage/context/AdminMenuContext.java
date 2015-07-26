@@ -6,6 +6,7 @@ package com.university.thesisapp.admin.homepage.context;
 public class AdminMenuContext {
     private String listAdminsLink;
     private String listTeachersLink;
+    private String listStudentsLink;
     private String listThesisTypesLink;
     private String listCoursesLink;
     private String listMajorsLink;
@@ -24,6 +25,14 @@ public class AdminMenuContext {
 
     public void setListTeachersLink(String listTeachersLink) {
         this.listTeachersLink = listTeachersLink;
+    }
+
+    public String getListStudentsLink() {
+        return listStudentsLink;
+    }
+
+    public void setListStudentsLink(String listStudentsLink) {
+        this.listStudentsLink = listStudentsLink;
     }
 
     public String getListThesisTypesLink() {

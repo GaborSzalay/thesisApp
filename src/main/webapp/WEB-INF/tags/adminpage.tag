@@ -24,7 +24,7 @@
             </a>
         </div>
         <div>
-            <a href="">
+            <a href="${menu.listStudentsLink}">
                 <spring:message code="messages.admin.homepage.list.students" text=""/>
             </a>
         </div>

@@ -13,6 +13,7 @@ public class AdminMenuContextFactory {
         AdminMenuContext adminMenuContext = new AdminMenuContext();
         adminMenuContext.setListAdminsLink(UrlProvider.LIST_ADMINS_URL);
         adminMenuContext.setListTeachersLink(UrlProvider.LIST_TEACHERS_URL);
+        adminMenuContext.setListStudentsLink(UrlProvider.LIST_STUDENTS_URL);
         adminMenuContext.setListCoursesLink(UrlProvider.LIST_COURSES_URL);
         adminMenuContext.setListMajorsLink(UrlProvider.LIST_MAJORS_URL);
         adminMenuContext.setListThesisTypesLink(UrlProvider.LIST_THESIS_TYPES_URL);

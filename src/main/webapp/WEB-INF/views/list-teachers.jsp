@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<t:adminpage title="Admin List">
+<t:adminpage title="Teacher List">
 
     <table id="my-table">
         <thead>
@@ -12,10 +12,10 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="admin" items="${context.admins}" varStatus="counter">
+            <c:forEach var="teacher" items="${context.teachers}" varStatus="counter">
                 <tr>
-                    <td>${admin.userName}</td>
-                    <td>${admin.registrationDate}</td>
+                    <td>${teacher.userName}</td>
+                    <td>${teacher.registrationDate}</td>
                 </tr>
             </c:forEach>
         </tbody>
