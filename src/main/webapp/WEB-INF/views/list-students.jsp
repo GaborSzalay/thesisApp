@@ -7,7 +7,7 @@
     <table id="my-table">
         <thead>
             <tr>
-                <th><spring:message code="messages.table.username" text=""/></th>
+                <th><spring:message code="messages.table.email" text=""/></th>
                 <th><spring:message code="messages.table.major" text=""/></th>
                 <th><spring:message code="messages.table.thesis_type" text=""/></th>
                 <th><spring:message code="messages.table.course" text=""/></th>
@@ -17,7 +17,7 @@
         <tbody>
             <c:forEach var="student" items="${context.students}" varStatus="counter">
                 <tr>
-                    <td>${student.thesisUser.userName}</td>
+                    <td>${student.thesisUser.email}</td>
                     <td>${student.major.majorName}</td>
                     <td>${student.thesisType.typeName}</td>
                     <td>${student.course.courseName}</td>

@@ -21,21 +21,21 @@ public class ThesisUserService implements UserDetailsService {
     private ThesisUserDao thesisUserDao;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         ThesisUser thesisUser = null;
-        if (superUser.getUserName().equals(username)) {
-            thesisUser = thesisUserDao.getThesisUserByUserName(username);
+        if (superUser.getEmail().equals(email)) {
+            thesisUser = thesisUserDao.getThesisUserByEmail(email);
             if (Validation.empty(thesisUser)) {
-                thesisUser = thesisUserDao.createThesisUser(superUser.getUserName(), superUser.getPassword(), superUser.getAuthority());
+                thesisUser = thesisUserDao.createThesisUser(superUser.getEmail(), superUser.getPassword(), superUser.getAuthority());
             }
         } else {
-            thesisUser = thesisUserDao.getThesisUserByUserName(username);
+            thesisUser = thesisUserDao.getThesisUserByEmail(email);
         }
 
         if (Validation.empty(thesisUser)) {
-            throw new UsernameNotFoundException("User not found: " + username);
+            throw new UsernameNotFoundException("User not found: " + email);
         }
-        User user = new User(thesisUser.getUserName(), thesisUser.getPassword(), true, true, true, true, getGrantedAuthorities(thesisUser));
+        User user = new User(thesisUser.getEmail(), thesisUser.getPassword(), true, true, true, true, getGrantedAuthorities(thesisUser));
         return user;
     }
 

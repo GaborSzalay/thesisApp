@@ -9,7 +9,7 @@ import java.util.Date;
 public class ThesisUser {
 
     private Long thesisUserId;
-    private String userName;
+    private String email;
     private String password;
     private String authority;
     private Date registrationDate;
@@ -26,13 +26,13 @@ public class ThesisUser {
         this.thesisUserId = thesisUserId;
     }
 
-    @Column(name = "user_name")
-    public String getUserName() {
-        return userName;
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Column(name = "password", length = 60)

@@ -13,8 +13,10 @@ public class CreateAccountContextFactory {
 
     public CreateAccountContext create(HttpServletRequest request) {
         CreateAccountContext createAccountContext = new CreateAccountContext();
-        createAccountContext.setHomePageUrl(UrlProvider.HOME_PAGE_URL);
-        createAccountContext.setUserName(request.getParameter("username"));
+        createAccountContext.setLoginPageUrl(UrlProvider.LOGIN_PAGE_URL_WITH_CREATED);
+        String email = request.getParameter("email");
+        createAccountContext.setEmail(email);
+        request.getSession().setAttribute("email", email);
         createAccountContext.setPassword(request.getParameter("password"));
         createAccountContext.setAuthority(request.getParameter("authority"));
         return createAccountContext;

@@ -4,25 +4,25 @@ package com.university.thesisapp.createaccount.context;
  * Created by Gábor on 2015.07.13..
  */
 public class CreateAccountContext {
-    private String homePageUrl;
-    private String userName;
+    private String loginPageUrl;
+    private String email;
     private String password;
     private String authority;
 
-    public String getHomePageUrl() {
-        return homePageUrl;
+    public String getLoginPageUrl() {
+        return loginPageUrl;
     }
 
-    public void setHomePageUrl(String homePageUrl) {
-        this.homePageUrl = homePageUrl;
+    public void setLoginPageUrl(String loginPageUrl) {
+        this.loginPageUrl = loginPageUrl;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

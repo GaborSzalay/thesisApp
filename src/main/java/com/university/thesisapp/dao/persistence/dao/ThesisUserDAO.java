@@ -30,12 +30,12 @@ public class ThesisUserDao {
         return thesisUser;
     }
 
-    public ThesisUser getThesisUserByUserName(String username) {
+    public ThesisUser getThesisUserByEmail(String email) {
         Iterator<ThesisUser> thesisUserIterator = getAllThesisUsers().iterator();
         ThesisUser thesisUser = null;
         while (thesisUserIterator.hasNext() && Validation.empty(thesisUser)) {
             ThesisUser currentThesisUser = thesisUserIterator.next();
-            if (username.equals(currentThesisUser.getUserName())) {
+            if (email.equals(currentThesisUser.getEmail())) {
                 thesisUser = currentThesisUser;
             }
         }
@@ -60,10 +60,10 @@ public class ThesisUserDao {
         return thesisUsers;
     }
 
-    public ThesisUser createThesisUser(String userName, String password, String authority) {
+    public ThesisUser createThesisUser(String email, String password, String authority) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
         ThesisUser thesisUser = new ThesisUser();
-        thesisUser.setUserName(userName);
+        thesisUser.setEmail(email);
         thesisUser.setPassword(getHashedPassword(password));
         thesisUser.setAuthority(authority);
         thesisUser.setRegistrationDate(new Date());
@@ -73,7 +73,7 @@ public class ThesisUserDao {
     }
 
     public ThesisUser createThesisUser(CreateAccountContext createAccountContext) {
-        return createThesisUser(createAccountContext.getUserName(), createAccountContext.getPassword(), createAccountContext.getAuthority());
+        return createThesisUser(createAccountContext.getEmail(), createAccountContext.getPassword(), createAccountContext.getAuthority());
     }
 
     private String getHashedPassword(String password) {

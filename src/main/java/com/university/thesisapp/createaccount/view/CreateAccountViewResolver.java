@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @Component
 public class CreateAccountViewResolver {
     public ModelAndView resolveView(CreateAccountContext createAccountContext, Model model) {
-        RedirectView view = new RedirectView(createAccountContext.getHomePageUrl());
+        RedirectView view = new RedirectView(createAccountContext.getLoginPageUrl());
         return new ModelAndView(view, model.asMap());
     }
 }

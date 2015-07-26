@@ -24,12 +24,17 @@
                     <spring:message code="messages.login.logout" text=""/>
                 </div>
             </c:if>
+            <c:if test="${not empty context.createdEmail}">
+                <div id="created-account" class="bg-success">
+                    <spring:message code="messages.login.created" text="" arguments="${context.createdEmail}"/>
+                </div>
+            </c:if>
             <spring:message code="messages.login.email" text="" var="emailLabel"/>
             <spring:message code="messages.login.password" text="" var="passwordLabel"/>
             <label for="inputEmail" class="sr-only">${emailLabel}</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="${emailLabel}" required autofocus>
+            <input type="email" id="inputEmail" name="email" class="form-control" placeholder="${emailLabel}" required autofocus>
             <label for="inputPassword" class="sr-only">${passwordLabel}</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="${passwordLabel}" required>
+            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="${passwordLabel}" required>
             <div class="checkbox">
                 <label>
                     <input type="checkbox" value="remember-me">

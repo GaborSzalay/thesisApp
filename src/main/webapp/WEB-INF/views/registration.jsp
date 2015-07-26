@@ -5,7 +5,7 @@
     <form action="/create_account.html" method="POST" accept-charset="UTF-8">
         Username:
         <br>
-        <input type="text" name="username">
+        <input type="text" name="email">
         <br>
         Password:
         <br>

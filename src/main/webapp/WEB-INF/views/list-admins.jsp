@@ -7,14 +7,14 @@
     <table id="my-table">
         <thead>
             <tr>
-                <th>User name</th>
-                <th>Reg date</th>
+                <th><spring:message code="messages.table.email" text=""/></th>
+                <th><spring:message code="messages.table.regdate" text=""/></th>
             </tr>
         </thead>
         <tbody>
             <c:forEach var="admin" items="${context.admins}" varStatus="counter">
                 <tr>
-                    <td>${admin.userName}</td>
+                    <td>${admin.email}</td>
                     <td>${admin.registrationDate}</td>
                 </tr>
             </c:forEach>

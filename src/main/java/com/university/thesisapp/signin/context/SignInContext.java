@@ -9,6 +9,7 @@ public class SignInContext {
     private ThesisLink registrationLink;
     private boolean showErrorMessage;
     private boolean showLogoutMessage;
+    private String createdEmail;
 
     public ThesisLink getRegistrationLink() {
         return registrationLink;
@@ -32,5 +33,14 @@ public class SignInContext {
 
     public void setShowLogoutMessage(boolean showLogoutMessage) {
         this.showLogoutMessage = showLogoutMessage;
+    }
+
+
+    public String getCreatedEmail() {
+        return createdEmail;
+    }
+
+    public void setCreatedEmail(String createdEmail) {
+        this.createdEmail = createdEmail;
     }
 }

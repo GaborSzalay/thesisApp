@@ -7,7 +7,7 @@
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
     <beans:bean id="superUser" class="com.university.thesisapp.dao.persistence.model.ThesisUser">
-        <beans:property name="userName" value="superUser" />
+        <beans:property name="email" value="superUser@thesis.hu" />
         <beans:property name="password" value="almafa1" />
         <beans:property name="authority" value="ROLE_ADMIN" />
     </beans:bean>
@@ -44,7 +44,7 @@
         <form-login
                 login-page="/login"
                 authentication-failure-url="/login?state=error"
-                username-parameter="username"
+                username-parameter="email"
                 password-parameter="password"/>
         <logout logout-success-url="/login?state=logout"/>
         <!-- enable csrf protection -->

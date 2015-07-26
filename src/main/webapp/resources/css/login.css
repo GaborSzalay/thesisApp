@@ -47,12 +47,17 @@ body {
     border-radius: 2px 2px 2px 2px;
 }
 
-.form-signin .bg-danger{
+.form-signin .bg-danger {
     color: brown;
     border: 1px solid burlywood;
 }
 
-.form-signin .bg-success{
+.form-signin .bg-success {
     color: darkgreen;
     border: 1px solid darkgray;
+}
+
+#created-account {
+    font-size: medium;
+    height: 62px;
 }
