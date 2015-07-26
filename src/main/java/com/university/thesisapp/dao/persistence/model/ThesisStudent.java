@@ -35,7 +35,7 @@ public class ThesisStudent {
         this.thesisUser = thesisUser;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     public ThesisType getThesisType() {
         return thesisType;
     }
@@ -44,7 +44,7 @@ public class ThesisStudent {
         this.thesisType = thesisType;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     public Major getMajor() {
         return major;
     }
@@ -53,7 +53,7 @@ public class ThesisStudent {
         this.major = major;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     public Course getCourse() {
         return course;
     }
