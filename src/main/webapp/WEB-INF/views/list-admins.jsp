@@ -2,7 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<t:signedinuserpage title="Admin List">
+<t:adminpage title="Admin List">
 
     <table id="my-table">
         <thead>
@@ -26,4 +26,4 @@
     </table>
 
 
-</t:signedinuserpage>
+</t:adminpage>

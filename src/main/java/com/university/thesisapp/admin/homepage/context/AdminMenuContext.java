@@ -3,7 +3,7 @@ package com.university.thesisapp.admin.homepage.context;
 /**
  * Created by Gábor on 2015.07.19..
  */
-public class AdminHomeContext {
+public class AdminMenuContext {
     private String listAdminsLink;
     private String listTeachersLink;
     private String listThesisTypesLink;
