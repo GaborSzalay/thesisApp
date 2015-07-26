@@ -1,16 +1,16 @@
-<%@tag description="Signed-in User Page template" pageEncoding="UTF-8"%>
+<%@tag description="Admin User Page template" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@attribute name="title" required="true" %>
 <%@attribute name="currentPage" required="true" %>
 
-<t:signedinuserpage title="${title}">
-    <jsp:attribute name="signed_in_header">
+<t:genericpage title="${title}">
+    <jsp:attribute name="header">
         <link rel="stylesheet" href="/resources/css/jquery.dynatable.css">
         <link rel="stylesheet" href="/resources/css/admin.css">
     </jsp:attribute>
-    <jsp:attribute name="signed_in_footer">
+    <jsp:attribute name="footer">
         <script src="/resources/js/jquery.dynatable.js"></script>
         <script src="/resources/js/dynatable.basic.js"></script>
     </jsp:attribute>
@@ -51,4 +51,4 @@
             <jsp:doBody/>
         </div>
     </jsp:body>
-</t:signedinuserpage>
+</t:genericpage>
