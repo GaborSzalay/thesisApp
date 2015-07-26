@@ -14,6 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="/resources/css/normalize.css">
+        <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
         <link rel="stylesheet" href="/resources/css/main.css">
         <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
         <jsp:invoke fragment="header"/>
@@ -35,6 +36,7 @@
         <script>window.jQuery || document.write('<script src="resources/js/vendor/jquery-1.11.3.min.js"><\/script>')
         </script>
         <script src="/resources/js/plugins.js"></script>
+        <script src="/resources/js/bootstrap.min.js"></script>
         <script src="/resources/js/main.js"></script>
         <div id="pagefooter">
             <jsp:invoke fragment="footer"/>
