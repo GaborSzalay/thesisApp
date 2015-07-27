@@ -1,5 +1,7 @@
 package com.university.thesisapp.teacher.controller;
 
+import com.university.thesisapp.teacher.context.CreateThesisContext;
+import com.university.thesisapp.teacher.context.CreateThesisContextFactory;
 import com.university.thesisapp.teacher.context.TeacherMenuContext;
 import com.university.thesisapp.teacher.context.TeacherMenuContextFactory;
 import com.university.thesisapp.web.provider.UrlProvider;
@@ -13,18 +15,21 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by Gábor on 2015.07.26..
+ * Created by Gábor on 2015.07.27..
  */
 @Controller
-public class TeacherHomeController {
+public class CreateThesisController {
     @Autowired
     private TeacherMenuContextFactory teacherMenuContextFactory;
     @Autowired
-    private TeacherHomeControllerViewResolver teacherHomeControllerViewResolver;
+    private CreateThesisControllerViewResolver createThesisControllerViewResolver;
+    @Autowired
+    private CreateThesisContextFactory createThesisContextFactory;
 
-    @RequestMapping(value = UrlProvider.TEACHER_HOME_PAGE_URL, method = RequestMethod.GET)
-    public ModelAndView showTeacherHomePage(Model model, HttpServletRequest request) {
+    @RequestMapping(value = UrlProvider.CREATE_THESIS_PAGE_URL, method = RequestMethod.GET)
+    public ModelAndView showCreateThesisForm(Model model, HttpServletRequest request) {
         TeacherMenuContext teacherMenuContext = teacherMenuContextFactory.create();
-        return teacherHomeControllerViewResolver.resolveView(model, teacherMenuContext);
+        CreateThesisContext createThesisContext = createThesisContextFactory.create();
+        return createThesisControllerViewResolver.resolveView(model, teacherMenuContext, createThesisContext);
     }
 }

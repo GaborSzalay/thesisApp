@@ -4,7 +4,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <t:teacherpage title="messages.header.title.admin" currentPage="admins">
 
-    <table id="my-table">
+    <table id="my-table" class="table table-hover">
         <thead>
             <tr>
                 <th><spring:message code="messages.table.email" text=""/></th>
