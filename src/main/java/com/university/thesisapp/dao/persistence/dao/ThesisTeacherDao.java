@@ -34,6 +34,19 @@ public class ThesisTeacherDao {
         return thesisTeachers;
     }
 
+    public ThesisTeacher getThesisTeacherByEmail(String email) {
+        ThesisTeacher thesisTeacher = null;
+        List<ThesisTeacher> thesisTeachers = getAllThesisTeachers();
+        Iterator<ThesisTeacher> thesisTeacherIterator = thesisTeachers.iterator();
+        while (thesisTeacherIterator.hasNext() && Validation.empty(thesisTeacher)) {
+            ThesisTeacher actualThesisTeacher = thesisTeacherIterator.next();
+            if (actualThesisTeacher.getThesisUser().getEmail().equals(email)) {
+                thesisTeacher = actualThesisTeacher;
+            }
+        }
+        return thesisTeacher;
+    }
+
     public ThesisTeacher getThesisTeacherByThesisUser(ThesisUser thesisUser) {
         ThesisTeacher thesisTeacher = null;
         List<ThesisTeacher> thesisTeachers = getAllThesisTeachers();

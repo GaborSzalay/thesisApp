@@ -16,11 +16,13 @@ public class ThesisUserProvider {
     @Autowired
     private ThesisUserDao thesisUserDao;
 
-    public ThesisUser getSignedInUser() {
-        ThesisUser thesisUser = null;
+    public String getSignedInEmail() {
         SecurityContext context = SecurityContextHolder.getContext();
         Authentication auth = context.getAuthentication();
-        String email = auth.getName();
-        return thesisUserDao.getThesisUserByEmail(email);
+        return auth.getName();
+    }
+
+    public ThesisUser getSignedInUser() {
+        return thesisUserDao.getThesisUserByEmail(getSignedInEmail());
     }
 }
