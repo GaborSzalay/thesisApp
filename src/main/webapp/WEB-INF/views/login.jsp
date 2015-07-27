@@ -16,7 +16,17 @@
 
             <c:if test="${context.showErrorMessage}">
                 <div class="bg-danger">
-                    <spring:message code="messages.login.error" text=""/>
+                    <spring:message code="messages.login.error.invalid_user" text=""/>
+                </div>
+            </c:if>
+            <c:if test="${context.showAccessDeniedMessage}">
+                <div class="bg-danger">
+                    <spring:message code="messages.login.error.access_denied" text=""/>
+                </div>
+            </c:if>
+            <c:if test="${context.showExpiredSessionMessage}">
+                <div class="bg-danger">
+                    <spring:message code="messages.login.error.expired_session" text=""/>
                 </div>
             </c:if>
             <c:if test="${context.showLogoutMessage}">

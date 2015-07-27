@@ -7,6 +7,8 @@ public class SignInContext {
     private String registrationLink;
     private boolean showErrorMessage;
     private boolean showLogoutMessage;
+    private boolean showAccessDeniedMessage;
+    private boolean showExpiredSessionMessage;
     private String createdEmail;
 
     public String getRegistrationLink() {
@@ -40,5 +42,21 @@ public class SignInContext {
 
     public void setCreatedEmail(String createdEmail) {
         this.createdEmail = createdEmail;
+    }
+
+    public boolean isShowAccessDeniedMessage() {
+        return showAccessDeniedMessage;
+    }
+
+    public void setShowAccessDeniedMessage(boolean showAccessDeniedMessage) {
+        this.showAccessDeniedMessage = showAccessDeniedMessage;
+    }
+
+    public boolean isShowExpiredSessionMessage() {
+        return showExpiredSessionMessage;
+    }
+
+    public void setShowExpiredSessionMessage(boolean showExpiredSessionMessage) {
+        this.showExpiredSessionMessage = showExpiredSessionMessage;
     }
 }

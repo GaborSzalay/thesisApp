@@ -17,7 +17,8 @@ public class SignInContextFactory {
     private static final String LOGOUT = "logout";
     private static final String CREATED = "created";
     private static final String EMAIL = "email";
-
+    private static final String ACCESS_DENIED = "accessDenied";
+    private static final String EXPIRED_SESSION = "expiredSession";
 
 
     public SignInContext create(HttpServletRequest request) {
@@ -36,6 +37,10 @@ public class SignInContextFactory {
                     signInContext.setCreatedEmail((String) emailAttribute);
                     session.removeAttribute(EMAIL);
                 }
+            } else if (ACCESS_DENIED.equals(state)) {
+                signInContext.setShowAccessDeniedMessage(true);
+            } else if (EXPIRED_SESSION.equals(state)) {
+                signInContext.setShowExpiredSessionMessage(true);
             }
         }
         return signInContext;
