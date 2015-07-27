@@ -12,7 +12,7 @@
         <title>Thesis App | <spring:message code="${title}" text=""/></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <link rel="icon" href="/resources/icon/favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="/resources/css/normalize.css">
         <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
         <link rel="stylesheet" href="/resources/css/main.css">
