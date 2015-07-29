@@ -1,0 +1,24 @@
+#create-thesis-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #f6f6f6;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 6px rgba(0,0,0,0.075);
+    padding: 30px 17px;
+}
+
+#create-thesis-form select {
+    max-width: 300px;
+}
+
+#create-thesis-form h2 {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 25px;
+}
+
+#create-thesis-form .btn {
+    margin-top: 15px;
+}
