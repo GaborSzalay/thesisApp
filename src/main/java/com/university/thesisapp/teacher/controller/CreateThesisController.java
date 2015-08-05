@@ -1,9 +1,6 @@
 package com.university.thesisapp.teacher.controller;
 
-import com.university.thesisapp.teacher.context.CreateThesisContext;
-import com.university.thesisapp.teacher.context.CreateThesisContextFactory;
-import com.university.thesisapp.teacher.context.TeacherMenuContext;
-import com.university.thesisapp.teacher.context.TeacherMenuContextFactory;
+import com.university.thesisapp.teacher.context.*;
 import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

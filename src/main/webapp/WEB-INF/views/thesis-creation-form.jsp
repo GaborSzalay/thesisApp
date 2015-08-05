@@ -2,31 +2,34 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <t:teacherpage title="messages.header.title.teacher" currentPage="admins">
 
-    <form id="create-thesis-form">
+    <form id="create-thesis-form" action="/teacher/ccreate_thesis.html" method="POST" accept-charset="UTF-8">
         <h2>Thesis</h2>
         <div class="form-group">
             <label for="titleHuInput">Hungarian Title</label>
-            <input type="text" class="form-control" id="titleHuInput" placeholder="Hungarian Title">
+            <input type="text" id="titleHuInput" class="form-control" placeholder="Hungarian Title" />
         </div>
         <div class="form-group">
             <label for="titleEnInput">English Title</label>
-            <input type="text" class="form-control" id="titleEnInput" placeholder="English Title">
+            <input id="titleEnInput" type="text" class="form-control" placeholder="English Title" />
         </div>
         <div class="form-group">
             <label for="thesisTypeInput">Thesis Type</label>
             <select id="thesisTypeInput" class="form-control">
-                <option>Diplomadolgozat</option>
-                <option>Szakdolgozat</option>
+                <c:forEach var="thesisType" items="${context.thesisTypes}" varStatus="counter">
+                    <option value="${thesisType.thesisTypeId}">${thesisType.typeName}</option>
+                </c:forEach>
             </select>
         </div>
-        <div class="form-group">
-            <label for="coursesInput">Courses</label>
-            <select multiple id="coursesInput" class="form-control">
-                <option>Mérnöki tervezés</option>
-                <option>Szakdolgozat</option>
-            </select>
+        <div class="form-group" id="courses">
+            <label class="courses-main-label" for="courses">Courses</label>
+            <c:forEach var="course" items="${context.courses}" varStatus="counter">
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="courseIds" value="${course.courseId}"/> ${course.courseName}
+                </label>
+            </c:forEach>
         </div>
         <div class="form-group">
             <label for="requiredSemestersInput">Required Semesters</label>
@@ -43,9 +46,10 @@
         </div>
         <div class="form-group">
             <label for="descriptionEnInput">English Description</label>
-            <textarea id="descriptionEnInput" class="form-control" placeholder="English Description" rows="3"></textarea>
+            <textarea id="descriptionEnInput" class="form-control" placeholder="English Description" rows="3" ></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Create Thesis</button>
+        <jsp:include page="modules/security-check.jsp"/>
     </form>
 
 </t:teacherpage>

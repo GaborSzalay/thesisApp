@@ -37,9 +37,9 @@
         </script>
         <script src="/resources/js/plugins.js"></script>
         <script src="/resources/js/bootstrap.min.js"></script>
-        <script src="/resources/js/main.js"></script>
         <div id="pagefooter">
             <jsp:invoke fragment="footer"/>
         </div>
+        <script src="/resources/js/main.js"></script>
     </body>
 </html>
