@@ -24,9 +24,14 @@
             <label for="thesisTypeInput">Thesis Type</label>
             <select id="thesisTypeInput" class="form-control" name="thesisTypeInput">
                 <c:forEach var="thesisType" items="${context.thesisTypes}" varStatus="counter">
-
-
-                    <option value="${thesisType.thesisTypeId}">${thesisType.typeName}</option>
+                    <c:choose>
+                        <c:when test="${isThesisAlreadyExisting and thesisType.thesisTypeId == thesis.thesisType.thesisTypeId}">
+                            <option value="${thesisType.thesisTypeId}" selected="selected">${thesisType.typeName}</option>
+                        </c:when>
+                        <c:otherwise>
+                            <option value="${thesisType.thesisTypeId}">${thesisType.typeName}</option>
+                        </c:otherwise>
+                    </c:choose>
                 </c:forEach>
             </select>
         </div>
