@@ -1,5 +1,6 @@
 package com.university.thesisapp.teacher.controller;
 
+import com.university.thesisapp.dao.persistence.dao.ThesisDao;
 import com.university.thesisapp.teacher.context.*;
 import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,14 @@ public class CreateThesisController {
     private CreateThesisControllerViewResolver createThesisControllerViewResolver;
     @Autowired
     private CreateThesisContextFactory createThesisContextFactory;
+    @Autowired
+    private ThesisDao thesisDao;
 
     @RequestMapping(value = UrlProvider.CREATE_THESIS_PAGE_URL, method = RequestMethod.GET)
     public ModelAndView showCreateThesisForm(Model model, HttpServletRequest request) {
         TeacherMenuContext teacherMenuContext = teacherMenuContextFactory.create();
         CreateThesisContext createThesisContext = createThesisContextFactory.create();
+        model.addAttribute("thesis", thesisDao.findById(3));
         return createThesisControllerViewResolver.resolveView(model, teacherMenuContext, createThesisContext);
     }
 }

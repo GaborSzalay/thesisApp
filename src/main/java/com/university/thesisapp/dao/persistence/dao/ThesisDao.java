@@ -4,11 +4,13 @@ import com.university.thesisapp.dao.persistence.model.*;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
 import com.university.thesisapp.dao.persistence.provider.ThesisUserProvider;
+import com.university.thesisapp.util.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -59,6 +61,20 @@ public class ThesisDao {
         List<Thesis> thesises = entityManagerParams.getEntityManager().createQuery("SELECT t FROM Thesis t", Thesis.class).getResultList();
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesises;
+    }
+
+    public Thesis findById(long thesisId) {
+        List<Thesis> thesises = getAllThesises();
+        Thesis thesis = null;
+        Iterator<Thesis> thesisIterator = thesises.iterator();
+        while (thesisIterator.hasNext() && Validation.empty(thesis)) {
+            Thesis actualThesis = thesisIterator.next();
+            if (actualThesis.getThesisId().equals(thesisId)) {
+                thesis = actualThesis;
+            }
+        }
+
+        return thesis;
     }
 
     public List<Thesis> getThesisesByTeacher(ThesisTeacher thesisTeacher) {

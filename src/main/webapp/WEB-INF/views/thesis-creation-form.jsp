@@ -5,20 +5,27 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <t:teacherpage title="messages.header.title.teacher" currentPage="admins">
 
+    <c:set var="isThesisAlreadyExisting" value="${not empty thesis and not empty thesis.thesisId}"/>
+
     <form id="create-thesis-form" action="/teacher/create_thesis.html" method="POST" accept-charset="UTF-8">
+        <c:if test="${isThesisAlreadyExisting}">
+            <input type="hidden" name="thesisId" value="${thesis.thesisId}">
+        </c:if>
         <h2>Thesis</h2>
         <div class="form-group">
             <label for="titleHuInput">Hungarian Title</label>
-            <input type="text" id="titleHuInput" class="form-control" placeholder="Hungarian Title" name="titleHuInput"/>
+            <input type="text" id="titleHuInput" class="form-control" placeholder="Hungarian Title" name="titleHuInput" value="${thesis.titleHu}"/>
         </div>
         <div class="form-group">
             <label for="titleEnInput">English Title</label>
-            <input id="titleEnInput" type="text" class="form-control" placeholder="English Title" name="titleEnInput"/>
+            <input id="titleEnInput" type="text" class="form-control" placeholder="English Title" name="titleEnInput" value="${thesis.titleEn}"/>
         </div>
         <div class="form-group">
             <label for="thesisTypeInput">Thesis Type</label>
             <select id="thesisTypeInput" class="form-control" name="thesisTypeInput">
                 <c:forEach var="thesisType" items="${context.thesisTypes}" varStatus="counter">
+
+
                     <option value="${thesisType.thesisTypeId}">${thesisType.typeName}</option>
                 </c:forEach>
             </select>
