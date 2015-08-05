@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -27,11 +26,21 @@ public class ThesisDao {
 
     public Thesis creaateThesis(Thesis thesis) {
         Date date = new Date();
-        thesis.setCreationDate(date);
-        thesis.setLastModifiedDate(date);
-        thesis.setThesisTeacher(thesisTeacherDao.getThesisTeacherByThesisUser(thesisUserProvider.getSignedInUser()));
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        entityManagerParams.getEntityManager().persist(thesis);
+        if (Validation.notEmpty(thesis.getThesisId())) {
+            Thesis existingThesis = entityManagerParams.getEntityManager().find(Thesis.class, thesis.getThesisId());
+            existingThesis.setLastModifiedDate(date);
+            existingThesis.setTitleHu(thesis.getTitleHu());
+            existingThesis.setTitleEn(thesis.getTitleEn());
+            existingThesis.setCourses(thesis.getCourses());
+            existingThesis.setRequiredSemesters(thesis.getRequiredSemesters());
+            existingThesis.setDescriptionHu(thesis.getDescriptionHu());
+            existingThesis.setDescriptionEn(thesis.getDescriptionEn());
+        } else {
+            thesis.setCreationDate(date);
+            thesis.setThesisTeacher(thesisTeacherDao.getThesisTeacherByThesisUser(thesisUserProvider.getSignedInUser()));
+            entityManagerParams.getEntityManager().persist(thesis);
+        }
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesis;
     }
@@ -64,16 +73,9 @@ public class ThesisDao {
     }
 
     public Thesis findById(long thesisId) {
-        List<Thesis> thesises = getAllThesises();
-        Thesis thesis = null;
-        Iterator<Thesis> thesisIterator = thesises.iterator();
-        while (thesisIterator.hasNext() && Validation.empty(thesis)) {
-            Thesis actualThesis = thesisIterator.next();
-            if (actualThesis.getThesisId().equals(thesisId)) {
-                thesis = actualThesis;
-            }
-        }
-
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        Thesis thesis = entityManagerParams.getEntityManager().find(Thesis.class, thesisId);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesis;
     }
 

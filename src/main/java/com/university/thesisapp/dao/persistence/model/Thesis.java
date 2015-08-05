@@ -1,5 +1,8 @@
 package com.university.thesisapp.dao.persistence.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -100,6 +103,7 @@ public class Thesis {
     }
 
     @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name = "THESIS_COURSES")
     public List<Course> getCourses() {
         return courses;

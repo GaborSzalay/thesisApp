@@ -1,7 +1,9 @@
 package com.university.thesisapp.teacher.controller;
 
+import com.google.common.primitives.Longs;
 import com.university.thesisapp.dao.persistence.dao.ThesisDao;
 import com.university.thesisapp.teacher.context.*;
+import com.university.thesisapp.util.Validation;
 import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class CreateThesisController {
+    private static final String EDIT_THESIS = "editThesis";
     @Autowired
     private TeacherMenuContextFactory teacherMenuContextFactory;
     @Autowired
@@ -30,7 +33,10 @@ public class CreateThesisController {
     public ModelAndView showCreateThesisForm(Model model, HttpServletRequest request) {
         TeacherMenuContext teacherMenuContext = teacherMenuContextFactory.create();
         CreateThesisContext createThesisContext = createThesisContextFactory.create();
-        model.addAttribute("thesis", thesisDao.findById(3));
+        String thesisParameter = request.getParameter(EDIT_THESIS);
+        if (Validation.notEmpty(thesisParameter)) {
+            model.addAttribute("thesis", thesisDao.findById(Longs.tryParse(thesisParameter)));
+        }
         return createThesisControllerViewResolver.resolveView(model, teacherMenuContext, createThesisContext);
     }
 }

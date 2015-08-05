@@ -6,6 +6,7 @@ import java.util.List;
  * Created by Gábor on 2015.08.05..
  */
 public class ThesisForm {
+    private String thesisIdInput;
     private String titleHuInput;
     private String titleEnInput;
     private String thesisTypeInput;
@@ -13,6 +14,14 @@ public class ThesisForm {
     private String requiredSemestersInput;
     private String descriptionHuInput;
     private String descriptionEnInput;
+
+    public String getThesisIdInput() {
+        return thesisIdInput;
+    }
+
+    public void setThesisIdInput(String thesisIdInput) {
+        this.thesisIdInput = thesisIdInput;
+    }
 
     public String getTitleHuInput() {
         return titleHuInput;

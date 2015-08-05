@@ -18,6 +18,7 @@ public class ThesisProvider {
 
     public Thesis getThesis(HttpServletRequest request) {
         ThesisForm thesisForm = new ThesisForm();
+        thesisForm.setThesisIdInput(request.getParameter("thesisId"));
         thesisForm.setTitleHuInput(request.getParameter("titleHuInput"));
         thesisForm.setTitleEnInput(request.getParameter("titleEnInput"));
         thesisForm.setThesisTypeInput(request.getParameter("thesisTypeInput"));

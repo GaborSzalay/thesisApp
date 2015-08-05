@@ -38,7 +38,14 @@
         <div class="btn-group" data-toggle="buttons" id="courses">
             <label class="courses-main-label" for="courses">Courses</label>
             <c:forEach var="course" items="${context.courses}" varStatus="counter">
-                <label class="btn btn-default">
+                <c:if test="${isThesisAlreadyExisting}">
+                    <c:forEach var="thesisCourse" items="${thesis.courses}">
+                        <c:if test="${thesisCourse.courseId eq course.courseId}">
+                            <c:set var="activeCourse" value="${course.courseId}" />
+                        </c:if>
+                    </c:forEach>
+                </c:if>
+                <label class="btn btn-default ${activeCourse eq course.courseId ? 'active' : ''}">
                     <input type="checkbox" id="courseIds" value="${course.courseId}" autocomplete="off" name="courseIds"/> ${course.courseName}
                 </label>
             </c:forEach>
@@ -68,11 +75,11 @@
         </div>
         <div class="form-group">
             <label for="descriptionHuInput">Hungarian Description</label>
-            <textarea id="descriptionHuInput" class="form-control" placeholder="Hungarian Description" rows="3" name="descriptionHuInput"></textarea>
+            <textarea id="descriptionHuInput" class="form-control" placeholder="Hungarian Description" rows="3" name="descriptionHuInput">${thesis.descriptionHu}</textarea>
         </div>
         <div class="form-group">
             <label for="descriptionEnInput">English Description</label>
-            <textarea id="descriptionEnInput" class="form-control" placeholder="English Description" rows="3" name="descriptionEnInput"></textarea>
+            <textarea id="descriptionEnInput" class="form-control" placeholder="English Description" rows="3" name="descriptionEnInput">${thesis.descriptionEn}</textarea>
         </div>
         <button id="submit-button" type="submit" class="btn btn-primary">Create Thesis</button>
         <jsp:include page="modules/security-check.jsp"/>
