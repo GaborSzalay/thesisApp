@@ -55,7 +55,14 @@
             <label for="requiredSemestersInput">Required Semesters</label>
             <select id="requiredSemestersInput" class="form-control" name="requiredSemestersInput">
                 <c:forEach var="requiredSemester" begin="1" end="4">
-                    <option ${requiredSemesters == requiredSemester ? 'selected="selected"' : ''}>${requiredSemester}</option>
+                    <c:choose>
+                        <c:when test="${requiredSemesters == requiredSemester}">
+                            <option selected="selected">${requiredSemester}</option>
+                        </c:when>
+                        <c:otherwise>
+                            <option>${requiredSemester}</option>
+                        </c:otherwise>
+                    </c:choose>
                 </c:forEach>
             </select>
         </div>
