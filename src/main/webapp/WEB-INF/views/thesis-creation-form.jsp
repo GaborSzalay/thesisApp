@@ -44,12 +44,19 @@
             </c:forEach>
         </div>
         <div class="form-group">
+            <c:choose>
+                <c:when test="${isThesisAlreadyExisting}">
+                    <c:set var="requiredSemesters" value="${thesis.requiredSemesters}"/>
+                </c:when>
+                <c:otherwise>
+                    <c:set var="requiredSemesters" value="2"/>
+                </c:otherwise>
+            </c:choose>
             <label for="requiredSemestersInput">Required Semesters</label>
             <select id="requiredSemestersInput" class="form-control" name="requiredSemestersInput">
-                <option>1</option>
-                <option selected="selected">2</option>
-                <option>3</option>
-                <option>4</option>
+                <c:forEach var="requiredSemester" begin="1" end="4">
+                    <option ${requiredSemesters == requiredSemester ? 'selected="selected"' : ''}>${requiredSemester}</option>
+                </c:forEach>
             </select>
         </div>
         <div class="form-group">
