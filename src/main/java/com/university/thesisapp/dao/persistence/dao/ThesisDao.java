@@ -3,6 +3,7 @@ package com.university.thesisapp.dao.persistence.dao;
 import com.university.thesisapp.dao.persistence.model.*;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
+import com.university.thesisapp.dao.persistence.provider.ThesisUserProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,21 @@ import java.util.List;
 public class ThesisDao {
     @Autowired
     private EntityManagerProvider entityManagerProvider;
+    @Autowired
+    private ThesisUserProvider thesisUserProvider;
+    @Autowired
+    private ThesisTeacherDao thesisTeacherDao;
+
+    public Thesis creaateThesis(Thesis thesis) {
+        Date date = new Date();
+        thesis.setCreationDate(date);
+        thesis.setLastModifiedDate(date);
+        thesis.setThesisTeacher(thesisTeacherDao.getThesisTeacherByThesisUser(thesisUserProvider.getSignedInUser()));
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        entityManagerParams.getEntityManager().persist(thesis);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        return thesis;
+    }
 
     public Thesis creaateThesis(String titleHu, String titleEn, String descriptionHu, String descriptionEn, Long requiredSemesters, ThesisType thesisType, List<Course> courses, List<StudentLimit> studentLimits, ThesisTeacher thesisTeacher) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();

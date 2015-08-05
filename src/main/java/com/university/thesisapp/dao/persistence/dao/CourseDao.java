@@ -1,11 +1,13 @@
 package com.university.thesisapp.dao.persistence.dao;
 
+import com.google.common.primitives.Longs;
 import com.university.thesisapp.dao.persistence.model.Course;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +29,26 @@ public class CourseDao {
         entityManagerParams.getEntityManager().persist(course);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return course;
+    }
+
+    public List<Course> findByIds(List<Long> courseIds) {
+        List<Course> courses = new ArrayList<Course>();
+        List<Course> allCourses = getAllCourses();
+        for (Course course : allCourses) {
+            if (courseIds.contains(course.getCourseId())) {
+                courses.add(course);
+            }
+        }
+        return courses;
+    }
+
+    public List<Course> findByIdInputs(List<String> courseIdInputs) {
+        List<Long> courseIds = new ArrayList<Long>();
+        for (String courseIdInput : courseIdInputs) {
+            courseIds.add(Longs.tryParse(courseIdInput));
+        }
+
+        return findByIds(courseIds);
     }
 
     public List<Course> getAllCourses() {

@@ -3,10 +3,12 @@ package com.university.thesisapp.dao.persistence.dao;
 import com.university.thesisapp.dao.persistence.model.ThesisType;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
+import com.university.thesisapp.util.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -26,6 +28,20 @@ public class ThesisTypeDao {
         thesisType.setTypeName(typeName);
         entityManagerParams.getEntityManager().persist(thesisType);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        return thesisType;
+    }
+
+    public ThesisType findById(long thesisTypeId) {
+        List<ThesisType> thesisTypes = getAllThesisTypes();
+        Iterator<ThesisType> thesisTypeIterator = thesisTypes.iterator();
+        ThesisType thesisType = null;
+        while (thesisTypeIterator.hasNext() && Validation.empty(thesisType)) {
+            ThesisType actualThesisType = thesisTypeIterator.next();
+            if (actualThesisType.getThesisTypeId().equals(thesisTypeId)) {
+                thesisType = actualThesisType;
+            }
+        }
+
         return thesisType;
     }
 

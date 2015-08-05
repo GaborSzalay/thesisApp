@@ -9,7 +9,7 @@ public class ThesisForm {
     private String titleHuInput;
     private String titleEnInput;
     private String thesisTypeInput;
-    private List<Integer> courseIds;
+    private List<String> courseIds;
     private String requiredSemestersInput;
     private String descriptionHuInput;
     private String descriptionEnInput;
@@ -38,11 +38,11 @@ public class ThesisForm {
         this.thesisTypeInput = thesisTypeInput;
     }
 
-    public List<Integer> getCourseIds() {
+    public List<String> getCourseIds() {
         return courseIds;
     }
 
-    public void setCourseIds(List<Integer> courseIds) {
+    public void setCourseIds(List<String> courseIds) {
         this.courseIds = courseIds;
     }
 
