@@ -5,19 +5,19 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <t:teacherpage title="messages.header.title.teacher" currentPage="admins">
 
-    <form id="create-thesis-form" action="/teacher/ccreate_thesis.html" method="POST" accept-charset="UTF-8">
+    <form id="create-thesis-form" action="/teacher/create_thesis.html" method="POST" accept-charset="UTF-8">
         <h2>Thesis</h2>
         <div class="form-group">
             <label for="titleHuInput">Hungarian Title</label>
-            <input type="text" id="titleHuInput" class="form-control" placeholder="Hungarian Title" />
+            <input type="text" id="titleHuInput" class="form-control" placeholder="Hungarian Title" name="titleHuInput"/>
         </div>
         <div class="form-group">
             <label for="titleEnInput">English Title</label>
-            <input id="titleEnInput" type="text" class="form-control" placeholder="English Title" />
+            <input id="titleEnInput" type="text" class="form-control" placeholder="English Title" name="titleEnInput"/>
         </div>
         <div class="form-group">
             <label for="thesisTypeInput">Thesis Type</label>
-            <select id="thesisTypeInput" class="form-control">
+            <select id="thesisTypeInput" class="form-control" name="thesisTypeInput">
                 <c:forEach var="thesisType" items="${context.thesisTypes}" varStatus="counter">
                     <option value="${thesisType.thesisTypeId}">${thesisType.typeName}</option>
                 </c:forEach>
@@ -27,13 +27,13 @@
             <label class="courses-main-label" for="courses">Courses</label>
             <c:forEach var="course" items="${context.courses}" varStatus="counter">
                 <label class="btn btn-default">
-                    <input type="checkbox" id="courseIds" value="${course.courseId}" autocomplete="off" /> ${course.courseName}
+                    <input type="checkbox" id="courseIds" value="${course.courseId}" autocomplete="off" name="courseIds"/> ${course.courseName}
                 </label>
             </c:forEach>
         </div>
         <div class="form-group">
             <label for="requiredSemestersInput">Required Semesters</label>
-            <select id="requiredSemestersInput" class="form-control">
+            <select id="requiredSemestersInput" class="form-control" name="requiredSemestersInput">
                 <option>1</option>
                 <option selected="selected">2</option>
                 <option>3</option>
@@ -42,11 +42,11 @@
         </div>
         <div class="form-group">
             <label for="descriptionHuInput">Hungarian Description</label>
-            <textarea id="descriptionHuInput" class="form-control" placeholder="Hungarian Description" rows="3"></textarea>
+            <textarea id="descriptionHuInput" class="form-control" placeholder="Hungarian Description" rows="3" name="descriptionHuInput"></textarea>
         </div>
         <div class="form-group">
             <label for="descriptionEnInput">English Description</label>
-            <textarea id="descriptionEnInput" class="form-control" placeholder="English Description" rows="3" ></textarea>
+            <textarea id="descriptionEnInput" class="form-control" placeholder="English Description" rows="3" name="descriptionEnInput"></textarea>
         </div>
         <button id="submit-button" type="submit" class="btn btn-primary">Create Thesis</button>
         <jsp:include page="modules/security-check.jsp"/>
