@@ -49,7 +49,9 @@
                 authentication-failure-url="/login?state=error"
                 username-parameter="email"
                 password-parameter="password"/>
-        <logout logout-success-url="/login?state=logout"/>
+        <logout logout-success-url="/login?state=logout" invalidate-session="false"
+                delete-cookies="JSESSIONID"/>
+
         <!-- enable csrf protection -->
         <csrf/>
     </http>

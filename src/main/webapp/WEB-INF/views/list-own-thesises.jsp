@@ -7,8 +7,8 @@
     <table id="my-table" class="table table-hover">
         <thead>
             <tr>
-                <th><spring:message code="messages.table.email" text=""/></th>
-                <th><spring:message code="messages.table.regdate" text=""/></th>
+                <th><spring:message code="messages.table.name" text=""/></th>
+                <th><spring:message code="messages.table.description" text=""/></th>
             </tr>
         </thead>
         <tbody>
