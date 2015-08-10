@@ -120,7 +120,13 @@ body {
     color: chocolate;
 }
 
-
+#dynatable-query-search-my-table,
+#dynatable-per-page-my-table {
+    display: inline;
+    width: auto;
+    margin-left: 4px;
+    margin-bottom: 26px;
+}
 
 
 
