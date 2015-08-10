@@ -107,11 +107,18 @@ body {
     margin-top: 45px;
 }
 
+.fa {
+    font-size: large;
+    padding-right: 20px;
+}
 
+.fa-pencil {
+    color: #337ab7;
+}
 
-
-
-
+.fa-trash-o {
+    color: chocolate;
+}
 
 
 

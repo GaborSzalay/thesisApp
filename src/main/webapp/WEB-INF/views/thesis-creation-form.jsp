@@ -81,7 +81,12 @@
             <label for="descriptionEnInput">English Description</label>
             <textarea id="descriptionEnInput" class="form-control" placeholder="English Description" rows="3" name="descriptionEnInput">${thesis.descriptionEn}</textarea>
         </div>
-        <button id="submit-button" type="submit" class="btn btn-primary">Create Thesis</button>
+        <button id="submit-button" type="submit" class="btn btn-primary">
+            <spring:message code="${isThesisAlreadyExisting ? 'messages.table.thesis.update' : 'messages.table.thesis.create'}" text=""/>
+        </button>
+        <c:if test="${isThesisAlreadyExisting}">
+            <a id="go-back-link" href="javascript:history.back()"><spring:message code="messages.table.goback" text=""/></a>
+        </c:if>
         <jsp:include page="modules/security-check.jsp"/>
     </form>
 

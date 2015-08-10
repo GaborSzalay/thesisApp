@@ -15,6 +15,7 @@
         <link rel="icon" href="/resources/icon/favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="/resources/css/normalize.css">
         <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/resources/css/main.css">
         <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
         <jsp:invoke fragment="header"/>
