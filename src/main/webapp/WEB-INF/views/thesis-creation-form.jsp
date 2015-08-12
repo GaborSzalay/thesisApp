@@ -45,7 +45,7 @@
                         </c:if>
                     </c:forEach>
                 </c:if>
-                <label class="btn btn-default ${activeCourse eq course.courseId ? 'active' : ''}">
+                <label class="btn btn-default ${activeCourse eq course.courseId ? 'clicked' : ''}">
                     <input type="checkbox" id="courseIds" value="${course.courseId}" autocomplete="off" name="courseIds"/> ${course.courseName}
                 </label>
             </c:forEach>
