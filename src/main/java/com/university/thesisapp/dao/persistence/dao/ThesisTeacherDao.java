@@ -1,5 +1,6 @@
 package com.university.thesisapp.dao.persistence.dao;
 
+import com.university.thesisapp.ThesisAuthority;
 import com.university.thesisapp.dao.persistence.model.*;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
@@ -17,6 +18,13 @@ import java.util.List;
 public class ThesisTeacherDao {
     @Autowired
     private EntityManagerProvider entityManagerProvider;
+    @Autowired
+    private ThesisUserDao thesisUserDao;
+
+    public ThesisTeacher createThesisTeacher(String email, String password) {
+        ThesisUser thesisUser = thesisUserDao.createThesisUser(email, password, ThesisAuthority.TEACHER.getRoleName());
+        return createThesisTeacher(thesisUser);
+    }
 
     public ThesisTeacher createThesisTeacher(ThesisUser thesisUser) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();

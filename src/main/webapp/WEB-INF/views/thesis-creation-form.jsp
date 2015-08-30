@@ -11,7 +11,7 @@
         <c:if test="${isThesisAlreadyExisting}">
             <input type="hidden" name="thesisId" value="${thesis.thesisId}">
         </c:if>
-        <h2>Thesis</h2>
+        <h2><spring:message code="messages.table.thesis.title" text=""/></h2>
         <div class="form-group">
             <label for="titleHuInput">Hungarian Title</label>
             <input type="text" id="titleHuInput" class="form-control" placeholder="Hungarian Title" name="titleHuInput" value="${thesis.titleHu}"/>
@@ -84,9 +84,6 @@
         <button id="submit-button" type="submit" class="btn btn-primary">
             <spring:message code="${isThesisAlreadyExisting ? 'messages.table.thesis.update' : 'messages.table.thesis.create'}" text=""/>
         </button>
-        <c:if test="${isThesisAlreadyExisting}">
-            <a id="go-back-link" href="javascript:history.back()"><spring:message code="messages.table.goback" text=""/></a>
-        </c:if>
         <jsp:include page="modules/security-check.jsp"/>
     </form>
 
