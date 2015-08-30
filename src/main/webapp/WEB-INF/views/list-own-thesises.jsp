@@ -4,7 +4,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <t:teacherpage title="messages.header.title.admin" currentPage="admins">
 
-    <a class="thesis-popup" href="/teacher/create_thesis.html"><button id="create-button" type="button" class="btn btn-primary"><spring:message code="messages.teacher.menu.create_thesis" text=""/></button></a>
+    <a class="thesis-popup btn btn-primary create-button" href="/teacher/create_thesis.html"><spring:message code="messages.teacher.menu.create_thesis" text=""/></a>
 
     <table id="my-table" class="table table-hover">
         <thead>

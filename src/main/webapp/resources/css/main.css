@@ -110,6 +110,7 @@ body {
 .fa {
     font-size: large;
     padding-right: 20px;
+    text-decoration: none;
 }
 
 .fa-pencil {
@@ -120,10 +121,11 @@ body {
     color: chocolate;
 }
 
-#create-button {
+.create-button {
     display: block;
     margin-bottom: 17px;
-    padding: 6px 25px;
+    width: 185px;
+    text-decoration: none;
 }
 
 #dynatable-query-search-my-table,
