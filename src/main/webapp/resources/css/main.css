@@ -120,12 +120,22 @@ body {
     color: chocolate;
 }
 
+#create-button {
+    display: block;
+    margin-bottom: 17px;
+    padding: 6px 25px;
+}
+
 #dynatable-query-search-my-table,
 #dynatable-per-page-my-table {
     display: inline;
     width: auto;
     margin-left: 4px;
-    margin-bottom: 26px;
+    margin-bottom: 10px;
+}
+
+.dynatable-search {
+    margin-bottom: 0px;
 }
 
 

@@ -4,6 +4,8 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <t:teacherpage title="messages.header.title.admin" currentPage="admins">
 
+    <a class="thesis-popup" href="/teacher/create_thesis.html"><button id="create-button" type="button" class="btn btn-primary"><spring:message code="messages.teacher.menu.create_thesis" text=""/></button></a>
+
     <table id="my-table" class="table table-hover">
         <thead>
             <tr>
@@ -17,7 +19,7 @@
                 <tr>
                     <td>${thesis.titleEn}</td>
                     <td>${thesis.descriptionEn}</td>
-                    <td><a class="simple-ajax-popup-align-top" href="/teacher/create_thesis.html?editThesis=${thesis.thesisId}"><i class="fa fa-pencil"></i></a><i class="fa fa-trash-o"></i></td>
+                    <td><a class="thesis-popup" href="/teacher/create_thesis.html?editThesis=${thesis.thesisId}"><i class="fa fa-pencil"></i></a><i class="fa fa-trash-o"></i></td>
                 </tr>
             </c:forEach>
         </tbody>
