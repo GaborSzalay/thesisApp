@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="/resources/css/normalize.css">
         <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/resources/css/magnific-popup.css">
         <link rel="stylesheet" href="/resources/css/main.css">
         <script src="/resources/js/vendor/modernizr-2.8.3.min.js"></script>
         <jsp:invoke fragment="header"/>
@@ -38,6 +39,7 @@
         </script>
         <script src="/resources/js/plugins.js"></script>
         <script src="/resources/js/bootstrap.min.js"></script>
+        <script src="/resources/js/jquery.magnific-popup.min.js"></script>
         <div id="pagefooter">
             <jsp:invoke fragment="footer"/>
         </div>
