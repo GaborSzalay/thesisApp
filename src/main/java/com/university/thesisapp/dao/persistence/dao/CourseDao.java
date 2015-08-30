@@ -19,11 +19,12 @@ public class CourseDao {
     @Autowired
     private EntityManagerProvider entityManagerProvider;
 
-    public Course createCourse(String courseName) {
+    public Course createCourse(String courseName, String courseCode) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
         Date date = new Date();
         Course course = new Course();
         course.setCourseName(courseName);
+        course.setCourseCode(courseCode);
         course.setCreationDate(date);
         course.setLastModifiedDate(date);
         entityManagerParams.getEntityManager().persist(course);

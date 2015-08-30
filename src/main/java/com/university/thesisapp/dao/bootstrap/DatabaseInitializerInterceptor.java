@@ -53,9 +53,9 @@ public class DatabaseInitializerInterceptor extends HandlerInterceptorAdapter {
 
 
             if (empty(courseDao.getAllCourses())) {
-                courseDao.createCourse("Mérnöki tervezés");
+                courseDao.createCourse("Mérnöki tervezés", "PEMK1004");
                 logger.info("Test course 1 created.");
-                courseDao.createCourse("Szakdolgozat");
+                courseDao.createCourse("Szakdolgozat", "PEMK1005");
                 logger.info("Test course 2 created.");
             }
 

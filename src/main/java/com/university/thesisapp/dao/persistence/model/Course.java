@@ -12,6 +12,7 @@ import java.util.List;
 public class Course {
     private Long courseId;
     private String courseName;
+    private String courseCode;
     private Date creationDate;
     private Date lastModifiedDate;
     private List<ThesisStudent> thesisStudents;
@@ -35,6 +36,15 @@ public class Course {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+    @Column(name = "course_code")
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 
     @Column(name = "creation_date")
