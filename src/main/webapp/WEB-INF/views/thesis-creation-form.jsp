@@ -7,7 +7,7 @@
 
     <c:set var="isThesisAlreadyExisting" value="${not empty thesis and not empty thesis.thesisId}"/>
 
-    <form id="create-thesis-form" action="/teacher/create_thesis.html" method="POST" accept-charset="UTF-8">
+    <form id="create-form" action="/teacher/create_thesis.html" method="POST" accept-charset="UTF-8">
         <c:if test="${isThesisAlreadyExisting}">
             <input type="hidden" name="thesisId" value="${thesis.thesisId}">
         </c:if>
