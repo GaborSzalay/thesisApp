@@ -19,7 +19,10 @@
                 <tr>
                     <td>${thesis.titleEn}</td>
                     <td>${thesis.descriptionEn}</td>
-                    <td><a class="thesis-popup" href="/teacher/create_thesis.html?editThesis=${thesis.thesisId}"><i class="fa fa-pencil"></i></a><i class="fa fa-trash-o"></i></td>
+                    <td>
+                        <a class="thesis-popup" href="/teacher/create_thesis.html?editThesis=${thesis.thesisId}"><i class="fa fa-pencil"></i></a>
+                        <i class="fa fa-trash-o"></i>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>

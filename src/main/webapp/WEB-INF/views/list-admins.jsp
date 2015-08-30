@@ -4,11 +4,14 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <t:adminpage title="messages.header.title.admin" currentPage="admins">
 
+    <a class="thesis-popup btn btn-primary create-button" href="/admin/create_admin.html"><spring:message code="messages.admin.menu.create_admin" text=""/></a>
+
     <table id="my-table" class="table table-hover">
         <thead>
             <tr>
                 <th><spring:message code="messages.table.email" text=""/></th>
                 <th><spring:message code="messages.table.regdate" text=""/></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -16,6 +19,10 @@
                 <tr>
                     <td>${admin.email}</td>
                     <td>${admin.registrationDate}</td>
+                    <td>
+                        <a class="thesis-popup" href="/admin/create_admin.html?editAdmin=${admin.thesisUserId}"><i class="fa fa-pencil"></i></a>
+                        <a class="thesis-popup" href="/admin/delete_admin.html?admin=${admin.thesisUserId}"><i class="fa fa-trash-o"></i></a>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>
