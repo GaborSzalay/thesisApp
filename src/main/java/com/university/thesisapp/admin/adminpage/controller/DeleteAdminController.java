@@ -1,6 +1,7 @@
 package com.university.thesisapp.admin.adminpage.controller;
 
-import com.university.thesisapp.admin.adminpage.service.CreateUserService;
+import com.google.common.primitives.Longs;
+import com.university.thesisapp.dao.persistence.dao.ThesisUserDao;
 import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,21 +16,16 @@ import javax.servlet.http.HttpServletRequest;
  * Created by Gábor on 2015.08.30..
  */
 @Controller
-public class CreateAdminController {
+public class DeleteAdminController {
     @Autowired
     private CreateAdminControllerViewResolver createAdminControllerViewResolver;
     @Autowired
-    CreateUserService createUserService;
+    private ThesisUserDao thesisUserDao;
 
-    @RequestMapping(value = UrlProvider.CREATE_ADMIN_URL, method = RequestMethod.POST)
-    public ModelAndView handleCreateAdminRequest(Model model, HttpServletRequest request) {
-        createUserService.createAdmin(request);
+    @RequestMapping(value = UrlProvider.DELETE_ADMIN_URL, method = RequestMethod.GET)
+    public ModelAndView deleteAdminById(Model model, HttpServletRequest request) {
+        Long adminId = Longs.tryParse(request.getParameter("admin"));
+        thesisUserDao.tryToDeleteThesisUser(adminId);
         return createAdminControllerViewResolver.resolveViewByRedirecting();
-    }
-
-    @RequestMapping(value = UrlProvider.CREATE_ADMIN_URL, method = RequestMethod.GET)
-    public ModelAndView showCreateAdminForm(Model model, HttpServletRequest request) {
-
-        return createAdminControllerViewResolver.resolveViewForShowingForm();
     }
 }

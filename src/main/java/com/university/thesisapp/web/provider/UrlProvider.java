@@ -10,6 +10,7 @@ public class UrlProvider {
     public static final String TEACHER_HOME_PAGE_URL = "/teacher/";
     public static final String CREATE_THESIS_PAGE_URL = "/teacher/create_thesis.html";
     public static final String CREATE_ADMIN_URL = "/admin/create_admin.html";
+    public static final String DELETE_ADMIN_URL = "/admin/delete_admin.html";
     public static final String TEACHER_OWN_THESIS_LIST_PAGE_URL = "/teacher/list_own_thesises.html";
     public static final String STUDENT_HOME_PAGE_URL = "/student/";
     public static final String REGISTRATION_URL = "/registration.html";

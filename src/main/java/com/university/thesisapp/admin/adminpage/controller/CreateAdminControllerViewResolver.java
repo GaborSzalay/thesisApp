@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.RedirectView;
  */
 @Component
 public class CreateAdminControllerViewResolver {
-    public ModelAndView resolveViewForHandlingCreationRequest() {
+    public ModelAndView resolveViewByRedirecting() {
         return new ModelAndView(new RedirectView(UrlProvider.LIST_ADMINS_URL));
     }
 

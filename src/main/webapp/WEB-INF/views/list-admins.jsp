@@ -20,8 +20,7 @@
                     <td>${admin.email}</td>
                     <td>${admin.registrationDate}</td>
                     <td>
-                        <a class="thesis-popup" href="/admin/create_admin.html?editAdmin=${admin.thesisUserId}"><i class="fa fa-pencil"></i></a>
-                        <a class="thesis-popup" href="/admin/delete_admin.html?admin=${admin.thesisUserId}"><i class="fa fa-trash-o"></i></a>
+                        <a href="/admin/delete_admin.html?admin=${admin.thesisUserId}"><i class="fa fa-trash-o"></i></a>
                     </td>
                 </tr>
             </c:forEach>

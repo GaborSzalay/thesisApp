@@ -81,6 +81,15 @@ public class ThesisUserDao {
         return passwordEncoder.encode(password);
     }
 
+    public void tryToDeleteThesisUser(Long thesisUserId) {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        ThesisUser thesisUser = entityManagerParams.getEntityManager().find(ThesisUser.class, thesisUserId);
+        if (Validation.notEmpty(thesisUser)) {
+            entityManagerParams.getEntityManager().remove(thesisUser);
+        }
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+    }
+
     public void setEntityManagerProvider(EntityManagerProvider entityManagerProvider) {
         this.entityManagerProvider = entityManagerProvider;
     }
