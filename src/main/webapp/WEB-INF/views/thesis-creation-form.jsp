@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
+<t:popup>
 
     <c:set var="isThesisAlreadyExisting" value="${not empty thesis and not empty thesis.thesisId}"/>
 
@@ -90,3 +90,4 @@
         <jsp:include page="modules/security-check.jsp"/>
     </form>
 
+</t:popup>
