@@ -7,4 +7,16 @@
 <script type="text/javascript">
     var clickedButtons = $(".btn-default.clicked");
     clickedButtons.click();
+
+    var addNewStudentButton = $(".add-new-student-limit");
+    addNewStudentButton.click(
+      function( event ) {
+        event.preventDefault();
+        var studentLimit = $(".studentLimitLine:last");
+        var container = $(".studentLimitContainer");
+        var cloneStudentLimit = studentLimit.clone();
+        cloneStudentLimit.find(".add-new-student-limit").remove();
+        cloneStudentLimit.prependTo(container);
+      }
+    );
 </script>

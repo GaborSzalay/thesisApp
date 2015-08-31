@@ -73,6 +73,26 @@
                 </c:forEach>
             </select>
         </div>
+        <div class="form-inline">
+            <span class="custom-label"><spring:message code="message.table.thesis.maximum_students" text=""/></span>
+            <div class="studentLimitContainer">
+                <div class="studentLimitLine">
+                    <a class="add-new-student-limit" href="#"><i class="fa fa-plus"></i></a>
+                    <div class="form-group">
+                        <select id="studentLimitMajor0" class="form-control" name="studentLimitMajor0">
+                            <c:forEach var="major" items="${context.majors}">
+                                <option value="${major.majorId}">${major.majorName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <spring:message code="message.table.thesis.maximum_students.number" text="" var="studentsNumber"/>
+                        <label for="studentLimitNumber0">${studentsNumber}</label>
+                        <input type="text" id="studentLimitNumber0" class="form-control" placeholder="${studentsNumber}" name="studentLimitNumber0" value=""/>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="form-group">
             <label for="descriptionHuInput">Hungarian Description</label>
             <textarea id="descriptionHuInput" class="form-control" placeholder="Hungarian Description" rows="3" name="descriptionHuInput">${thesis.descriptionHu}</textarea>
