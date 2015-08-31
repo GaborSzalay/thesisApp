@@ -197,16 +197,6 @@ body {
     margin-left: 10px;
 }
 
-.form-inline .fa-plus {
-    padding-right: 0px;
-    font-size: small;
-    color: navy;
-    margin-left: 8px;
-}
-
-.studentLimitContainer {
-    display: inline-block;
-}
 /* ==========================================================================
    Helper classes
    ========================================================================== */

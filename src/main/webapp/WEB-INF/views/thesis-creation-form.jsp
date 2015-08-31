@@ -75,23 +75,28 @@
         </div>
         <div class="form-inline">
             <span class="custom-label"><spring:message code="message.table.thesis.maximum_students" text=""/></span>
-            <div class="studentLimitContainer">
-                <div class="studentLimitLine">
-                    <a class="add-new-student-limit" href="#"><i class="fa fa-plus"></i></a>
-                    <div class="form-group">
-                        <select id="studentLimitMajor0" class="form-control" name="studentLimitMajor0">
-                            <c:forEach var="major" items="${context.majors}">
-                                <option value="${major.majorId}">${major.majorName}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <spring:message code="message.table.thesis.maximum_students.number" text="" var="studentsNumber"/>
-                        <label for="studentLimitNumber0">${studentsNumber}</label>
-                        <input type="text" id="studentLimitNumber0" class="form-control" placeholder="${studentsNumber}" name="studentLimitNumber0" value=""/>
-                    </div>
-                </div>
-            </div>
+            <spring:message code="message.table.thesis.maximum_students.number" text="" var="studentsNumber"/>
+            <table>
+                <c:forEach var="major" items="${context.majors}">
+                    <tr>
+                        <td><label for="studentLimitNumber-${major.majorId}">${major.majorName}</label></td>
+                        <td>
+                            <select id="studentLimitNumber-${major.majorId}" class="form-control" name="studentLimitNumber-${major.majorId}">
+                                <c:forEach var="studentLimit" begin="0" end="4">
+                                    <c:choose>
+                                        <c:when test="${studentLimit == 0}">
+                                            <option selected="selected">${studentLimit}</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option>${studentLimit}</option>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </select>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
         </div>
         <div class="form-group">
             <label for="descriptionHuInput">Hungarian Description</label>
