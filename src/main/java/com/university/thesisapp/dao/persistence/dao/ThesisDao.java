@@ -36,6 +36,7 @@ public class ThesisDao {
             existingThesis.setRequiredSemesters(thesis.getRequiredSemesters());
             existingThesis.setDescriptionHu(thesis.getDescriptionHu());
             existingThesis.setDescriptionEn(thesis.getDescriptionEn());
+            existingThesis.setStudentLimits(thesis.getStudentLimits());
         } else {
             thesis.setCreationDate(date);
             thesis.setThesisTeacher(thesisTeacherDao.getThesisTeacherByThesisUser(thesisUserProvider.getSignedInUser()));

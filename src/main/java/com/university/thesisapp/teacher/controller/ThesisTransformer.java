@@ -18,6 +18,8 @@ public class ThesisTransformer {
     ThesisTypeDao thesisTypeDao;
     @Autowired
     CourseDao courseDao;
+    @Autowired
+    private StudentLimitTransformer studentLimitTransformer;
 
     public Thesis transform(ThesisForm thesisForm) {
         Thesis thesis = new Thesis();
@@ -31,6 +33,7 @@ public class ThesisTransformer {
         thesis.setRequiredSemesters(Longs.tryParse(thesisForm.getRequiredSemestersInput()));
         thesis.setDescriptionHu(thesisForm.getDescriptionHuInput());
         thesis.setDescriptionEn(thesisForm.getDescriptionEnInput());
+        thesis.setStudentLimits(studentLimitTransformer.transform(thesisForm));
         return thesis;
     }
 }

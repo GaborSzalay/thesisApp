@@ -4,6 +4,7 @@ import com.university.thesisapp.dao.persistence.model.Major;
 import com.university.thesisapp.dao.persistence.model.StudentLimit;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
+import com.university.thesisapp.util.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ import java.util.List;
 public class StudentLimitDao {
     @Autowired
     private EntityManagerProvider entityManagerProvider;
+    @Autowired
+    private MajorDao majorDao;
 
     public StudentLimit createStudentLimit(Major major, Long limitOfStudents) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
@@ -29,6 +32,21 @@ public class StudentLimitDao {
         entityManagerParams.getEntityManager().persist(studentLimit);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return studentLimit;
+    }
+
+    public StudentLimit provideStudentLimit(Long majorId, Long limitOfStudents) {
+        StudentLimit resultStudentLimit = null;
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        List<StudentLimit> studentLimits = getAllStudentLimits();
+        for (StudentLimit studentLimit : studentLimits) {
+            if (studentLimit.getMajor().getMajorId().equals(majorId) && studentLimit.getLimitOfStudents().equals(limitOfStudents)) {
+                resultStudentLimit = studentLimit;
+            }
+        }
+        if (Validation.empty(resultStudentLimit)) {
+            resultStudentLimit = createStudentLimit(majorDao.findById(majorId), limitOfStudents);
+        }
+        return resultStudentLimit;
     }
 
     public List<StudentLimit> getAllStudentLimits() {

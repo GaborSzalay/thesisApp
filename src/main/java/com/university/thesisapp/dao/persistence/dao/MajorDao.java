@@ -35,4 +35,15 @@ public class MajorDao {
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return majors;
     }
+
+    public Major findById(Long id) {
+        List<Major> majors = getAllMajors();
+        Major resultMajor = null;
+        for (Major major : majors) {
+            if (major.getMajorId().equals(id)) {
+                resultMajor = major;
+            }
+        }
+        return resultMajor;
+    }
 }

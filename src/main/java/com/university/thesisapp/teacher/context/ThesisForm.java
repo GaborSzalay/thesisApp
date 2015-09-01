@@ -1,6 +1,7 @@
 package com.university.thesisapp.teacher.context;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Gábor on 2015.08.05..
@@ -14,6 +15,7 @@ public class ThesisForm {
     private String requiredSemestersInput;
     private String descriptionHuInput;
     private String descriptionEnInput;
+    private Map<Long, Long> studentLimits;
 
     public String getThesisIdInput() {
         return thesisIdInput;
@@ -77,5 +79,13 @@ public class ThesisForm {
 
     public void setDescriptionEnInput(String descriptionEnInput) {
         this.descriptionEnInput = descriptionEnInput;
+    }
+
+    public Map<Long, Long> getStudentLimits() {
+        return studentLimits;
+    }
+
+    public void setStudentLimits(Map<Long, Long> studentLimits) {
+        this.studentLimits = studentLimits;
     }
 }

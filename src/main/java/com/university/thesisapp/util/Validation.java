@@ -7,6 +7,22 @@ import java.util.Collection;
  */
 public class Validation {
 
+    public static boolean empty(Object[] objects) {
+        boolean empty = false;
+        if (objects == null) {
+            empty = true;
+        } else {
+            if (objects.length == 0) {
+                empty = true;
+            }
+        }
+        return empty;
+    }
+
+    public static boolean notEmpty(Object[] objects) {
+        return !empty(objects);
+    }
+
     public static boolean empty(String string) {
         boolean empty = false;
         if (string == null) {
@@ -46,4 +62,5 @@ public class Validation {
     public static boolean notEmpty(Object object) {
         return !empty(object);
     }
+
 }
