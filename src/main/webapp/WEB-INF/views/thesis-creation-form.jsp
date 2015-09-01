@@ -78,13 +78,20 @@
             <spring:message code="message.table.thesis.maximum_students.number" text="" var="studentsNumber"/>
             <table>
                 <c:forEach var="major" items="${context.majors}">
+                    <c:if test="${isThesisAlreadyExisting}">
+                        <c:forEach var="actualStudentLimit" items="${thesis.studentLimits}">
+                            <c:if test="${actualStudentLimit.major.majorId eq major.majorId}">
+                                <c:set var="studentLimitValue" value="${actualStudentLimit.limitOfStudents}"/>
+                            </c:if>
+                        </c:forEach>
+                    </c:if>
                     <tr>
                         <td><label for="studentLimitNumber-${major.majorId}">${major.majorName}</label></td>
                         <td>
                             <select id="studentLimitNumber-${major.majorId}" class="form-control" name="studentLimitNumber-${major.majorId}">
                                 <c:forEach var="studentLimit" begin="0" end="4">
                                     <c:choose>
-                                        <c:when test="${studentLimit == 0}">
+                                        <c:when test="${(!isThesisAlreadyExisting and studentLimit == 0) or (isThesisAlreadyExisting and studentLimitValue == studentLimit)}">
                                             <option selected="selected">${studentLimit}</option>
                                         </c:when>
                                         <c:otherwise>

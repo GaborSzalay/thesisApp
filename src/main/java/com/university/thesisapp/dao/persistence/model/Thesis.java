@@ -93,6 +93,7 @@ public class Thesis {
     }
 
     @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(name = "THESIS_STUDENT_LIMITS")
     public List<StudentLimit> getStudentLimits() {
         return studentLimits;
