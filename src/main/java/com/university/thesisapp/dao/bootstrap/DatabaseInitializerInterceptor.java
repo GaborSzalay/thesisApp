@@ -32,8 +32,6 @@ public class DatabaseInitializerInterceptor extends HandlerInterceptorAdapter {
     @Autowired
     ThesisStudentDao thesisStudentDao;
     @Autowired
-    ThesisTypeDao thesisTypeDao;
-    @Autowired
     ThesisUserDao thesisUserDao;
     @Autowired
     ThesisTeacherDao thesisTeacherDao;
@@ -66,13 +64,6 @@ public class DatabaseInitializerInterceptor extends HandlerInterceptorAdapter {
                 logger.info("Test major 2 created.");
             }
 
-            if (empty(thesisTypeDao.getAllThesisTypes())) {
-                thesisTypeDao.createThesisType("Diplomadolgozat");
-                logger.info("Test thesis type 1 created.");
-                thesisTypeDao.createThesisType("Szakdolgozat");
-                logger.info("Test thesis type 2 created.");
-            }
-
             if (empty(studentLimitDao.getAllStudentLimits())) {
                 List<Major> majors = majorDao.getAllMajors();
                 if (majors.size() > 1) {
@@ -88,12 +79,11 @@ public class DatabaseInitializerInterceptor extends HandlerInterceptorAdapter {
                 ThesisUser thesisUser1 = thesisUserDao.getThesisUserByEmail("student1@thesis.hu");
                 ThesisUser thesisUser2 = thesisUserDao.getThesisUserByEmail("student2@thesis.hu");
                 List<Course> courses = courseDao.getAllCourses();
-                List<ThesisType> thesisTypes = thesisTypeDao.getAllThesisTypes();
                 List<Major> majors = majorDao.getAllMajors();
-                if (isUsersValid(thesisUser1, thesisUser2) && isCoursesValid(courses) && isThesisTypesValid(thesisTypes) && isMajorsValid(majors)) {
-                    thesisStudentDao.createThesisStudent(thesisTypes.get(0), courses.get(1), majors.get(0), thesisUser2);
+                if (isUsersValid(thesisUser1, thesisUser2) && isCoursesValid(courses) && isMajorsValid(majors)) {
+                    thesisStudentDao.createThesisStudent(courses.get(1), majors.get(0), thesisUser2);
                     logger.info("Test student 1 details created.");
-                    thesisStudentDao.createThesisStudent(thesisTypes.get(1), courses.get(0), majors.get(1), thesisUser1);
+                    thesisStudentDao.createThesisStudent(courses.get(0), majors.get(1), thesisUser1);
                     logger.info("Test student 2 details created.");
                 }
 
@@ -109,20 +99,19 @@ public class DatabaseInitializerInterceptor extends HandlerInterceptorAdapter {
 
             if (empty(thesisDao.getAllThesises())) {
                 final List<Course> courses = courseDao.getAllCourses();
-                final List<ThesisType> thesisTypes = thesisTypeDao.getAllThesisTypes();
                 final List<StudentLimit> studentLimits = studentLimitDao.getAllStudentLimits();
                 final List<ThesisTeacher> teachers = thesisTeacherDao.getAllThesisTeachers();
 
-                if (isCoursesValid(courses) && isThesisTypesValid(thesisTypes) && isStudentLimitsValid(studentLimits) && notEmpty(teachers)) {
+                if (isCoursesValid(courses) && isStudentLimitsValid(studentLimits) && notEmpty(teachers)) {
                     List<Course> courses2 = new ArrayList<Course>() {{
                         add(courses.get(0));
                     }};
                     List<StudentLimit> studentLimits2 = new ArrayList<StudentLimit>() {{
                         add(studentLimits.get(0));
                     }};
-                    thesisDao.creaateThesis("HTML 5 alapok", "Basic of HTML 5", "Test HTML 5 szakdoli téma leírás", "Test description of HTML 5 thesis", (long) 2, thesisTypes.get(0), courses, studentLimits, teachers.get(0));
+                    thesisDao.creaateThesis("HTML 5 alapok", "Basic of HTML 5", "Test HTML 5 szakdoli téma leírás", "Test description of HTML 5 thesis", (long) 2, courses, studentLimits, teachers.get(0));
                     logger.info("Test thesis 1 created.");
-                    thesisDao.creaateThesis("CSS 3 alapok", "Basic of CSS 3", "Test CSS 3 szakdoli téma leírás", "Test description of CSS 3 thesis", (long) 1, thesisTypes.get(1), courses2, studentLimits2, teachers.get(0));
+                    thesisDao.creaateThesis("CSS 3 alapok", "Basic of CSS 3", "Test CSS 3 szakdoli téma leírás", "Test description of CSS 3 thesis", (long) 1, courses2, studentLimits2, teachers.get(0));
                     logger.info("Test thesis 2 created.");
                 }
 
@@ -139,9 +128,6 @@ public class DatabaseInitializerInterceptor extends HandlerInterceptorAdapter {
         return notEmpty(courses) && courses.size() > 1;
     }
 
-    private boolean isThesisTypesValid(List<ThesisType> thesisTypes) {
-        return notEmpty(thesisTypes) && thesisTypes.size() > 1;
-    }
 
     private boolean isMajorsValid(List<Major> majors) {
         return notEmpty(majors) && majors.size() > 1;

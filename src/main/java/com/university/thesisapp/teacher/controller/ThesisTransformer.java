@@ -2,7 +2,6 @@ package com.university.thesisapp.teacher.controller;
 
 import com.google.common.primitives.Longs;
 import com.university.thesisapp.dao.persistence.dao.CourseDao;
-import com.university.thesisapp.dao.persistence.dao.ThesisTypeDao;
 import com.university.thesisapp.dao.persistence.model.Thesis;
 import com.university.thesisapp.teacher.context.ThesisForm;
 import com.university.thesisapp.util.Validation;
@@ -15,8 +14,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ThesisTransformer {
     @Autowired
-    ThesisTypeDao thesisTypeDao;
-    @Autowired
     CourseDao courseDao;
     @Autowired
     private StudentLimitTransformer studentLimitTransformer;
@@ -28,7 +25,6 @@ public class ThesisTransformer {
         }
         thesis.setTitleHu(thesisForm.getTitleHuInput());
         thesis.setTitleEn(thesisForm.getTitleEnInput());
-        thesis.setThesisType(thesisTypeDao.findById(Longs.tryParse(thesisForm.getThesisTypeInput())));
         thesis.setCourses(courseDao.findByIdInputs(thesisForm.getCourseIds()));
         thesis.setRequiredSemesters(Longs.tryParse(thesisForm.getRequiredSemestersInput()));
         thesis.setDescriptionHu(thesisForm.getDescriptionHuInput());

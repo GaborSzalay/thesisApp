@@ -14,7 +14,6 @@ import java.util.List;
 @Table(name = "thesis")
 public class Thesis {
     private Long thesisId;
-    private ThesisType thesisType;
     private String titleHu;
     private String titleEn;
     private String descriptionHu;
@@ -36,15 +35,6 @@ public class Thesis {
 
     public void setThesisId(Long thesisId) {
         this.thesisId = thesisId;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    public ThesisType getThesisType() {
-        return thesisType;
-    }
-
-    public void setThesisType(ThesisType thesisType) {
-        this.thesisType = thesisType;
     }
 
     @Column(name = "title_hu")

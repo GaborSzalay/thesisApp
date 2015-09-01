@@ -20,21 +20,6 @@
             <label for="titleEnInput">English Title</label>
             <input id="titleEnInput" type="text" class="form-control" placeholder="English Title" name="titleEnInput" value="${thesis.titleEn}"/>
         </div>
-        <div class="form-group">
-            <label for="thesisTypeInput">Thesis Type</label>
-            <select id="thesisTypeInput" class="form-control" name="thesisTypeInput">
-                <c:forEach var="thesisType" items="${context.thesisTypes}" varStatus="counter">
-                    <c:choose>
-                        <c:when test="${isThesisAlreadyExisting and thesisType.thesisTypeId == thesis.thesisType.thesisTypeId}">
-                            <option value="${thesisType.thesisTypeId}" selected="selected">${thesisType.typeName}</option>
-                        </c:when>
-                        <c:otherwise>
-                            <option value="${thesisType.thesisTypeId}">${thesisType.typeName}</option>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
-            </select>
-        </div>
         <div class="btn-group" data-toggle="buttons" id="courses">
             <label class="courses-main-label" for="courses">Courses</label>
             <c:forEach var="course" items="${context.courses}" varStatus="counter">

@@ -16,10 +16,9 @@ public class ThesisStudentDao {
     @Autowired
     private EntityManagerProvider entityManagerProvider;
 
-    public ThesisStudent createThesisStudent(ThesisType thesisType, Course course, Major major, ThesisUser thesisUser) {
+    public ThesisStudent createThesisStudent(Course course, Major major, ThesisUser thesisUser) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
         ThesisStudent thesisStudent = new ThesisStudent();
-        thesisStudent.setThesisType(thesisType);
         thesisStudent.setCourse(course);
         thesisStudent.setMajor(major);
         thesisStudent.setThesisUser(thesisUser);

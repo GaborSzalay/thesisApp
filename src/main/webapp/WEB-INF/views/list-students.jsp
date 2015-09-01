@@ -9,7 +9,6 @@
             <tr>
                 <th><spring:message code="messages.table.email" text=""/></th>
                 <th><spring:message code="messages.table.major" text=""/></th>
-                <th><spring:message code="messages.table.thesis_type" text=""/></th>
                 <th><spring:message code="messages.table.course" text=""/></th>
                 <th><spring:message code="messages.table.regdate" text=""/></th>
             </tr>
@@ -19,7 +18,6 @@
                 <tr>
                     <td>${student.thesisUser.email}</td>
                     <td>${student.major.majorName}</td>
-                    <td>${student.thesisType.typeName}</td>
                     <td>${student.course.courseName}</td>
                     <td>${student.thesisUser.registrationDate}</td>
                 </tr>

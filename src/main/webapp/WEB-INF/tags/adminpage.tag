@@ -35,7 +35,6 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><spring:message code="messages.admin.homepage.list.more" text=""/> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li class="${currentPage == 'thesis_types' ? 'active' : ''}"><a href="${menu.listThesisTypesLink}"><spring:message code="messages.admin.homepage.list.thesis_types" text=""/></a></li>
                                 <li class="${currentPage == 'courses' ? 'active' : ''}"><a href="${menu.listCoursesLink}"><spring:message code="messages.admin.homepage.list.courses" text=""/></a></li>
                                 <li class="${currentPage == 'majors' ? 'active' : ''}"><a href="${menu.listMajorsLink}"><spring:message code="messages.admin.homepage.list.majors" text=""/></a></li>
                             </ul>

@@ -7,7 +7,6 @@ public class AdminMenuContext {
     private String listAdminsLink;
     private String listTeachersLink;
     private String listStudentsLink;
-    private String listThesisTypesLink;
     private String listCoursesLink;
     private String listMajorsLink;
 
@@ -35,13 +34,6 @@ public class AdminMenuContext {
         this.listStudentsLink = listStudentsLink;
     }
 
-    public String getListThesisTypesLink() {
-        return listThesisTypesLink;
-    }
-
-    public void setListThesisTypesLink(String listThesisTypesLink) {
-        this.listThesisTypesLink = listThesisTypesLink;
-    }
 
     public String getListCoursesLink() {
         return listCoursesLink;

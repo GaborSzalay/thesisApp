@@ -10,7 +10,6 @@ import javax.persistence.*;
 public class ThesisStudent {
     private Long thesisStudentId;
     private ThesisUser thesisUser;
-    private ThesisType thesisType;
     private Major major;
     private Course course;
     private Thesis thesis;
@@ -33,15 +32,6 @@ public class ThesisStudent {
 
     public void setThesisUser(ThesisUser thesisUser) {
         this.thesisUser = thesisUser;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    public ThesisType getThesisType() {
-        return thesisType;
-    }
-
-    public void setThesisType(ThesisType thesisType) {
-        this.thesisType = thesisType;
     }
 
     @ManyToOne(fetch = FetchType.EAGER)

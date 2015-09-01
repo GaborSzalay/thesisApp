@@ -46,7 +46,7 @@ public class ThesisDao {
         return thesis;
     }
 
-    public Thesis creaateThesis(String titleHu, String titleEn, String descriptionHu, String descriptionEn, Long requiredSemesters, ThesisType thesisType, List<Course> courses, List<StudentLimit> studentLimits, ThesisTeacher thesisTeacher) {
+    public Thesis creaateThesis(String titleHu, String titleEn, String descriptionHu, String descriptionEn, Long requiredSemesters, List<Course> courses, List<StudentLimit> studentLimits, ThesisTeacher thesisTeacher) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
         Thesis thesis = new Thesis();
         Date date = new Date();
@@ -57,7 +57,6 @@ public class ThesisDao {
         thesis.setDescriptionHu(descriptionHu);
         thesis.setDescriptionEn(descriptionEn);
         thesis.setRequiredSemesters(requiredSemesters);
-        thesis.setThesisType(thesisType);
         thesis.setCourses(courses);
         thesis.setStudentLimits(studentLimits);
         thesis.setThesisTeacher(thesisTeacher);
