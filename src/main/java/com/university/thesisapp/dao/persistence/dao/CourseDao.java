@@ -58,4 +58,15 @@ public class CourseDao {
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return courses;
     }
+
+    public Course findById(Long courseId) {
+        List<Course> courses = getAllCourses();
+        Course resultCourse = null;
+        for (Course course : courses) {
+            if (course.getCourseId().equals(courseId)) {
+                resultCourse = course;
+            }
+        }
+        return resultCourse;
+    }
 }

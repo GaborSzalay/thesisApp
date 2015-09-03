@@ -15,6 +15,12 @@ import java.util.List;
 public class ThesisStudentDao {
     @Autowired
     private EntityManagerProvider entityManagerProvider;
+    @Autowired
+    private ThesisUserDao thesisUserDao;
+    @Autowired
+    private MajorDao majorDao;
+    @Autowired
+    private CourseDao courseDao;
 
     public ThesisStudent createThesisStudent(Course course, Major major, ThesisUser thesisUser) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
@@ -25,6 +31,11 @@ public class ThesisStudentDao {
         entityManagerParams.getEntityManager().persist(thesisStudent);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesisStudent;
+    }
+
+    public ThesisStudent createThesisStudent(String email, String password, Long majorId, Long courseId) {
+        ThesisUser thesisUser = thesisUserDao.createStudent(email, password);
+        return createThesisStudent(courseDao.findById(courseId), majorDao.findById(majorId), thesisUser);
     }
 
     public List<ThesisStudent> getAllThesisStudents() {

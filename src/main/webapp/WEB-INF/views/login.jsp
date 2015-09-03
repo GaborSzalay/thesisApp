@@ -58,7 +58,7 @@
             </button>
 
             <jsp:include page="modules/security-check.jsp"/>
-            <a href="${context.registrationLink}">
+            <a href="${context.registrationLink}" class="thesis-popup">
                 <spring:message code="messages.homepage.register" text=""/>
             </a>
         </form>

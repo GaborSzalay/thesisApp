@@ -6,6 +6,8 @@ package com.university.thesisapp.createaccount.context;
 public class CreateAccountContext {
     private String email;
     private String password;
+    private Long majorId;
+    private Long courseId;
 
     public String getEmail() {
         return email;
@@ -23,4 +25,19 @@ public class CreateAccountContext {
         this.password = password;
     }
 
+    public Long getMajorId() {
+        return majorId;
+    }
+
+    public void setMajorId(Long majorId) {
+        this.majorId = majorId;
+    }
+
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
+    }
 }

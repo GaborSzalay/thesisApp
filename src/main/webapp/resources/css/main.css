@@ -201,6 +201,16 @@ body {
     font-weight: 100;
     margin-left: 23px;
 }
+
+.registration-form .form-group input[type^="text"],
+.registration-form .form-group input[type^="password"]{
+    max-width: 300px;
+}
+
+.registration-form {
+    max-width: 425px;
+    padding: 40px 50px;
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */

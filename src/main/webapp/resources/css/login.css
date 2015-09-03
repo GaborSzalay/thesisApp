@@ -36,8 +36,8 @@
 .form-signin div[class^="bg-"]{
     margin: 13px 0px;
     padding-top: 9px;
+    padding-bottom: 9px;
     text-align: center;
-    height: 42px;
     font-size: larger;
     border-radius: 2px 2px 2px 2px;
 }
