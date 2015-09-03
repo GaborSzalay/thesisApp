@@ -30,7 +30,7 @@ public class CreateAccountController {
     @RequestMapping(value = UrlProvider.CREATE_ACCOUNT_URL, method = RequestMethod.POST)
     public ModelAndView createAccount(HttpServletRequest request, Model model) {
         CreateAccountContext createAccountContext = createAccountContextFactory.create(request);
-        thesisUserDao.createThesisUser(createAccountContext);
+        thesisUserDao.createStudent(createAccountContext.getEmail(), createAccountContext.getPassword());
         return createAccountViewResolver.resolveView(createAccountContext, model);
     }
 }

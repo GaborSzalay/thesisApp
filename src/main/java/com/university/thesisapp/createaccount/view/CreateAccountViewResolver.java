@@ -1,6 +1,7 @@
 package com.university.thesisapp.createaccount.view;
 
 import com.university.thesisapp.createaccount.context.CreateAccountContext;
+import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,7 +13,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @Component
 public class CreateAccountViewResolver {
     public ModelAndView resolveView(CreateAccountContext createAccountContext, Model model) {
-        RedirectView view = new RedirectView(createAccountContext.getLoginPageUrl());
+        RedirectView view = new RedirectView(UrlProvider.LOGIN_PAGE_URL_WITH_CREATED);
         return new ModelAndView(view, model.asMap());
     }
 }

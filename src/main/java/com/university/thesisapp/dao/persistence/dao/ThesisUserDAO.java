@@ -1,7 +1,6 @@
 package com.university.thesisapp.dao.persistence.dao;
 
 import com.university.thesisapp.ThesisAuthority;
-import com.university.thesisapp.createaccount.context.CreateAccountContext;
 import com.university.thesisapp.dao.persistence.model.ThesisUser;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
@@ -72,8 +71,8 @@ public class ThesisUserDao {
         return thesisUser;
     }
 
-    public ThesisUser createThesisUser(CreateAccountContext createAccountContext) {
-        return createThesisUser(createAccountContext.getEmail(), createAccountContext.getPassword(), createAccountContext.getAuthority());
+    public ThesisUser createStudent(String email, String password) {
+        return createThesisUser(email, password, ThesisAuthority.STUDENT.getRoleName());
     }
 
     private String getHashedPassword(String password) {
