@@ -24,7 +24,7 @@ public class ThesisTeacher {
         this.thesisTeacherId = thesisTeacherId;
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public ThesisUser getThesisUser() {
         return thesisUser;
     }

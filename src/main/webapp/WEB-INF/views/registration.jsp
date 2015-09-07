@@ -4,7 +4,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:popup>
 
-    <form id="create-form" class="registration-form" action="/create_account.html" method="POST" accept-charset="UTF-8">
+    <form class="thesis-popup-page registration-form" action="/create_account.html" method="POST" accept-charset="UTF-8">
         <spring:message code="messages.login.email" text="" var="emailMessage"/>
         <spring:message code="messages.login.password" text="" var="passwordMessage"/>
         <spring:message code="messages.table.major" text="" var="majorMessage"/>

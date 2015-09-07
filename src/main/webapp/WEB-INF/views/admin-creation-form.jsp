@@ -4,7 +4,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <t:popup>
-    <form id="create-form" action="/admin/create_admin.html" method="POST" accept-charset="UTF-8">
+    <form class="thesis-popup-page" action="/admin/create_admin.html" method="POST" accept-charset="UTF-8">
         <h2><spring:message code="messages.table.admin.title" text=""/></h2>
         <div class="form-group">
             <spring:message code="messages.table.email" text="" var="emailMessage"/>

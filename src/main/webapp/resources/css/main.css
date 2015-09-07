@@ -140,7 +140,7 @@ body {
     margin-bottom: 0px;
 }
 
-#create-form {
+.thesis-popup-page {
     max-width: 600px;
     margin: 0 auto;
     background-color: #f6f6f6;
@@ -153,15 +153,19 @@ body {
     margin-top: 50px;
 }
 
-#create-form select {
+.thesis-popup-page select {
     max-width: 300px;
 }
 
-#create-form h2 {
+.thesis-popup-page h2 {
     text-align: center;
     margin-top: 0px;
     margin-bottom: 10px;
     color: dimgray;
+}
+
+.thesis-list {
+
 }
 
 #go-back-link {

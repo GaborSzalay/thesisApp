@@ -1,7 +1,6 @@
 package com.university.thesisapp.admin.teacherpage.context;
 
-import com.university.thesisapp.ThesisAuthority;
-import com.university.thesisapp.dao.persistence.dao.ThesisUserDao;
+import com.university.thesisapp.dao.persistence.dao.ThesisTeacherDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,11 +10,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class TeacherListContextFactory {
     @Autowired
-    ThesisUserDao thesisUserDao;
+    ThesisTeacherDao thesisTeacherDao;
 
     public TeacherListContext create() {
         TeacherListContext teacherListContext = new TeacherListContext();
-        teacherListContext.setTeachers(thesisUserDao.getThesisUsersByAuthority(ThesisAuthority.TEACHER));
+        teacherListContext.setTeachers(thesisTeacherDao.getAllThesisTeachers());
         return teacherListContext;
     }
 }

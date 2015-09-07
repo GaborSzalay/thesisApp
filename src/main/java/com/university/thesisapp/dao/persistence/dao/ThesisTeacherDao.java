@@ -67,4 +67,11 @@ public class ThesisTeacherDao {
         }
         return thesisTeacher;
     }
+
+    public ThesisTeacher getThesisTeacherById(Long teacherId) {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        ThesisTeacher thesisTeacher = entityManagerParams.getEntityManager().find(ThesisTeacher.class, teacherId);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        return thesisTeacher;
+    }
 }
