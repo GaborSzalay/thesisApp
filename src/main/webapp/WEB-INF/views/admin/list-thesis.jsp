@@ -2,10 +2,10 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<table class="thesis-popup-page thesis-list table table-hover">
+<table class="thesis-popup-page table table-hover">
     <thead>
         <tr>
-            <th><spring:message code="messages.table.name" text=""/></th>
+            <th><spring:message code="messages.table.list.thesis" text="" arguments="${teacher.thesisUser.email}"/></th>
         </tr>
     </thead>
     <tbody>
