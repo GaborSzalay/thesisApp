@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Component
 public class AdminHomeControllerViewResolver {
 
-    private static final String ADMIN_HOME_VIEW_NAME = "admin";
+    private static final String ADMIN_HOME_VIEW_NAME = "admin/admin";
     private static final String MENU = "menu";
 
     public ModelAndView resolveView(Model model, AdminMenuContext adminMenuContext) {

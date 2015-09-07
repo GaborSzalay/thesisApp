@@ -14,7 +14,7 @@ public class TeacherListControllerViewResolver {
 
     private static final String CONTEXT = "context";
     private static final String MENU = "menu";
-    private static final String LIST_TEACHERS_VIEW_NAME = "list-teachers";
+    private static final String LIST_TEACHERS_VIEW_NAME = "admin/list-teachers";
 
     public ModelAndView resolveView(Model model, TeacherListContext teacherListContext, AdminMenuContext adminMenuContext) {
         model.addAttribute(CONTEXT, teacherListContext);

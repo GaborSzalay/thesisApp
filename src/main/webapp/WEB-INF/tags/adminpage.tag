@@ -41,7 +41,7 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><jsp:include page="modules/logout-form.jsp"/></li>
+                        <li><jsp:include page="../modules/logout-form.jsp"/></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

@@ -11,6 +11,7 @@
                 <th><spring:message code="messages.table.major" text=""/></th>
                 <th><spring:message code="messages.table.course" text=""/></th>
                 <th><spring:message code="messages.table.regdate" text=""/></th>
+                <th><spring:message code="messages.table.thesis" text=""/></th>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +21,7 @@
                     <td>${student.major.majorName}</td>
                     <td>${student.course.courseName}</td>
                     <td>${student.thesisUser.registrationDate}</td>
+                    <td><i class="fa fa-book"></i></td>
                 </tr>
             </c:forEach>
         </tbody>

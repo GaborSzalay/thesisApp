@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminListControllerViewResolver {
 
     private static final String CONTEXT = "context";
-    private static final String LIST_ADMINS_VIEW_NAME = "list-admins";
+    private static final String LIST_ADMINS_VIEW_NAME = "admin/list-admins";
     private static final String MENU = "menu";
 
     public ModelAndView resolveView(Model model, AdminListContext adminListContext, AdminMenuContext adminMenuContext) {
