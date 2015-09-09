@@ -19,4 +19,26 @@
             </c:forEach>
         </div>
     </div>
+    <div class="form-group">
+        <label for="requiredSemestersInput"><spring:message code="message.thesis.required_semesters" text=""/></label>
+        <div id="requiredSemestersInput">
+            ${thesis.requiredSemesters}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="actualStudentLimit"><spring:message code="message.table.thesis.maximum_students" text=""/></label>
+        <div id="actualStudentLimit">
+            <c:forEach var="actualStudentLimit" items="${thesis.studentLimits}">
+                <div>${actualStudentLimit.major.majorName} ${actualStudentLimit.limitOfStudents}</div>
+            </c:forEach>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="descriptionHuInput"><spring:message code="message.thesis.description.hu" text=""/></label>
+        <div id="descriptionHuInput">${thesis.descriptionHu}</div>
+    </div>
+    <div class="form-group">
+        <label for="descriptionEnInput"><spring:message code="message.thesis.description.en" text=""/></label>
+        <div id="descriptionEnInput">${thesis.descriptionEn}</div>
+    </div>
 </div>

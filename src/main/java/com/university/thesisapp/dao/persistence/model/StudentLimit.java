@@ -28,7 +28,7 @@ public class StudentLimit {
         this.studentLimitId = studentLimitId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     public Major getMajor() {
         return major;
     }

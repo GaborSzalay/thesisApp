@@ -47,7 +47,8 @@
                     <c:set var="requiredSemesters" value="2"/>
                 </c:otherwise>
             </c:choose>
-            <label for="requiredSemestersInput">Required Semesters</label>
+            <spring:message code="message.thesis.required_semesters" text="" var="requiredSemestersMessage"/>
+            <label for="requiredSemestersInput">${requiredSemestersMessage}</label>
             <select id="requiredSemestersInput" class="form-control" name="requiredSemestersInput">
                 <c:forEach var="requiredSemester" begin="1" end="4">
                     <c:choose>
@@ -94,12 +95,14 @@
             </table>
         </div>
         <div class="form-group">
-            <label for="descriptionHuInput">Hungarian Description</label>
-            <textarea id="descriptionHuInput" class="form-control" placeholder="Hungarian Description" rows="3" name="descriptionHuInput">${thesis.descriptionHu}</textarea>
+            <spring:message code="message.thesis.description.hu" text="" var="descriptionHuMessage"/>
+            <label for="descriptionHuInput">${descriptionHuMessage}</label>
+            <textarea id="descriptionHuInput" class="form-control" placeholder="${descriptionHuMessage}" rows="3" name="descriptionHuInput">${thesis.descriptionHu}</textarea>
         </div>
         <div class="form-group">
-            <label for="descriptionEnInput">English Description</label>
-            <textarea id="descriptionEnInput" class="form-control" placeholder="English Description" rows="3" name="descriptionEnInput">${thesis.descriptionEn}</textarea>
+            <spring:message code="message.thesis.description.en" text="" var="descriptionEnMessage"/>
+            <label for="descriptionEnInput">${descriptionEnMessage}</label>
+            <textarea id="descriptionEnInput" class="form-control" placeholder="${descriptionEnMessage}" rows="3" name="descriptionEnInput">${thesis.descriptionEn}</textarea>
         </div>
         <button id="submit-button" type="submit" class="btn btn-primary">
             <spring:message code="${isThesisAlreadyExisting ? 'messages.table.thesis.update' : 'messages.table.thesis.create'}" text=""/>
