@@ -21,7 +21,17 @@
                     <td>${student.major.majorName}</td>
                     <td>${student.course.courseName}</td>
                     <td>${student.thesisUser.registrationDate}</td>
-                    <td><i class="fa fa-book"></i></td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${not empty student.thesis and not empty student.thesis.thesisId}">
+                                    <a class="thesis-popup" href="/admin/show_thesis.html?thesis=${student.thesis.thesisId}"><i class="fa fa-book enabled"></i></a>
+                            </c:when>
+                            <c:otherwise>
+                                <i class="fa fa-book disabled"></i>
+                            </c:otherwise>
+                        </c:choose>
+
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>

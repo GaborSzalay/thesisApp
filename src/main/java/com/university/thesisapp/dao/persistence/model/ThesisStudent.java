@@ -52,7 +52,7 @@ public class ThesisStudent {
         this.course = course;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     public Thesis getThesis() {
         return thesis;
     }

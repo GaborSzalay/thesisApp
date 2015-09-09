@@ -121,6 +121,14 @@ body {
     color: chocolate;
 }
 
+.fa-book.enabled{
+    color: #337ab7;
+}
+
+.fa-book.disabled{
+    color: chocolate;
+}
+
 .create-button {
     display: block;
     margin-bottom: 17px;

@@ -21,4 +21,5 @@ public class UrlProvider {
     public static final String LIST_COURSES_URL = "/admin/list_courses.html";
     public static final String LIST_MAJORS_URL = "/admin/list_majors.html";
     public static final String LIST_THESISES = "/admin/list_thesises";
+    public static final String SHOW_THESIS_URL = "/admin/show_thesis";
 }

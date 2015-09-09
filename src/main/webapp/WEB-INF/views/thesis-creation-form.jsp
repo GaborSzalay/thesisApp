@@ -13,15 +13,18 @@
         </c:if>
         <h2><spring:message code="messages.table.thesis.title" text=""/></h2>
         <div class="form-group">
-            <label for="titleHuInput">Hungarian Title</label>
-            <input type="text" id="titleHuInput" class="form-control" placeholder="Hungarian Title" name="titleHuInput" value="${thesis.titleHu}"/>
+            <spring:message code="message.thesis.title.hu" text="" var="titleHuMessage"/>
+            <label for="titleHuInput">${titleHuMessage}</label>
+            <input type="text" id="titleHuInput" class="form-control" placeholder="${titleHuMessage}" name="titleHuInput" value="${thesis.titleHu}"/>
         </div>
         <div class="form-group">
-            <label for="titleEnInput">English Title</label>
-            <input id="titleEnInput" type="text" class="form-control" placeholder="English Title" name="titleEnInput" value="${thesis.titleEn}"/>
+            <spring:message code="message.thesis.title.en" text="" var="titleEnMessage"/>
+            <label for="titleEnInput">${titleEnMessage}</label>
+            <input id="titleEnInput" type="text" class="form-control" placeholder="${titleEnMessage}" name="titleEnInput" value="${thesis.titleEn}"/>
         </div>
         <div class="btn-group" data-toggle="buttons" id="courses">
-            <label class="courses-main-label" for="courses">Courses</label>
+            <spring:message code="message.thesis.courses" text="" var="coursesMessage"/>
+            <label class="courses-main-label" for="courses">${coursesMessage}</label>
             <c:forEach var="course" items="${context.courses}" varStatus="counter">
                 <c:if test="${isThesisAlreadyExisting}">
                     <c:forEach var="thesisCourse" items="${thesis.courses}">
