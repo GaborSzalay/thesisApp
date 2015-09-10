@@ -12,7 +12,6 @@ public class UrlProvider {
     public static final String CREATE_ADMIN_URL = "/admin/create_admin.html";
     public static final String DELETE_ADMIN_URL = "/admin/delete_admin.html";
     public static final String TEACHER_OWN_THESIS_LIST_PAGE_URL = "/teacher/list_own_thesises.html";
-    public static final String STUDENT_HOME_PAGE_URL = "/student/";
     public static final String REGISTRATION_URL = "/registration.html";
     public static final String CREATE_ACCOUNT_URL = "/create_account.html";
     public static final String LIST_ADMINS_URL = "/admin/list_admins.html";
@@ -22,4 +21,7 @@ public class UrlProvider {
     public static final String LIST_MAJORS_URL = "/admin/list_majors.html";
     public static final String LIST_THESISES = "/admin/list_thesises";
     public static final String SHOW_THESIS_URL = "/admin/show_thesis";
+    public static final String STUDENT_HOME_PAGE_URL = "/student/";
+    public static final String STUDENT_RECOMMENDED_THESES_URL = "/student/recommended_theses.html";
+    public static final String STUDENT_ALL_THESES_URL = "/student/all_theses.html";
 }
