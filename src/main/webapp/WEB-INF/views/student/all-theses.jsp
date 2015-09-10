@@ -9,6 +9,7 @@
             <tr>
                 <th><spring:message code="messages.table.name" text=""/></th>
                 <th><spring:message code="messages.table.description" text=""/></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -16,6 +17,7 @@
                 <tr>
                     <td>${thesis.titleEn}</td>
                     <td>${thesis.descriptionEn}</td>
+                    <td><a class="thesis-popup" href="/student/show_thesis.html?thesis=${thesis.thesisId}"><i class="fa fa-book enabled"></i></a></td>
                 </tr>
             </c:forEach>
         </tbody>

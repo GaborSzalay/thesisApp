@@ -21,6 +21,8 @@ public class ThesisStudentDao {
     private MajorDao majorDao;
     @Autowired
     private CourseDao courseDao;
+    @Autowired
+    ThesisDao thesisDao;
 
     public ThesisStudent createThesisStudent(Course course, Major major, ThesisUser thesisUser) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
@@ -43,5 +45,20 @@ public class ThesisStudentDao {
         List<ThesisStudent> thesisStudents = entityManagerParams.getEntityManager().createQuery("SELECT t FROM ThesisStudent t", ThesisStudent.class).getResultList();
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesisStudents;
+    }
+
+    public ThesisStudent findById(long id) {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        ThesisStudent thesisStudent = entityManagerParams.getEntityManager().find(ThesisStudent.class, id);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        return thesisStudent;
+    }
+
+    public void registerThesis(Long thesisStudentId, Long thesisId) {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        ThesisStudent thesisStudent = entityManagerParams.getEntityManager().find(ThesisStudent.class, thesisStudentId);
+        Thesis thesis = thesisDao.findById(thesisId);
+        thesisStudent.setThesis(thesis);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
     }
 }
