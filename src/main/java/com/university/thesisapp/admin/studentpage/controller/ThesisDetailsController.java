@@ -30,6 +30,6 @@ public class ThesisDetailsController {
             Thesis thesis = thesisDao.findById(thesisId);
             model.addAttribute("thesis", thesis);
         }
-        return new ModelAndView("admin/thesis_details", model.asMap());
+        return new ModelAndView("shared/thesis_details", model.asMap());
     }
 }
