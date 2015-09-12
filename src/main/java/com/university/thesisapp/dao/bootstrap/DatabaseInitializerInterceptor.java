@@ -42,8 +42,6 @@ public class DatabaseInitializerInterceptor extends HandlerInterceptorAdapter {
         if (empty(thesisUserDao.getAllThesisUsers())) {
             thesisUserDao.createThesisUser("admin@thesis.hu", "test123", "ROLE_ADMIN");
             logger.info("Test admin created.");
-            thesisUserDao.createThesisUser("teacher@thesis.hu", "test123", "ROLE_TEACHER");
-            logger.info("Test teacher created.");
             thesisUserDao.createThesisUser("student1@thesis.hu", "test123", "ROLE_STUDENT");
             logger.info("Test student 1 created.");
             thesisUserDao.createThesisUser("student2@thesis.hu", "test123", "ROLE_STUDENT");
@@ -90,11 +88,8 @@ public class DatabaseInitializerInterceptor extends HandlerInterceptorAdapter {
             }
 
             if (empty(thesisTeacherDao.getAllThesisTeachers())) {
-                ThesisUser thesisUser = thesisUserDao.getThesisUserByEmail("teacher@thesis.hu");
-                if (notEmpty(thesisUser)) {
-                    thesisTeacherDao.createThesisTeacher(thesisUser);
-                    logger.info("Test teacher created.");
-                }
+                thesisTeacherDao.createThesisTeacher("teacher@thesis.hu", "test123");
+                logger.info("Test teacher created.");
             }
 
             if (empty(thesisDao.getAllThesises())) {
