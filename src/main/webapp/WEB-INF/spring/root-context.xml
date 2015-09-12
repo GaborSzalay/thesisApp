@@ -51,7 +51,11 @@
                 password-parameter="password"/>
         <logout logout-success-url="/login?state=logout" invalidate-session="false"
                 delete-cookies="JSESSIONID"/>
-
+        <!-- enable remember me -->
+        <remember-me
+                token-validity-seconds="1209600"
+                remember-me-parameter="remember-me"
+                key="t3h2eCs1i5sdA5pdDpcRfe3m4e5mfbgber1mA2esesf22343daa"/>
         <!-- enable csrf protection -->
         <csrf/>
     </http>
@@ -86,4 +90,10 @@
     <beans:bean id="entityManagerProvider"
                 class="com.university.thesisapp.dao.persistence.provider.EntityManagerProvider"/>
 
+    <!-- If request parameter "targetUrl" is existed, then forward to this url -->
+    <!-- For update login form -->
+    <beans:bean id="savedRequestAwareAuthenticationSuccessHandler"
+          class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+        <beans:property name="targetUrlParameter" value="targetUrl" />
+    </beans:bean>
 </beans:beans>

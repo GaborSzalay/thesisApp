@@ -50,7 +50,7 @@
                    placeholder="${passwordLabel}" required>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="remember-me">
+                    <input type="checkbox" name="remember-me">
                     <spring:message code="messages.login.rememberme" text=""/>
                 </label>
             </div>
