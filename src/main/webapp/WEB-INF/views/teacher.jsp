@@ -3,7 +3,6 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:teacherpage title="messages.header.title.teacher" currentPage="home">
-    <p>Hello Teacher! Do what you have to do.</p>
 
 
 </t:teacherpage>
