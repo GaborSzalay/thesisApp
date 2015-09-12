@@ -15,6 +15,6 @@ public class CreateAdminControllerViewResolver {
     }
 
     public ModelAndView resolveViewForShowingForm() {
-        return new ModelAndView("admin-creation-form");
+        return new ModelAndView("admin/admin-creation-form");
     }
 }

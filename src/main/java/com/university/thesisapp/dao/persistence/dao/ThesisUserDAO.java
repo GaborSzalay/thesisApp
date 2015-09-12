@@ -59,14 +59,19 @@ public class ThesisUserDao {
         return thesisUsers;
     }
 
-    public ThesisUser createThesisUser(String email, String password, String authority) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+    public ThesisUser createThesisUserWithoutTransactionManagement(EntityManagerParams entityManagerParams, String email, String password, String authority) {
         ThesisUser thesisUser = new ThesisUser();
         thesisUser.setEmail(email);
         thesisUser.setPassword(getHashedPassword(password));
         thesisUser.setAuthority(authority);
         thesisUser.setRegistrationDate(new Date());
         entityManagerParams.getEntityManager().persist(thesisUser);
+        return thesisUser;
+    }
+
+    public ThesisUser createThesisUser(String email, String password, String authority) {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        ThesisUser thesisUser = createThesisUserWithoutTransactionManagement(entityManagerParams, email, password, authority);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesisUser;
     }
