@@ -34,6 +34,9 @@
         <property name="basename" value="messages"/>
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
+    <bean id="localeParamName" class="java.lang.String">
+        <constructor-arg type="String" value="locale"/>
+    </bean>
 
     <mvc:interceptors>
         <mvc:interceptor>
@@ -41,7 +44,13 @@
             <bean class="com.university.thesisapp.dao.bootstrap.DatabaseInitializerInterceptor" />
         </mvc:interceptor>
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-            <property name="paramName" value="locale"/>
+            <property name="paramName" ref="localeParamName"/>
         </bean>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.university.thesisapp.web.messages.CookieBasedLocaleResolverInterceptor">
+                <property name="paramName" ref="localeParamName"/>
+            </bean>
+        </mvc:interceptor>
     </mvc:interceptors>
 </beans>

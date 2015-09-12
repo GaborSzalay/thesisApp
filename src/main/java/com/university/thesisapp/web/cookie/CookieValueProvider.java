@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by Gábor on 2015.07.15..
@@ -22,5 +23,10 @@ public class CookieValueProvider {
             }
         }
         return resultCookie;
+    }
+
+    public void createCookie(HttpServletResponse response, String name, String value) {
+        Cookie cookie = new Cookie(name, value);
+        response.addCookie(cookie);
     }
 }
