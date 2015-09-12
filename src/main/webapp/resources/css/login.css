@@ -61,3 +61,17 @@
     display: inline-block;
     padding-top: 10px;
 }
+
+img[id^="icon-"] {
+    position: fixed;
+    max-width: 30px;
+    top: 20px;
+}
+
+#icon-hungary {
+    right: 60px;
+}
+
+#icon-english {
+    right: 20px;
+}

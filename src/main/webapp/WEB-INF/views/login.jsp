@@ -5,7 +5,8 @@
 <t:genericpage title="messages.header.title.login">
 
     <link rel="stylesheet" href="/resources/css/login.css">
-
+    <a href="/login?locale=hu"><img id="icon-hungary" src="/resources/assets/hungary-flag-icon.png"/></a>
+    <a href="/login?locale=en"><img id="icon-english" src="/resources/assets/united-kingdom-flag-icon.png"></a>
     <div class="container">
         <form name='loginForm'
               action="<c:url value='j_spring_security_check' />" method='POST' class="form-signin">
