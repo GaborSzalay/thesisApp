@@ -8,6 +8,7 @@ import com.university.thesisapp.dao.persistence.provider.ThesisUserProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -16,17 +17,26 @@ import java.util.List;
 @Component
 public class TeacherOwnThesisesContextFactory {
     @Autowired
-    ThesisDao thesisDao;
+    private ThesisDao thesisDao;
     @Autowired
-    ThesisUserProvider thesisUserProvider;
+    private ThesisUserProvider thesisUserProvider;
     @Autowired
-    ThesisTeacherDao thesisTeacherDao;
+    private ThesisTeacherDao thesisTeacherDao;
+    @Autowired
+    private PositionsFactory positionsFactory;
 
     public TeacherOwnThesisesContext create() {
         TeacherOwnThesisesContext teacherOwnThesisesContext = new TeacherOwnThesisesContext();
         ThesisTeacher thesisTeacher = thesisTeacherDao.getThesisTeacherByEmail(thesisUserProvider.getSignedInEmail());
         List<Thesis> thesises = thesisDao.getThesisesByTeacher(thesisTeacher);
         teacherOwnThesisesContext.setThesises(thesises);
+        HashMap<Long, Positions> studentPositions = new HashMap<Long, Positions>();
+        for (Thesis thesis : thesises) {
+            studentPositions.put(thesis.getThesisId(), positionsFactory.createPositions(thesis));
+        }
+        teacherOwnThesisesContext.setStudentPositions(studentPositions);
+
         return teacherOwnThesisesContext;
     }
+
 }

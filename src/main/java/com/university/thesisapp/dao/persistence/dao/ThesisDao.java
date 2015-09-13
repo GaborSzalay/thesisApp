@@ -89,4 +89,14 @@ public class ThesisDao {
         }
         return ownThesises;
     }
+
+    public StudentLimit getStudentLimitByMajor(Thesis thesis, Major major) {
+        StudentLimit result = null;
+        for (StudentLimit studentLimit : thesis.getStudentLimits()) {
+            if (studentLimit.getMajor().getMajorName().equals(major.getMajorName())) {
+                result = studentLimit;
+            }
+        }
+        return result;
+    }
 }

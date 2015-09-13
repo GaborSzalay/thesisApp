@@ -124,7 +124,7 @@ public class Thesis {
         this.lastModifiedDate = lastModifiedDate;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "thesis")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "thesis")
     public List<ThesisStudent> getThesisStudents() {
         return thesisStudents;
     }
