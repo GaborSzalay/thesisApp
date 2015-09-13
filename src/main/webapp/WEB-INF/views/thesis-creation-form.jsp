@@ -22,9 +22,9 @@
             <label for="titleEnInput">${titleEnMessage}</label>
             <input id="titleEnInput" type="text" class="form-control" placeholder="${titleEnMessage}" name="titleEnInput" value="${thesis.titleEn}"/>
         </div>
+        <spring:message code="message.thesis.courses" text="" var="coursesMessage"/>
+        <label class="courses-main-label" for="courses">${coursesMessage}</label>
         <div class="btn-group" data-toggle="buttons" id="courses">
-            <spring:message code="message.thesis.courses" text="" var="coursesMessage"/>
-            <label class="courses-main-label" for="courses">${coursesMessage}</label>
             <c:forEach var="course" items="${context.courses}" varStatus="counter">
                 <c:if test="${isThesisAlreadyExisting}">
                     <c:forEach var="thesisCourse" items="${thesis.courses}">
