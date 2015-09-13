@@ -54,6 +54,17 @@ public class ThesisStudentDao {
         return thesisStudent;
     }
 
+    public ThesisStudent findByThesisUser(ThesisUser thesisUser) {
+        ThesisStudent resultThesisStudent = null;
+        List<ThesisStudent> thesisStudents = getAllThesisStudents();
+        for (ThesisStudent thesisStudent : thesisStudents) {
+            if (thesisStudent.getThesisUser().getThesisUserId().equals(thesisUser.getThesisUserId())) {
+                resultThesisStudent = thesisStudent;
+            }
+        }
+        return resultThesisStudent;
+    }
+
     public void registerThesis(Long thesisStudentId, Long thesisId) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
         ThesisStudent thesisStudent = entityManagerParams.getEntityManager().find(ThesisStudent.class, thesisStudentId);

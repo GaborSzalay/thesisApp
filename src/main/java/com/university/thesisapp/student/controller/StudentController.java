@@ -1,7 +1,10 @@
 package com.university.thesisapp.student.controller;
 
+import com.university.thesisapp.admin.adminpage.service.CreateUserService;
 import com.university.thesisapp.dao.persistence.dao.ThesisDao;
 import com.university.thesisapp.dao.persistence.model.Thesis;
+import com.university.thesisapp.dao.persistence.model.ThesisStudent;
+import com.university.thesisapp.dao.persistence.service.ThesisService;
 import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +23,10 @@ import java.util.List;
 public class StudentController {
     @Autowired
     ThesisDao thesisDao;
+    @Autowired
+    ThesisService thesisService;
+    @Autowired
+    CreateUserService createUserService;
 
     @RequestMapping(value = UrlProvider.STUDENT_HOME_PAGE_URL, method = RequestMethod.GET)
     public ModelAndView showHomePage(Model model, HttpServletRequest request) {
@@ -28,13 +35,18 @@ public class StudentController {
 
     @RequestMapping(value = UrlProvider.STUDENT_RECOMMENDED_THESES_URL, method = RequestMethod.GET)
     public ModelAndView showRecommendedThesesPage(Model model, HttpServletRequest request) {
-        return new ModelAndView("/student/recommended-theses", model.asMap());
+        ThesisStudent thesisStudent = createUserService.retrieveStudent(request);
+        List<Thesis> theses = thesisService.getRecommendedTheses(thesisStudent);
+        model.addAttribute("currentPage","recommendedThesises");
+        model.addAttribute("theses", theses);
+        return new ModelAndView("/student/theses", model.asMap());
     }
 
     @RequestMapping(value = UrlProvider.STUDENT_ALL_THESES_URL, method = RequestMethod.GET)
     public ModelAndView showAllThesesPage(Model model, HttpServletRequest request) {
         List<Thesis> theses = thesisDao.getAllThesises();
+        model.addAttribute("currentPage","allThesises");
         model.addAttribute("theses", theses);
-        return new ModelAndView("/student/all-theses", model.asMap());
+        return new ModelAndView("/student/theses", model.asMap());
     }
 }

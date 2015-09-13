@@ -1,8 +1,12 @@
 package com.university.thesisapp.admin.adminpage.service;
 
 import com.university.thesisapp.ThesisAuthority;
+import com.university.thesisapp.dao.persistence.dao.ThesisStudentDao;
 import com.university.thesisapp.dao.persistence.dao.ThesisTeacherDao;
 import com.university.thesisapp.dao.persistence.dao.ThesisUserDao;
+import com.university.thesisapp.dao.persistence.model.ThesisStudent;
+import com.university.thesisapp.dao.persistence.model.ThesisUser;
+import com.university.thesisapp.dao.persistence.provider.ThesisUserProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +18,13 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class CreateUserService {
     @Autowired
-    ThesisUserDao thesisUserDao;
+    private ThesisUserDao thesisUserDao;
     @Autowired
-    ThesisTeacherDao thesisTeacherDao;
+    private ThesisTeacherDao thesisTeacherDao;
+    @Autowired
+    private ThesisUserProvider thesisUserProvider;
+    @Autowired
+    private ThesisStudentDao thesisStudentDao;
 
     public void createAdmin(HttpServletRequest request) {
         String email = request.getParameter("email");
@@ -30,4 +38,9 @@ public class CreateUserService {
         thesisTeacherDao.createThesisTeacher(email, password);
     }
 
+
+    public ThesisStudent retrieveStudent(HttpServletRequest request) {
+        ThesisUser signedInUser = thesisUserProvider.getSignedInUser();
+        return thesisStudentDao.findByThesisUser(signedInUser);
+    }
 }
