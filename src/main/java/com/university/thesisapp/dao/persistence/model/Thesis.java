@@ -25,6 +25,7 @@ public class Thesis {
     private Date lastModifiedDate;
     private List<ThesisStudent> thesisStudents;
     private ThesisTeacher thesisTeacher;
+    private List<StudentRequest> studentRequests;
 
     @Id
     @Column(name = "thesis_id")
@@ -140,5 +141,14 @@ public class Thesis {
 
     public void setThesisTeacher(ThesisTeacher thesisTeacher) {
         this.thesisTeacher = thesisTeacher;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "thesis")
+    public List<StudentRequest> getStudentRequests() {
+        return studentRequests;
+    }
+
+    public void setStudentRequests(List<StudentRequest> studentRequests) {
+        this.studentRequests = studentRequests;
     }
 }

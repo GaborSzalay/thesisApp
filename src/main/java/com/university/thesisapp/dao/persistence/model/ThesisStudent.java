@@ -1,6 +1,7 @@
 package com.university.thesisapp.dao.persistence.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Gábor on 2015.07.24..
@@ -13,6 +14,7 @@ public class ThesisStudent {
     private Major major;
     private Course course;
     private Thesis thesis;
+    private List<StudentRequest> studentRequests;
 
     @Id
     @Column(name = "thesis_student_id")
@@ -59,5 +61,14 @@ public class ThesisStudent {
 
     public void setThesis(Thesis thesis) {
         this.thesis = thesis;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "thesisStudent")
+    public List<StudentRequest> getStudentRequests() {
+        return studentRequests;
+    }
+
+    public void setStudentRequests(List<StudentRequest> studentRequests) {
+        this.studentRequests = studentRequests;
     }
 }

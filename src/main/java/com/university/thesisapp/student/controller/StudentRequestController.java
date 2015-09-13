@@ -20,6 +20,7 @@ public class StudentRequestController {
 
     @RequestMapping(value = UrlProvider.STUDENT_STUDENT_REQUEST_HTML, method = RequestMethod.GET)
     public ModelAndView handleStudentRequest(Model model, HttpServletRequest request) {
+
         return studentRequestControllerViewResolver.resolveView(request, model);
     }
 }

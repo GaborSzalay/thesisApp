@@ -12,6 +12,7 @@ public class ThesisTeacher {
     private Long thesisTeacherId;
     private ThesisUser thesisUser;
     private List<Thesis> thesises;
+    private List<StudentRequest> studentRequests;
 
     @Id
     @Column(name = "thesis_teacher_id")
@@ -40,5 +41,14 @@ public class ThesisTeacher {
 
     public void setThesises(List<Thesis> thesises) {
         this.thesises = thesises;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "thesisTeacher")
+    public List<StudentRequest> getStudentRequests() {
+        return studentRequests;
+    }
+
+    public void setStudentRequests(List<StudentRequest> studentRequests) {
+        this.studentRequests = studentRequests;
     }
 }
