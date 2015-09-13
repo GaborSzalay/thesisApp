@@ -27,4 +27,5 @@ public class UrlProvider {
     public static final String STUDENT_ALL_THESES_URL = "/student/all_theses.html";
     public static final String ADMIN_TEACHER_HTML = "/admin/teacher.html";
     public static final String ADMIN_DELETE_TEACHER_HTML = "/admin/delete_teacher.html";
+    public static final String STUDENT_STUDENT_REQUEST_HTML = "/student/student_request.html";
 }
