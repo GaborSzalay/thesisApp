@@ -22,9 +22,14 @@ public class ThesisUserDao {
     @Autowired
     private EntityManagerProvider entityManagerProvider;
 
+    public ThesisUser getThesisUserByIdWithoutTransactionManagement(EntityManagerParams entityManagerParams, long id) {
+        ThesisUser thesisUser = entityManagerParams.getEntityManager().find(ThesisUser.class, id);
+        return thesisUser;
+    }
+
     public ThesisUser getThesisUserById(long id) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisUser thesisUser = entityManagerParams.getEntityManager().find(ThesisUser.class, id);
+        ThesisUser thesisUser = getThesisUserByIdWithoutTransactionManagement(entityManagerParams, id);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesisUser;
     }

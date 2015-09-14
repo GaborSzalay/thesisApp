@@ -22,14 +22,14 @@ public class ThesisStudentDao {
     @Autowired
     private CourseDao courseDao;
     @Autowired
-    ThesisDao thesisDao;
+    private ThesisDao thesisDao;
 
     public ThesisStudent createThesisStudent(Course course, Major major, ThesisUser thesisUser) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
         ThesisStudent thesisStudent = new ThesisStudent();
         thesisStudent.setCourse(course);
         thesisStudent.setMajor(major);
-        thesisStudent.setThesisUser(thesisUser);
+        thesisStudent.setThesisUser(thesisUserDao.getThesisUserByIdWithoutTransactionManagement(entityManagerParams, thesisUser.getThesisUserId()));
         entityManagerParams.getEntityManager().persist(thesisStudent);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesisStudent;

@@ -5,6 +5,7 @@ package com.university.thesisapp.dao.persistence.model;
  */
 public enum StudentRequestState {
     SENT("SENT"),
+    CANCELED("CANCELED"),
     DECLINED("DECLINED"),
     ACCEPTED("ACCEPTED");
 

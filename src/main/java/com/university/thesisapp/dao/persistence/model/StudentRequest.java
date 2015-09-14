@@ -11,7 +11,6 @@ import java.util.Date;
 public class StudentRequest {
     private Long studentRequestId;
     private ThesisStudent thesisStudent;
-    private ThesisTeacher thesisTeacher;
     private Thesis thesis;
     private Date creationDate;
     private String currentState;
@@ -27,7 +26,7 @@ public class StudentRequest {
         this.studentRequestId = studentRequestId;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     public ThesisStudent getThesisStudent() {
         return thesisStudent;
     }
@@ -36,16 +35,7 @@ public class StudentRequest {
         this.thesisStudent = thesisStudent;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    public ThesisTeacher getThesisTeacher() {
-        return thesisTeacher;
-    }
-
-    public void setThesisTeacher(ThesisTeacher thesisTeacher) {
-        this.thesisTeacher = thesisTeacher;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     public Thesis getThesis() {
         return thesis;
     }

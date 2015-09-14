@@ -1,5 +1,8 @@
 package com.university.thesisapp.dao.persistence.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -63,7 +66,8 @@ public class ThesisStudent {
         this.thesis = thesis;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "thesisStudent")
+    @OneToMany(mappedBy = "thesisStudent")
+    @LazyCollection(LazyCollectionOption.FALSE)
     public List<StudentRequest> getStudentRequests() {
         return studentRequests;
     }

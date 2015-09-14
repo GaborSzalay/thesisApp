@@ -143,7 +143,8 @@ public class Thesis {
         this.thesisTeacher = thesisTeacher;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "thesis")
+    @OneToMany(mappedBy = "thesis")
+    @LazyCollection(LazyCollectionOption.FALSE)
     public List<StudentRequest> getStudentRequests() {
         return studentRequests;
     }
