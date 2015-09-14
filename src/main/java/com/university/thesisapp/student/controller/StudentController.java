@@ -39,14 +39,17 @@ public class StudentController {
         List<Thesis> theses = thesisService.getRecommendedTheses(thesisStudent);
         model.addAttribute("currentPage","recommendedThesises");
         model.addAttribute("theses", theses);
+        model.addAttribute("thesisStudentId", thesisStudent.getThesisStudentId());
         return new ModelAndView("/student/theses", model.asMap());
     }
 
     @RequestMapping(value = UrlProvider.STUDENT_ALL_THESES_URL, method = RequestMethod.GET)
     public ModelAndView showAllThesesPage(Model model, HttpServletRequest request) {
         List<Thesis> theses = thesisDao.getAllThesises();
+        ThesisStudent thesisStudent = createUserService.retrieveStudent(request);
         model.addAttribute("currentPage","allThesises");
         model.addAttribute("theses", theses);
+        model.addAttribute("thesisStudentId", thesisStudent.getThesisStudentId());
         return new ModelAndView("/student/theses", model.asMap());
     }
 }
