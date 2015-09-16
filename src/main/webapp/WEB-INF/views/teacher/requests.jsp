@@ -9,6 +9,7 @@
             <tr>
                 <th><spring:message code="messages.table.thesis" text=""/></th>
                 <th><spring:message code="messages.header.title.student" text=""/></th>
+                <th><spring:message code="messages.table.major" text=""/></th>
                 <th><spring:message code="messages.table.creation_date" text=""/></th>
                 <th></th>
             </tr>
@@ -21,6 +22,10 @@
                     <td>${studentRequest.thesisStudent.thesisUser.email}</td>
                     <td>${studentRequest.thesisStudent.major.majorName} <a class="inline-popup" href="#student-position-info-${studentRequest.thesis.thesisId}"><i class="fa fa-info-circle"></i></a></td>
                     <td>${studentRequest.creationDate}</td>
+                    <td>
+                        <a class="btn btn-primary" href="/teacher/accept_request.html?thesis=${studentRequest.thesis.thesisId}"><spring:message code="messages.table.teacher.request.accept" text=""/></a>
+                        <a class="btn btn-danger" href="/teacher/decline_request.html?thesis=${studentRequest.thesis.thesisId}"><spring:message code="messages.table.teacher.request.decline" text=""/></a>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>
