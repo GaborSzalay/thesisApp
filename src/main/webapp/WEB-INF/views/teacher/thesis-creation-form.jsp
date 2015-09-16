@@ -107,7 +107,7 @@
         <button id="submit-button" type="submit" class="btn btn-primary">
             <spring:message code="${isThesisAlreadyExisting ? 'messages.table.thesis.update' : 'messages.table.thesis.create'}" text=""/>
         </button>
-        <jsp:include page="modules/security-check.jsp"/>
+        <jsp:include page="../modules/security-check.jsp"/>
     </form>
 
 </t:popup>

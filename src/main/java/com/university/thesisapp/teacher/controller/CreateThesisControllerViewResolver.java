@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @Component
 public class CreateThesisControllerViewResolver {
 
-    private static final String THESIS_CREATION_FORM_VIEW_NAME = "thesis-creation-form";
+    private static final String THESIS_CREATION_FORM_VIEW_NAME = "teacher/thesis-creation-form";
 
     public ModelAndView resolveView(Model model, TeacherMenuContext teacherMenuContext, CreateThesisContext createThesisContext) {
         model.addAttribute("menu", teacherMenuContext);

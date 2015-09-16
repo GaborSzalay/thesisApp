@@ -12,7 +12,7 @@ public class TeacherOwnThesisesControllerViewResolver {
 
     private static final String MENU = "menu";
     private static final String CONTEXT = "context";
-    private static final String LIST_OWN_THESISES_VIEW_NAME = "list-own-thesises";
+    private static final String LIST_OWN_THESISES_VIEW_NAME = "teacher/list-own-thesises";
 
     public ModelAndView resolveView(Model model, TeacherMenuContext teacherMenuContext, TeacherOwnThesisesContext teacherOwnThesisesContext) {
         model.addAttribute(CONTEXT, teacherOwnThesisesContext);

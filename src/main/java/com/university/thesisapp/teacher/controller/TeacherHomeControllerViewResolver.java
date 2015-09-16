@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Component
 public class TeacherHomeControllerViewResolver {
 
-    private static final String TEACHER_VIEW_NAME = "teacher";
+    private static final String TEACHER_VIEW_NAME = "teacher/teacher";
     private static final String MENU = "menu";
 
     public ModelAndView resolveView(Model model, TeacherMenuContext teacherMenuContext) {

@@ -32,7 +32,7 @@
                         <li class="${currentPage == 'ownThesises' ? 'active' : ''}"><a href="${menu.listOwnThesisesLink}"><spring:message code="messages.teacher.menu.own_thesises" text=""/></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><jsp:include page="modules/logout-form.jsp"/></li>
+                        <li><jsp:include page="../modules/logout-form.jsp"/></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
