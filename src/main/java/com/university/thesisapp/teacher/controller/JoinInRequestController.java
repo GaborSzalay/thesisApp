@@ -75,4 +75,15 @@ public class JoinInRequestController {
         }
         return new ModelAndView(new RedirectView(UrlProvider.TEACHER_REQUESTS_URL), model.asMap());
     }
+
+    @RequestMapping(value = UrlProvider.TEACHER_DECLINE_REQUEST_URL, method = RequestMethod.GET)
+    public ModelAndView declineRequest(Model model, HttpServletRequest request) {
+        long teacherId = thesisTeacherDao.getThesisTeacherByThesisUser(thesisUserProvider.getSignedInUser()).getThesisTeacherId();
+        String studentRequestParameter = request.getParameter("student-request");
+        StudentRequest studentRequest = studentRequestDao.findById(Longs.tryParse(studentRequestParameter));
+        if (studentRequest.getThesis().getThesisTeacher().getThesisTeacherId().equals(teacherId)) {
+            studentRequestDao.setState(studentRequest.getStudentRequestId(), StudentRequestState.DECLINED);
+        }
+        return new ModelAndView(new RedirectView(UrlProvider.TEACHER_REQUESTS_URL), model.asMap());
+    }
 }
