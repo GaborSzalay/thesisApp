@@ -22,6 +22,7 @@ public class UrlProvider {
     public static final String LIST_THESISES = "/admin/list_thesises";
     public static final String ADMIN_SHOW_THESIS_URL = "/admin/show_thesis";
     public static final String STUDENT_SHOW_THESIS_URL = "/student/show_thesis";
+    public static final String TEACHER_SHOW_THESIS_URL = "/teacher/show_thesis";
     public static final String STUDENT_HOME_PAGE_URL = "/student/";
     public static final String STUDENT_RECOMMENDED_THESES_URL = "/student/recommended_theses.html";
     public static final String STUDENT_ALL_THESES_URL = "/student/all_theses.html";

@@ -22,7 +22,7 @@ public class ThesisDetailsController {
     @Autowired
     ThesisDao thesisDao;
 
-    @RequestMapping(value = {UrlProvider.ADMIN_SHOW_THESIS_URL, UrlProvider.STUDENT_SHOW_THESIS_URL}, method = RequestMethod.GET)
+    @RequestMapping(value = {UrlProvider.ADMIN_SHOW_THESIS_URL, UrlProvider.STUDENT_SHOW_THESIS_URL, UrlProvider.TEACHER_SHOW_THESIS_URL}, method = RequestMethod.GET)
     public ModelAndView showThesisDetails(Model model, HttpServletRequest request) {
         String thesisParameter = request.getParameter("thesis");
         Long thesisId = Longs.tryParse(thesisParameter);

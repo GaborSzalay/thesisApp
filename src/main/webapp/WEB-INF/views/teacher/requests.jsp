@@ -17,7 +17,7 @@
             <c:forEach var="studentRequest" items="${studentRequests}" varStatus="counter">
                 <c:set var="studentPosition" value="${context.studentPositions.get(thesis.thesisId)}"/>
                 <tr>
-                    <td>${studentRequest.thesis.titleHu}</td>
+                    <td>${studentRequest.thesis.titleHu} <a class="thesis-popup" href="/teacher/show_thesis.html?thesis=${studentRequest.thesis.thesisId}"><i class="fa fa-book enabled"></i></a></td>
                     <td>${studentRequest.thesisStudent.thesisUser.email}</td>
                     <td>${studentRequest.thesisStudent.major.majorName} <a class="inline-popup" href="#student-position-info-${studentRequest.thesis.thesisId}"><i class="fa fa-info-circle"></i></a></td>
                     <td>${studentRequest.creationDate}</td>
