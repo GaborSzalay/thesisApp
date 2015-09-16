@@ -9,7 +9,9 @@ import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Gábor on 2015.09.14..
@@ -34,5 +36,23 @@ public class StudentRequestDao {
         studentRequest.setCurrentState(StudentRequestState.SENT.getState());
         entityManagerParams.getEntityManager().persist(studentRequest);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+    }
+
+    public List<StudentRequest> getStudentRequestsByTeacherId(long teacherId) {
+        List<StudentRequest> allStudentRequests = getAllStudentRequests();
+        List<StudentRequest> studentRequestsByTeacher = new ArrayList<StudentRequest>();
+        for (StudentRequest studentRequest : allStudentRequests) {
+            if (studentRequest.getThesis().getThesisTeacher().getThesisTeacherId().equals(teacherId)) {
+                studentRequestsByTeacher.add(studentRequest);
+            }
+        }
+        return studentRequestsByTeacher;
+    }
+
+    public List<StudentRequest> getAllStudentRequests() {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        List<StudentRequest> studentRequests = entityManagerParams.getEntityManager().createQuery("SELECT s FROM StudentRequest s", StudentRequest.class).getResultList();
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        return studentRequests;
     }
 }

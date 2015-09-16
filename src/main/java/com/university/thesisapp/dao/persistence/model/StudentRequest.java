@@ -35,7 +35,7 @@ public class StudentRequest {
         this.thesisStudent = thesisStudent;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     public Thesis getThesis() {
         return thesis;
     }
