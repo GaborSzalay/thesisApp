@@ -19,12 +19,34 @@
                 <tr>
                     <td>${studentRequest.thesis.titleHu}</td>
                     <td>${studentRequest.thesisStudent.thesisUser.email}</td>
-                    <td>${studentRequest.thesisStudent.major.majorName}</td>
+                    <td>${studentRequest.thesisStudent.major.majorName} <a class="inline-popup" href="#student-position-info-${studentRequest.thesis.thesisId}"><i class="fa fa-info-circle"></i></a></td>
                     <td>${studentRequest.creationDate}</td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
+
+    <c:forEach var="studentRequest" items="${studentRequests}" varStatus="counter">
+        <c:set var="studentPosition" value="${studentPositions.get(studentRequest.thesis.thesisId)}"/>
+        <div id="student-position-info-${studentRequest.thesis.thesisId}" class="thesis-popup-page white-popup-block mfp-hide">
+            <div class="form-group">
+                <label for="position-max"><spring:message code="messages.table.position.max" text=""/></label>
+                <div id="position-max">${studentPosition.maxPositions}</div>
+            </div>
+            <div class="form-group">
+                <label for="position-appointed"><spring:message code="messages.table.position.appointed" text=""/></label>
+                <div id="position-appointed">${studentPosition.appointedPositions}</div>
+            </div>
+            <div class="form-group">
+                <label for="position-open"><spring:message code="messages.table.position.open" text=""/></label>
+                <div id="position-open">
+                    <c:forEach var="openStudentPosition" items="${studentPosition.openStudentPositions}" varStatus="counter">
+                        <div>${openStudentPosition.key} ${openStudentPosition.value}</div>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+    </c:forEach>
 
 
 </t:teacherpage>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Gábor on 2015.07.27..
@@ -30,7 +31,7 @@ public class TeacherOwnThesisesContextFactory {
         ThesisTeacher thesisTeacher = thesisTeacherDao.getThesisTeacherByEmail(thesisUserProvider.getSignedInEmail());
         List<Thesis> thesises = thesisDao.getThesisesByTeacher(thesisTeacher);
         teacherOwnThesisesContext.setThesises(thesises);
-        HashMap<Long, Positions> studentPositions = new HashMap<Long, Positions>();
+        Map<Long, Positions> studentPositions = new HashMap<Long, Positions>();
         for (Thesis thesis : thesises) {
             studentPositions.put(thesis.getThesisId(), positionsFactory.createPositions(thesis));
         }
