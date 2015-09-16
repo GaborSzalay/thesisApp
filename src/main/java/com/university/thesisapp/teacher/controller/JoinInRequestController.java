@@ -47,6 +47,8 @@ public class JoinInRequestController {
     ThesisStudentDao thesisStudentDao;
     @Autowired
     JoinInRequestControllerViewResolver joinInRequestControllerViewResolver;
+    @Autowired
+    JoinInRequestControllerActiveMenuDecider joinInRequestControllerActiveMenuDecider;
 
     @RequestMapping(value = UrlProvider.TEACHER_REQUESTS_URL, method = RequestMethod.GET)
     public ModelAndView showRequests(Model model, HttpServletRequest request) {
@@ -59,6 +61,7 @@ public class JoinInRequestController {
         }
 
         TeacherMenuContext teacherMenuContext = teacherMenuContextFactory.create();
+        joinInRequestControllerActiveMenuDecider.provideActiveMenu(request);
         model.addAttribute("menu", teacherMenuContext);
         model.addAttribute("studentRequests", studentRequestsByTeacherId);
         model.addAttribute("studentPositions", studentPositions);
@@ -76,6 +79,7 @@ public class JoinInRequestController {
         }
 
         TeacherMenuContext teacherMenuContext = teacherMenuContextFactory.create();
+        joinInRequestControllerActiveMenuDecider.provideActiveMenu(request);
         model.addAttribute("menu", teacherMenuContext);
         model.addAttribute("studentRequests", studentRequestsByTeacherId);
         model.addAttribute("studentPositions", studentPositions);
