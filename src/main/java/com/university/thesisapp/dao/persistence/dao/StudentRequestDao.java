@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.university.thesisapp.dao.persistence.model.StudentRequestState.DECLINED;
 import static com.university.thesisapp.dao.persistence.model.StudentRequestState.SENT;
 
 /**
@@ -70,5 +71,16 @@ public class StudentRequestDao {
         StudentRequest studentRequest = entityManagerParams.getEntityManager().find(StudentRequest.class, studentRequestId);
         studentRequest.setCurrentState(studentRequestState.getState());
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+    }
+
+    public List<StudentRequest> getDeclinedStudentRequestsByTeacherId(long teacherId) {
+        List<StudentRequest> allStudentRequests = getAllStudentRequests();
+        List<StudentRequest> studentRequestsByTeacher = new ArrayList<StudentRequest>();
+        for (StudentRequest studentRequest : allStudentRequests) {
+            if (studentRequest.getThesis().getThesisTeacher().getThesisTeacherId().equals(teacherId) && studentRequest.getCurrentState().equals(DECLINED.getState())) {
+                studentRequestsByTeacher.add(studentRequest);
+            }
+        }
+        return studentRequestsByTeacher;
     }
 }

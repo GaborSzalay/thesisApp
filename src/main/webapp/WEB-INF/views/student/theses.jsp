@@ -23,6 +23,9 @@
                         <c:set var="currentStudentRequestState" value="NEW"/>
                         <c:forEach var="studentRequest" items="${thesis.studentRequests}" varStatus="counter">
                             <c:if test="${studentRequest.thesisStudent.thesisStudentId eq thesisStudentId}">
+                                <c:if test="${studentRequest.currentState == 'NEW'}">
+                                    <c:set var="currentStudentRequestState" value="NEW"/>
+                                </c:if>
                                 <c:if test="${studentRequest.currentState == 'SENT'}">
                                     <c:set var="currentStudentRequestState" value="SENT"/>
                                 </c:if>

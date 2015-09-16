@@ -32,4 +32,6 @@ public class UrlProvider {
     public static final String TEACHER_REQUESTS_URL = "/teacher/requests.html";
     public static final String TEACHER_ACCEPT_REQUEST_URL = "/teacher/accept_request.html";
     public static final String TEACHER_DECLINE_REQUEST_URL = "/teacher/decline_request.html";
+    public static final String TEACHER_DECLINED_REQUESTS_URL = "/teacher/declined_requests.html";
+    public static final String TEACHER_ENABLE_REQUEST_URL = "/teacher/enable_request.html";
 }

@@ -23,8 +23,13 @@
                     <td>${studentRequest.thesisStudent.major.majorName} <a class="inline-popup" href="#student-position-info-${studentRequest.thesis.thesisId}"><i class="fa fa-info-circle"></i></a></td>
                     <td>${studentRequest.creationDate}</td>
                     <td>
-                        <a class="btn btn-primary" href="/teacher/accept_request.html?student-request=${studentRequest.studentRequestId}"><spring:message code="messages.table.teacher.request.accept" text=""/></a>
-                        <a class="btn btn-danger" href="/teacher/decline_request.html?student-request=${studentRequest.studentRequestId}"><spring:message code="messages.table.teacher.request.decline" text=""/></a>
+                        <c:if test="${studentRequest.currentState eq 'SENT'}">
+                            <a class="btn btn-primary" href="/teacher/accept_request.html?student-request=${studentRequest.studentRequestId}"><spring:message code="messages.table.teacher.request.accept" text=""/></a>
+                            <a class="btn btn-danger" href="/teacher/decline_request.html?student-request=${studentRequest.studentRequestId}"><spring:message code="messages.table.teacher.request.decline" text=""/></a>
+                        </c:if>
+                        <c:if test="${studentRequest.currentState eq 'DECLINED'}">
+                            <a class="btn btn-warning" href="/teacher/enable_request.html?student-request=${studentRequest.studentRequestId}"><spring:message code="messages.table.teacher.request.enable" text=""/></a>
+                        </c:if>
                     </td>
                 </tr>
             </c:forEach>

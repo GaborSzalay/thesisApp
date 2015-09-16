@@ -20,7 +20,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -46,11 +45,30 @@ public class JoinInRequestController {
     ThesisDao thesisDao;
     @Autowired
     ThesisStudentDao thesisStudentDao;
+    @Autowired
+    JoinInRequestControllerViewResolver joinInRequestControllerViewResolver;
 
     @RequestMapping(value = UrlProvider.TEACHER_REQUESTS_URL, method = RequestMethod.GET)
     public ModelAndView showRequests(Model model, HttpServletRequest request) {
         long teacherId = thesisTeacherDao.getThesisTeacherByThesisUser(thesisUserProvider.getSignedInUser()).getThesisTeacherId();
         List<StudentRequest> studentRequestsByTeacherId = studentRequestDao.getSentStudentRequestsByTeacherId(teacherId);
+        Map<Long, Positions> studentPositions = new HashMap<Long, Positions>();
+        for (StudentRequest studentRequest : studentRequestsByTeacherId) {
+            Thesis thesis = studentRequest.getThesis();
+            studentPositions.put(thesis.getThesisId(), positionsFactory.createPositions(thesis));
+        }
+
+        TeacherMenuContext teacherMenuContext = teacherMenuContextFactory.create();
+        model.addAttribute("menu", teacherMenuContext);
+        model.addAttribute("studentRequests", studentRequestsByTeacherId);
+        model.addAttribute("studentPositions", studentPositions);
+        return new ModelAndView("teacher/requests", model.asMap());
+    }
+
+    @RequestMapping(value = UrlProvider.TEACHER_DECLINED_REQUESTS_URL, method = RequestMethod.GET)
+    public ModelAndView showDeclinedRequests(Model model, HttpServletRequest request) {
+        long teacherId = thesisTeacherDao.getThesisTeacherByThesisUser(thesisUserProvider.getSignedInUser()).getThesisTeacherId();
+        List<StudentRequest> studentRequestsByTeacherId = studentRequestDao.getDeclinedStudentRequestsByTeacherId(teacherId);
         Map<Long, Positions> studentPositions = new HashMap<Long, Positions>();
         for (StudentRequest studentRequest : studentRequestsByTeacherId) {
             Thesis thesis = studentRequest.getThesis();
@@ -73,7 +91,7 @@ public class JoinInRequestController {
             thesisStudentDao.registerThesis(studentRequest.getThesisStudent().getThesisStudentId(), studentRequest.getThesis().getThesisId());
             studentRequestDao.setState(studentRequest.getStudentRequestId(), StudentRequestState.ACCEPTED);
         }
-        return new ModelAndView(new RedirectView(UrlProvider.TEACHER_REQUESTS_URL), model.asMap());
+        return joinInRequestControllerViewResolver.resolveView(request, model);
     }
 
     @RequestMapping(value = UrlProvider.TEACHER_DECLINE_REQUEST_URL, method = RequestMethod.GET)
@@ -84,6 +102,17 @@ public class JoinInRequestController {
         if (studentRequest.getThesis().getThesisTeacher().getThesisTeacherId().equals(teacherId)) {
             studentRequestDao.setState(studentRequest.getStudentRequestId(), StudentRequestState.DECLINED);
         }
-        return new ModelAndView(new RedirectView(UrlProvider.TEACHER_REQUESTS_URL), model.asMap());
+        return joinInRequestControllerViewResolver.resolveView(request, model);
+    }
+
+    @RequestMapping(value = UrlProvider.TEACHER_ENABLE_REQUEST_URL, method = RequestMethod.GET)
+    public ModelAndView enableRequest(Model model, HttpServletRequest request) {
+        long teacherId = thesisTeacherDao.getThesisTeacherByThesisUser(thesisUserProvider.getSignedInUser()).getThesisTeacherId();
+        String studentRequestParameter = request.getParameter("student-request");
+        StudentRequest studentRequest = studentRequestDao.findById(Longs.tryParse(studentRequestParameter));
+        if (studentRequest.getThesis().getThesisTeacher().getThesisTeacherId().equals(teacherId)) {
+            studentRequestDao.setState(studentRequest.getStudentRequestId(), StudentRequestState.NEW);
+        }
+        return joinInRequestControllerViewResolver.resolveView(request, model);
     }
 }
