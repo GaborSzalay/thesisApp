@@ -7,25 +7,20 @@
     <table id="my-table" class="table table-hover">
         <thead>
             <tr>
-                <th><spring:message code="messages.table.name" text=""/></th>
-                <th><spring:message code="messages.table.description" text=""/></th>
-                <th><spring:message code="messages.table.position" text=""/></th>
+                <th><spring:message code="messages.table.thesis" text=""/></th>
+                <th><spring:message code="messages.header.title.student" text=""/></th>
+                <th><spring:message code="messages.table.creation_date" text=""/></th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="thesis" items="${context.thesises}" varStatus="counter">
+            <c:forEach var="studentRequest" items="${studentRequests}" varStatus="counter">
                 <c:set var="studentPosition" value="${context.studentPositions.get(thesis.thesisId)}"/>
                 <tr>
-                    <td>${thesis.titleEn}</td>
-                    <td>${thesis.descriptionEn}</td>
-                    <td>
-                        ${studentPosition.maxPositions} / ${studentPosition.appointedPositions} / ${studentPosition.openPositions}
-                    </td>
-                    <td>
-                        <a class="thesis-popup" href="/teacher/create_thesis.html?editThesis=${thesis.thesisId}"><i class="fa fa-pencil"></i></a>
-                        <i class="fa fa-trash-o"></i>
-                    </td>
+                    <td>${studentRequest.thesis.titleHu}</td>
+                    <td>${studentRequest.thesisStudent.thesisUser.email}</td>
+                    <td>${studentRequest.thesisStudent.major.majorName}</td>
+                    <td>${studentRequest.creationDate}</td>
                 </tr>
             </c:forEach>
         </tbody>
