@@ -23,8 +23,8 @@
                     <td>${studentRequest.thesisStudent.major.majorName} <a class="inline-popup" href="#student-position-info-${studentRequest.thesis.thesisId}"><i class="fa fa-info-circle"></i></a></td>
                     <td>${studentRequest.creationDate}</td>
                     <td>
-                        <a class="btn btn-primary" href="/teacher/accept_request.html?thesis=${studentRequest.thesis.thesisId}"><spring:message code="messages.table.teacher.request.accept" text=""/></a>
-                        <a class="btn btn-danger" href="/teacher/decline_request.html?thesis=${studentRequest.thesis.thesisId}"><spring:message code="messages.table.teacher.request.decline" text=""/></a>
+                        <a class="btn btn-primary" href="/teacher/accept_request.html?student-request=${studentRequest.studentRequestId}"><spring:message code="messages.table.teacher.request.accept" text=""/></a>
+                        <a class="btn btn-danger" href="/teacher/decline_request.html?student-request=${studentRequest.studentRequestId}"><spring:message code="messages.table.teacher.request.decline" text=""/></a>
                     </td>
                 </tr>
             </c:forEach>
@@ -46,7 +46,9 @@
                 <label for="position-open"><spring:message code="messages.table.position.open" text=""/></label>
                 <div id="position-open">
                     <c:forEach var="openStudentPosition" items="${studentPosition.openStudentPositions}" varStatus="counter">
-                        <div>${openStudentPosition.key} ${openStudentPosition.value}</div>
+                        <c:if test="${openStudentPosition.value > 0}">
+                            <div>${openStudentPosition.key} ${openStudentPosition.value}</div>
+                        </c:if>
                     </c:forEach>
                 </div>
             </div>

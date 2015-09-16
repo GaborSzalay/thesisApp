@@ -48,7 +48,9 @@
                 <label for="position-open"><spring:message code="messages.table.position.open" text=""/></label>
                 <div id="position-open">
                     <c:forEach var="openStudentPosition" items="${studentPosition.openStudentPositions}" varStatus="counter">
-                        <div>${openStudentPosition.key} ${openStudentPosition.value}</div>
+                        <c:if test="${openStudentPosition.value > 0}">
+                            <div>${openStudentPosition.key} ${openStudentPosition.value}</div>
+                        </c:if>
                     </c:forEach>
                 </div>
             </div>
