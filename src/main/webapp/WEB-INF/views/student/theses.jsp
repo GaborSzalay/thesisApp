@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<t:studentpage title="messages.header.title.student" currentPage="${currentPage}">
+<t:studentpage title="messages.header.title.student" currentPage="${currentPage}" menutype="beforethesis">
 
     <table id="my-table" class="table table-hover">
         <thead>

@@ -52,5 +52,19 @@
                 <property name="paramName" ref="localeParamName"/>
             </bean>
         </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/student/**"/>
+            <bean class="com.university.thesisapp.student.controller.StudentRedirectInterceptor">
+                <property name="redirectedUrls">
+                    <list>
+                        <value>/student/show_thesis</value>
+                        <value>/student/</value>
+                        <value>/student/recommended_theses.html</value>
+                        <value>/student/all_theses.html</value>
+                        <value>/student/student_request.html</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:interceptor>
     </mvc:interceptors>
 </beans>

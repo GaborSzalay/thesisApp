@@ -56,7 +56,7 @@ public class Thesis {
         this.titleEn = titleEn;
     }
 
-    @Column(name = "description_hu")
+    @Column(name = "description_hu", length = 2000)
     public String getDescriptionHu() {
         return descriptionHu;
     }
@@ -65,7 +65,7 @@ public class Thesis {
         this.descriptionHu = descriptionHu;
     }
 
-    @Column(name = "description_en")
+    @Column(name = "description_en", length = 2000)
     public String getDescriptionEn() {
         return descriptionEn;
     }

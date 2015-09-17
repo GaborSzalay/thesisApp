@@ -33,13 +33,15 @@ public class ThesisUserAuthorityProvider {
         boolean hasAuthority = false;
         SecurityContext context = SecurityContextHolder.getContext();
         Authentication auth = context.getAuthentication();
-        Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
-        if (Validation.notEmpty(authorities)) {
-            Iterator<? extends GrantedAuthority> authorityIterator = authorities.iterator();
-            while (authorityIterator.hasNext() && !hasAuthority) {
-                GrantedAuthority authority = authorityIterator.next();
-                if (thesisAuthority.getRoleName().equals(authority.getAuthority())) {
-                    hasAuthority = true;
+        if (Validation.notEmpty(auth)) {
+            Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
+            if (Validation.notEmpty(authorities)) {
+                Iterator<? extends GrantedAuthority> authorityIterator = authorities.iterator();
+                while (authorityIterator.hasNext() && !hasAuthority) {
+                    GrantedAuthority authority = authorityIterator.next();
+                    if (thesisAuthority.getRoleName().equals(authority.getAuthority())) {
+                        hasAuthority = true;
+                    }
                 }
             }
         }
