@@ -6,6 +6,7 @@ import com.university.thesisapp.dao.persistence.model.Thesis;
 import com.university.thesisapp.dao.persistence.model.ThesisStudent;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
+import com.university.thesisapp.util.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,5 +83,14 @@ public class StudentRequestDao {
             }
         }
         return studentRequestsByTeacher;
+    }
+
+    public void tryToDeleteStudentRequest(Long studentRequestId) {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        StudentRequest studentRequest = entityManagerParams.getEntityManager().find(StudentRequest.class, studentRequestId);
+        if (Validation.notEmpty(studentRequest)) {
+            entityManagerParams.getEntityManager().remove(studentRequest);
+        }
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
     }
 }

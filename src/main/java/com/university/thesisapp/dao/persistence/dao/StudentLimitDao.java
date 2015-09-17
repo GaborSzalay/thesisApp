@@ -55,4 +55,13 @@ public class StudentLimitDao {
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return studentLimits;
     }
+
+    public void tryToDeleteStudentLimit(Long studentLimitId) {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        StudentLimit studentLimit = entityManagerParams.getEntityManager().find(StudentLimit.class, studentLimitId);
+        if (Validation.notEmpty(studentLimit)) {
+            entityManagerParams.getEntityManager().remove(studentLimit);
+        }
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+    }
 }

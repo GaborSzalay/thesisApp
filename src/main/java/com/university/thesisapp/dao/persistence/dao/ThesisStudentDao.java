@@ -3,6 +3,7 @@ package com.university.thesisapp.dao.persistence.dao;
 import com.university.thesisapp.dao.persistence.model.*;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
+import com.university.thesisapp.util.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -70,6 +71,15 @@ public class ThesisStudentDao {
         ThesisStudent thesisStudent = entityManagerParams.getEntityManager().find(ThesisStudent.class, thesisStudentId);
         Thesis thesis = thesisDao.findById(thesisId);
         thesisStudent.setThesis(thesis);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+    }
+
+    public void tryToDeleteThesisStudent(Long studentId) {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        ThesisStudent thesisStudent = entityManagerParams.getEntityManager().find(ThesisStudent.class, studentId);
+        if (Validation.notEmpty(thesisStudent)) {
+            entityManagerParams.getEntityManager().remove(thesisStudent);
+        }
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
     }
 }

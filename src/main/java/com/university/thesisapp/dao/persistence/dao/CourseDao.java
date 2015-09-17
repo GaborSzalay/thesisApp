@@ -4,6 +4,7 @@ import com.google.common.primitives.Longs;
 import com.university.thesisapp.dao.persistence.model.Course;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
+import com.university.thesisapp.util.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,5 +69,14 @@ public class CourseDao {
             }
         }
         return resultCourse;
+    }
+
+    public void tryToDeleteCourse(Long courseId) {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        Course course = entityManagerParams.getEntityManager().find(Course.class, courseId);
+        if (Validation.notEmpty(course)) {
+            entityManagerParams.getEntityManager().remove(course);
+        }
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
     }
 }

@@ -99,4 +99,13 @@ public class ThesisDao {
         }
         return result;
     }
+
+    public void tryToDeleteThesis(Long thesisId) {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        Thesis thesis = entityManagerParams.getEntityManager().find(Thesis.class, thesisId);
+        if (Validation.notEmpty(thesis)) {
+            entityManagerParams.getEntityManager().remove(thesis);
+        }
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+    }
 }

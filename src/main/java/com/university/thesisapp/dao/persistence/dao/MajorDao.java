@@ -3,6 +3,7 @@ package com.university.thesisapp.dao.persistence.dao;
 import com.university.thesisapp.dao.persistence.model.Major;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
+import com.university.thesisapp.util.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +46,14 @@ public class MajorDao {
             }
         }
         return resultMajor;
+    }
+
+    public void tryToDeleteMajor(Long majorId) {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        Major major = entityManagerParams.getEntityManager().find(Major.class, majorId);
+        if (Validation.notEmpty(major)) {
+            entityManagerParams.getEntityManager().remove(major);
+        }
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
     }
 }
