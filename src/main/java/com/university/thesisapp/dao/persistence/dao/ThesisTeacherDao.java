@@ -90,4 +90,11 @@ public class ThesisTeacherDao {
         }
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
     }
+
+    public void tryToDeleteAllThesisTeachers() {
+        List<ThesisTeacher> allThesisTeachers = getAllThesisTeachers();
+        for (ThesisTeacher thesisTeacher : allThesisTeachers) {
+            tryToDeleteThesisTeacher(thesisTeacher.getThesisTeacherId());
+        }
+    }
 }

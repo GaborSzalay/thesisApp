@@ -79,4 +79,11 @@ public class CourseDao {
         }
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
     }
+
+    public void tryToDeleteAllCourses() {
+        List<Course> allCourses = getAllCourses();
+        for (Course course : allCourses) {
+            tryToDeleteCourse(course.getCourseId());
+        }
+    }
 }

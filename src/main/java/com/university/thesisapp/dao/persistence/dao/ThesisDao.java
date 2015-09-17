@@ -108,4 +108,11 @@ public class ThesisDao {
         }
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
     }
+
+    public void tryToDeleteAllTheses() {
+        List<Thesis> theses = getAllThesises();
+        for (Thesis thesis : theses) {
+            tryToDeleteThesis(thesis.getThesisId());
+        }
+    }
 }

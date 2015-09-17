@@ -82,4 +82,11 @@ public class ThesisStudentDao {
         }
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
     }
+
+    public void tryToDeleteAllThesisStudents() {
+        List<ThesisStudent> allThesisStudents = getAllThesisStudents();
+        for (ThesisStudent thesisStudent : allThesisStudents) {
+            tryToDeleteThesisStudent(thesisStudent.getThesisStudentId());
+        }
+    }
 }

@@ -56,4 +56,11 @@ public class MajorDao {
         }
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
     }
+
+    public void tryToDeleteAllMajors() {
+        List<Major> allMajors = getAllMajors();
+        for (Major major : allMajors) {
+            tryToDeleteMajor(major.getMajorId());
+        }
+    }
 }

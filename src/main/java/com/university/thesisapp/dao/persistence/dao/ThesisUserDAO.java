@@ -99,6 +99,13 @@ public class ThesisUserDao {
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
     }
 
+    public void tryToDeleteAllThesisUsers() {
+        List<ThesisUser> allThesisUsers = getAllThesisUsers();
+        for (ThesisUser thesisUser : allThesisUsers) {
+            tryToDeleteThesisUser(thesisUser.getThesisUserId());
+        }
+    }
+
     public void setEntityManagerProvider(EntityManagerProvider entityManagerProvider) {
         this.entityManagerProvider = entityManagerProvider;
     }

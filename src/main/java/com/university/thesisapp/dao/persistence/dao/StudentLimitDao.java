@@ -64,4 +64,11 @@ public class StudentLimitDao {
         }
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
     }
+
+    public void tryToDeleteAllStudentLimits() {
+        List<StudentLimit> allStudentLimits = getAllStudentLimits();
+        for (StudentLimit studentLimit : allStudentLimits) {
+            tryToDeleteStudentLimit(studentLimit.getStudentLimitId());
+        }
+    }
 }

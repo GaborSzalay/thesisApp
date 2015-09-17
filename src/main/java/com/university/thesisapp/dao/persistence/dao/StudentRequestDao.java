@@ -93,4 +93,11 @@ public class StudentRequestDao {
         }
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
     }
+
+    public void tryToDeleteAllStudentRequests() {
+        List<StudentRequest> allStudentRequests = getAllStudentRequests();
+        for (StudentRequest studentRequest : allStudentRequests) {
+            tryToDeleteStudentRequest(studentRequest.getStudentRequestId());
+        }
+    }
 }
