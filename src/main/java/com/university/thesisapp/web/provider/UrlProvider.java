@@ -35,4 +35,5 @@ public class UrlProvider {
     public static final String TEACHER_DECLINED_REQUESTS_URL = "/teacher/declined_requests.html";
     public static final String TEACHER_ENABLE_REQUEST_URL = "/teacher/enable_request.html";
     public static final String STUDENT_THESIS_HOMEPAGE_URL = "/student/thesis_homepage.html";
+    public static final String STUDENT_COMMENTS_URL = "/student/comments.html";
 }

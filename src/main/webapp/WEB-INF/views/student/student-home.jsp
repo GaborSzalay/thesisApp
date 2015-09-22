@@ -4,5 +4,4 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:studentpage title="messages.header.title.student" currentPage="home" menutype="beforethesis">
 
-
 </t:studentpage>

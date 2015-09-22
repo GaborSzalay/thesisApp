@@ -1,6 +1,12 @@
 package com.university.thesisapp.student.controller;
 
+import com.university.thesisapp.dao.persistence.dao.ThesisDao;
+import com.university.thesisapp.dao.persistence.dao.ThesisStudentDao;
+import com.university.thesisapp.dao.persistence.model.Thesis;
+import com.university.thesisapp.dao.persistence.model.ThesisStudent;
+import com.university.thesisapp.dao.persistence.provider.ThesisUserProvider;
 import com.university.thesisapp.web.provider.UrlProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +20,18 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class StudentThesisController {
+    @Autowired
+    ThesisDao thesisDao;
+    @Autowired
+    ThesisUserProvider thesisUserProvider;
+    @Autowired
+    ThesisStudentDao thesisStudentDao;
+
     @RequestMapping(value = UrlProvider.STUDENT_THESIS_HOMEPAGE_URL, method = RequestMethod.GET)
     public ModelAndView showThesisHomePage(Model model, HttpServletRequest request) {
+        ThesisStudent thesisStudent = thesisStudentDao.findByThesisUser(thesisUserProvider.getSignedInUser());
+        Thesis thesis = thesisDao.findById(thesisStudent.getThesis().getThesisId());
+        model.addAttribute("thesis", thesis);
         return new ModelAndView("student/thesis_home", model.asMap());
     }
 }

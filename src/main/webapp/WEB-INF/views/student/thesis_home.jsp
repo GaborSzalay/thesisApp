@@ -3,6 +3,6 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:studentpage title="messages.header.title.student" currentPage="home" menutype="thesis_menu">
-
+    <jsp:include page="../shared/thesis_details.jsp"/>
 
 </t:studentpage>
