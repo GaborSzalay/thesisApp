@@ -52,4 +52,6 @@ public class StudentController {
         model.addAttribute("thesisStudentId", thesisStudent.getThesisStudentId());
         return new ModelAndView("/student/theses", model.asMap());
     }
+
+
 }

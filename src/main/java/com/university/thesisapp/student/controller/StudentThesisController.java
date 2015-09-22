@@ -34,4 +34,9 @@ public class StudentThesisController {
         model.addAttribute("thesis", thesis);
         return new ModelAndView("student/thesis_home", model.asMap());
     }
+
+    @RequestMapping(value = UrlProvider.STUDENT_COMMENTS_URL, method = RequestMethod.GET)
+    public ModelAndView showCommentsPage(Model model, HttpServletRequest request) {
+        return new ModelAndView("/student/comments", model.asMap());
+    }
 }
