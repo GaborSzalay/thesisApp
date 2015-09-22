@@ -23,6 +23,8 @@ public class HomeControllerViewResolver {
         View redirectView = null;
         if (thesisUserAuthorityProvider.isStudent()) {
             redirectView = new RedirectView(UrlProvider.STUDENT_HOME_PAGE_URL);
+        } else if (thesisUserAuthorityProvider.isStudentThesis()) {
+            redirectView = new RedirectView(UrlProvider.STUDENT_THESIS_HOMEPAGE_URL);
         } else if (thesisUserAuthorityProvider.isTeacher()) {
             redirectView = new RedirectView(UrlProvider.TEACHER_HOME_PAGE_URL);
         } else if (thesisUserAuthorityProvider.isAdmin()) {

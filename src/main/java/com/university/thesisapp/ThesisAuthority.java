@@ -6,7 +6,8 @@ package com.university.thesisapp;
 public enum ThesisAuthority {
     ADMIN("ROLE_ADMIN"),
     TEACHER("ROLE_TEACHER"),
-    STUDENT("ROLE_STUDENT");
+    STUDENT("ROLE_STUDENT"),
+    STUDENT_THESIS("ROLE_STUDENT_THESIS");
 
     private final String roleName;
 

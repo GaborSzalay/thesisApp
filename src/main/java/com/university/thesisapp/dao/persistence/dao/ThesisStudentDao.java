@@ -1,5 +1,6 @@
 package com.university.thesisapp.dao.persistence.dao;
 
+import com.university.thesisapp.ThesisAuthority;
 import com.university.thesisapp.dao.persistence.model.*;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
@@ -71,6 +72,7 @@ public class ThesisStudentDao {
         ThesisStudent thesisStudent = entityManagerParams.getEntityManager().find(ThesisStudent.class, thesisStudentId);
         Thesis thesis = thesisDao.findById(thesisId);
         thesisStudent.setThesis(thesis);
+        thesisStudent.getThesisUser().setAuthority(ThesisAuthority.STUDENT_THESIS.getRoleName());
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
     }
 

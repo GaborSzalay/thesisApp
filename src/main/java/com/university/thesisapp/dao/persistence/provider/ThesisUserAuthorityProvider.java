@@ -21,6 +21,10 @@ public class ThesisUserAuthorityProvider {
         return hasAuthority(ThesisAuthority.STUDENT);
     }
 
+    public boolean isStudentThesis() {
+        return hasAuthority(ThesisAuthority.STUDENT_THESIS);
+    }
+
     public boolean isTeacher() {
         return hasAuthority(ThesisAuthority.TEACHER);
     }
