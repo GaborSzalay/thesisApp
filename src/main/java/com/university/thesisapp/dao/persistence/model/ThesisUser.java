@@ -1,8 +1,12 @@
 package com.university.thesisapp.dao.persistence.model;
 
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "thesis_user")
@@ -15,6 +19,7 @@ public class ThesisUser {
     private Date registrationDate;
     private ThesisStudent thesisStudent;
     private ThesisTeacher thesisTeacher;
+    private List<Comment> comments;
 
     @Id
     @Column(name = "thesis_user_id")
@@ -80,5 +85,15 @@ public class ThesisUser {
 
     public void setThesisTeacher(ThesisTeacher thesisTeacher) {
         this.thesisTeacher = thesisTeacher;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "thesisUser")
+    @LazyCollection(LazyCollectionOption.TRUE)
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

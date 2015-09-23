@@ -29,14 +29,19 @@ public class StudentThesisController {
 
     @RequestMapping(value = UrlProvider.STUDENT_THESIS_HOMEPAGE_URL, method = RequestMethod.GET)
     public ModelAndView showThesisHomePage(Model model, HttpServletRequest request) {
-        ThesisStudent thesisStudent = thesisStudentDao.findByThesisUser(thesisUserProvider.getSignedInUser());
-        Thesis thesis = thesisDao.findById(thesisStudent.getThesis().getThesisId());
-        model.addAttribute("thesis", thesis);
+        addThesisToModel(model);
         return new ModelAndView("student/thesis_home", model.asMap());
     }
 
     @RequestMapping(value = UrlProvider.STUDENT_COMMENTS_URL, method = RequestMethod.GET)
     public ModelAndView showCommentsPage(Model model, HttpServletRequest request) {
+        addThesisToModel(model);
         return new ModelAndView("/student/comments", model.asMap());
+    }
+
+    private void addThesisToModel(Model model) {
+        ThesisStudent thesisStudent = thesisStudentDao.findByThesisUser(thesisUserProvider.getSignedInUser());
+        Thesis thesis = thesisDao.findById(thesisStudent.getThesis().getThesisId());
+        model.addAttribute("thesis", thesis);
     }
 }

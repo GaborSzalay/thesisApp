@@ -26,6 +26,7 @@ public class Thesis {
     private List<ThesisStudent> thesisStudents;
     private ThesisTeacher thesisTeacher;
     private List<StudentRequest> studentRequests;
+    private List<Comment> comments;
 
     @Id
     @Column(name = "thesis_id")
@@ -151,5 +152,15 @@ public class Thesis {
 
     public void setStudentRequests(List<StudentRequest> studentRequests) {
         this.studentRequests = studentRequests;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "thesis")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
