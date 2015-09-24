@@ -1,4 +1,4 @@
-package com.university.thesisapp.shared.controller;
+package com.university.thesisapp.homepage.controller;
 
 import com.google.common.primitives.Longs;
 import com.university.thesisapp.dao.persistence.dao.CommentDao;
@@ -20,13 +20,15 @@ import javax.servlet.http.HttpServletRequest;
 public class CommentController {
     @Autowired
     private CommentDao commentDao;
+    @Autowired
+    private CommentControllerViewResolver commentControllerViewResolver;
 
-    @RequestMapping(value = UrlProvider.STUDENT_THESIS_CREATE_COMMENT_URL, method = RequestMethod.POST)
+    @RequestMapping(value = UrlProvider.STUDENT_THESIS_CREATE_COMMENT_URL, method = RequestMethod.GET)
     public ModelAndView createComment(Model model, HttpServletRequest request) {
         String thesisIdParameter = request.getParameter("thesisId");
         String commentMessage = request.getParameter("commentMessage");
         Long thesisId = Longs.tryParse(thesisIdParameter);
         commentDao.createComment(commentMessage, thesisId);
-        return new ModelAndView(new RedirectView("/"));
+        return commentControllerViewResolver.resolveView(request);
     }
 }
