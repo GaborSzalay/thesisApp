@@ -2,6 +2,7 @@ package com.university.thesisapp.student.controller;
 
 import com.university.thesisapp.dao.persistence.dao.ThesisDao;
 import com.university.thesisapp.dao.persistence.dao.ThesisStudentDao;
+import com.university.thesisapp.dao.persistence.model.Comment;
 import com.university.thesisapp.dao.persistence.model.Thesis;
 import com.university.thesisapp.dao.persistence.model.ThesisStudent;
 import com.university.thesisapp.dao.persistence.provider.ThesisUserProvider;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Gábor on 2015.09.18..
@@ -42,6 +45,9 @@ public class StudentThesisController {
     private void addThesisToModel(Model model) {
         ThesisStudent thesisStudent = thesisStudentDao.findByThesisUser(thesisUserProvider.getSignedInUser());
         Thesis thesis = thesisDao.findById(thesisStudent.getThesis().getThesisId());
+        List<Comment> comments = thesis.getComments();
+        Collections.sort(comments);
+        model.addAttribute("comments", comments);
         model.addAttribute("thesis", thesis);
     }
 }

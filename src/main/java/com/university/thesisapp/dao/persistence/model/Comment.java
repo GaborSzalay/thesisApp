@@ -8,12 +8,17 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "comment")
-public class Comment {
+public class Comment implements Comparable<Comment>{
     private Long commentId;
     private Date creationDate;
     private String commentMessage;
     private ThesisUser thesisUser;
     private Thesis thesis;
+
+    @Override
+    public int compareTo(Comment comment) {
+        return comment.getCreationDate().compareTo(this.creationDate);
+    }
 
     @Id
     @Column(name = "comment_id")
