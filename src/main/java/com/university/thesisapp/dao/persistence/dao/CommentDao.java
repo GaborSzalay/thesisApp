@@ -21,7 +21,7 @@ public class CommentDao {
     @Autowired
     EntityManagerProvider entityManagerProvider;
 
-    public void createComment(String commentMessage, Long thesisId) {
+    public Comment createComment(String commentMessage, Long thesisId) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
         Comment comment = new Comment();
         comment.setCreationDate(new Date());
@@ -30,5 +30,6 @@ public class CommentDao {
         comment.setCommentMessage(commentMessage);
         entityManagerParams.getEntityManager().persist(comment);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        return comment;
     }
 }
