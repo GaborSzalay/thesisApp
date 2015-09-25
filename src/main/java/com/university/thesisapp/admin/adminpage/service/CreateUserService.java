@@ -29,13 +29,15 @@ public class CreateUserService {
     public void createAdmin(HttpServletRequest request) {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        thesisUserDao.createThesisUser(email, password, ThesisAuthority.ADMIN.getRoleName());
+        String name = request.getParameter("name");
+        thesisUserDao.createThesisUser(email, password, ThesisAuthority.ADMIN.getRoleName(), name);
     }
 
     public void createTeacher(HttpServletRequest request) {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        thesisTeacherDao.createThesisTeacher(email, password);
+        String name = request.getParameter("name");
+        thesisTeacherDao.createThesisTeacher(email, password, name);
     }
 
 

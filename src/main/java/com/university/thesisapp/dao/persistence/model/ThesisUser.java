@@ -20,6 +20,7 @@ public class ThesisUser {
     private ThesisStudent thesisStudent;
     private ThesisTeacher thesisTeacher;
     private List<Comment> comments;
+    private String name;
 
     @Id
     @Column(name = "thesis_user_id")
@@ -95,5 +96,14 @@ public class ThesisUser {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    @Column(name = "name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

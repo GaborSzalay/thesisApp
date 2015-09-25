@@ -19,6 +19,7 @@ public class CreateAccountContextFactory {
         createAccountContext.setPassword(request.getParameter("password"));
         createAccountContext.setMajorId(Longs.tryParse(request.getParameter("majorId")));
         createAccountContext.setCourseId(Longs.tryParse(request.getParameter("courseId")));
+        createAccountContext.setName(request.getParameter("name"));
         return createAccountContext;
     }
 

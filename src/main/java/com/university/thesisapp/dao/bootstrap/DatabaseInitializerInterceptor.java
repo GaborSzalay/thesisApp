@@ -40,11 +40,11 @@ public class DatabaseInitializerInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         if (empty(thesisUserDao.getAllThesisUsers())) {
-            thesisUserDao.createThesisUser("admin@thesis.hu", "test123", "ROLE_ADMIN");
+            thesisUserDao.createThesisUser("admin@thesis.hu", "test123", "ROLE_ADMIN", "Gipsz Jakab");
             logger.info("Test admin created.");
-            thesisUserDao.createThesisUser("student1@thesis.hu", "test123", "ROLE_STUDENT");
+            thesisUserDao.createThesisUser("student1@thesis.hu", "test123", "ROLE_STUDENT", "Tóth Ádám");
             logger.info("Test student 1 created.");
-            thesisUserDao.createThesisUser("student2@thesis.hu", "test123", "ROLE_STUDENT");
+            thesisUserDao.createThesisUser("student2@thesis.hu", "test123", "ROLE_STUDENT", "Tóth Béla");
             logger.info("Test student 2 created.");
         }
 
@@ -88,7 +88,7 @@ public class DatabaseInitializerInterceptor extends HandlerInterceptorAdapter {
         }
 
         if (empty(thesisTeacherDao.getAllThesisTeachers())) {
-            thesisTeacherDao.createThesisTeacher("teacher@thesis.hu", "test123");
+            thesisTeacherDao.createThesisTeacher("teacher@thesis.hu", "test123", "Mézga Géza");
             logger.info("Test teacher created.");
         }
 

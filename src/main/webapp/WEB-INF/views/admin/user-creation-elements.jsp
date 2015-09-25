@@ -4,6 +4,11 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <div class="form-group">
+    <spring:message code="messages.table.name" text="" var="nameMessage"/>
+    <label for="nameInput">${nameMessage}</label>
+    <input type="text" id="nameInput" class="form-control" placeholder="${nameMessage}" name="name" value=""/>
+</div>
+<div class="form-group">
     <spring:message code="messages.table.email" text="" var="emailMessage"/>
     <label for="emailInput">${emailMessage}</label>
     <input type="text" id="emailInput" class="form-control" placeholder="${emailMessage}" name="email" value=""/>

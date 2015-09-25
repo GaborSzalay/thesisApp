@@ -64,25 +64,26 @@ public class ThesisUserDao {
         return thesisUsers;
     }
 
-    public ThesisUser createThesisUserWithoutTransactionManagement(EntityManagerParams entityManagerParams, String email, String password, String authority) {
+    public ThesisUser createThesisUserWithoutTransactionManagement(EntityManagerParams entityManagerParams, String email, String password, String authority, String name) {
         ThesisUser thesisUser = new ThesisUser();
         thesisUser.setEmail(email);
         thesisUser.setPassword(getHashedPassword(password));
         thesisUser.setAuthority(authority);
         thesisUser.setRegistrationDate(new Date());
+        thesisUser.setName(name);
         entityManagerParams.getEntityManager().persist(thesisUser);
         return thesisUser;
     }
 
-    public ThesisUser createThesisUser(String email, String password, String authority) {
+    public ThesisUser createThesisUser(String email, String password, String authority, String name) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisUser thesisUser = createThesisUserWithoutTransactionManagement(entityManagerParams, email, password, authority);
+        ThesisUser thesisUser = createThesisUserWithoutTransactionManagement(entityManagerParams, email, password, authority, name);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesisUser;
     }
 
-    public ThesisUser createStudent(String email, String password) {
-        return createThesisUser(email, password, ThesisAuthority.STUDENT.getRoleName());
+    public ThesisUser createStudent(String email, String password, String name) {
+        return createThesisUser(email, password, ThesisAuthority.STUDENT.getRoleName(), name);
     }
 
     private String getHashedPassword(String password) {

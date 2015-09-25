@@ -10,6 +10,7 @@
         <beans:property name="email" value="superUser@thesis.hu" />
         <beans:property name="password" value="almafa1" />
         <beans:property name="authority" value="ROLE_ADMIN" />
+        <beans:property name="name" value="SuperUser" />
     </beans:bean>
 
     <beans:bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">

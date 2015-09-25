@@ -26,7 +26,7 @@ public class ThesisUserService implements UserDetailsService {
         if (superUser.getEmail().equals(email)) {
             thesisUser = thesisUserDao.getThesisUserByEmail(email);
             if (Validation.empty(thesisUser)) {
-                thesisUser = thesisUserDao.createThesisUser(superUser.getEmail(), superUser.getPassword(), superUser.getAuthority());
+                thesisUser = thesisUserDao.createThesisUser(superUser.getEmail(), superUser.getPassword(), superUser.getAuthority(), superUser.getName());
             }
         } else {
             thesisUser = thesisUserDao.getThesisUserByEmail(email);

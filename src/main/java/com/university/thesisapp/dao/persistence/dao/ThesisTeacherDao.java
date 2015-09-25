@@ -21,9 +21,9 @@ public class ThesisTeacherDao {
     @Autowired
     private ThesisUserDao thesisUserDao;
 
-    public ThesisTeacher createThesisTeacher(String email, String password) {
+    public ThesisTeacher createThesisTeacher(String email, String password, String name) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisUser thesisUser = thesisUserDao.createThesisUserWithoutTransactionManagement(entityManagerParams, email, password, ThesisAuthority.TEACHER.getRoleName());
+        ThesisUser thesisUser = thesisUserDao.createThesisUserWithoutTransactionManagement(entityManagerParams, email, password, ThesisAuthority.TEACHER.getRoleName(), name);
         ThesisTeacher thesisTeacher = new ThesisTeacher();
         thesisTeacher.setThesisUser(thesisUser);
         entityManagerParams.getEntityManager().persist(thesisTeacher);

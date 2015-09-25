@@ -18,6 +18,7 @@ public class CreateAccountService {
         String password = createAccountContext.getPassword();
         Long majorId = createAccountContext.getMajorId();
         Long courseId = createAccountContext.getCourseId();
-        thesisStudentDao.createThesisStudent(email, password, majorId, courseId);
+        String name = createAccountContext.getName();
+        thesisStudentDao.createThesisStudent(email, password, majorId, courseId, name);
     }
 }

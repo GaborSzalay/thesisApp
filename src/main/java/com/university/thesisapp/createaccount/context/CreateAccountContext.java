@@ -8,6 +8,7 @@ public class CreateAccountContext {
     private String password;
     private Long majorId;
     private Long courseId;
+    private String name;
 
     public String getEmail() {
         return email;
@@ -39,5 +40,13 @@ public class CreateAccountContext {
 
     public void setCourseId(Long courseId) {
         this.courseId = courseId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

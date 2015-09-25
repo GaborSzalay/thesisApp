@@ -9,6 +9,11 @@
         <spring:message code="messages.login.password" text="" var="passwordMessage"/>
         <spring:message code="messages.table.major" text="" var="majorMessage"/>
         <spring:message code="messages.table.course" text="" var="courseMessage"/>
+        <spring:message code="messages.table.name" text="" var="nameMessage"/>
+        <div class="form-group">
+            <label for="nameInput">${nameMessage}</label>
+            <input type="text" id="nameInput" class="form-control" placeholder="${nameMessage}" name="name" value=""/>
+        </div>
         <div class="form-group">
             <label for="emailInput">${emailMessage}</label>
             <input type="text" id="emailInput" class="form-control" placeholder="${emailMessage}" name="email" value=""/>

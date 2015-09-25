@@ -37,8 +37,8 @@ public class ThesisStudentDao {
         return thesisStudent;
     }
 
-    public ThesisStudent createThesisStudent(String email, String password, Long majorId, Long courseId) {
-        ThesisUser thesisUser = thesisUserDao.createStudent(email, password);
+    public ThesisStudent createThesisStudent(String email, String password, Long majorId, Long courseId, String name) {
+        ThesisUser thesisUser = thesisUserDao.createStudent(email, password, name);
         return createThesisStudent(courseDao.findById(courseId), majorDao.findById(majorId), thesisUser);
     }
 
