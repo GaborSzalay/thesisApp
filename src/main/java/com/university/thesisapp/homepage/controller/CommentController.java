@@ -18,13 +18,12 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class CommentController {
-    public static final String FROM = "szalay.gabor0@gmail.com";
-    public static final String TO = "yaastreet@gmail.com";
     @Autowired
     private CommentDao commentDao;
     @Autowired
     private CommentControllerViewResolver commentControllerViewResolver;
-
+    @Autowired
+    private EmailSenderService emailSenderService;
 
     @RequestMapping(value = UrlProvider.STUDENT_THESIS_CREATE_COMMENT_URL, method = RequestMethod.GET)
     public ModelAndView createComment(Model model, HttpServletRequest request) {
@@ -32,7 +31,7 @@ public class CommentController {
         String commentMessage = request.getParameter("commentMessage");
         Long thesisId = Longs.tryParse(thesisIdParameter);
         Comment comment = commentDao.createComment(commentMessage, thesisId);
-
+        emailSenderService.sendMailAfterComment(comment);
         return commentControllerViewResolver.resolveView(request);
     }
 }

@@ -16,7 +16,7 @@
         <c:forEach var="comment" items="${comments}">
             <div class="form-group">
                 <label for="comment-${comment.commentId}">${comment.thesisUser.email}</label>
-                <div id="comment-${comment.commentId}">${comment.commentMessage}</div>
+                <div id="comment-${comment.commentId}"><pre>${comment.commentMessage}</pre></div>
             </div>
         </c:forEach>
     </form>
