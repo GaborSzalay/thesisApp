@@ -28,4 +28,10 @@ public class EmailSenderService {
     private String getSubject(Comment comment) {
         return "ThesisApp: " + comment.getThesisUser().getName() + " commented on - " + comment.getThesis().getTitleEn();
     }
+
+    public void sendMailAfterRegistration(String email) {
+        String subject = "ThesisApp: registration confirmation mail";
+        String text = "http://www.w3schools.com/html";
+        emailSenderDao.sendMail(email, subject, text);
+    }
 }
