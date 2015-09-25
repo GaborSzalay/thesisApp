@@ -5,19 +5,19 @@
 <t:studentpage title="messages.header.title.student" currentPage="home" menutype="thesis_menu">
     <form class="comment-page" action="/student_thesis/create_comment.html" method="GET" accept-charset="UTF-8">
         <input type="hidden" name="thesisId" value="${thesis.thesisId}">
+        <div class="form-group">
+            <spring:message code="message.student.comment" text="" var="commentInputMessage"/>
+            <label for="commentInput">${commentInputMessage}</label>
+            <textarea id="commentInput" class="form-control" placeholder="${commentInputMessage}" rows="3" name="commentMessage"></textarea>
+        </div>
+        <button id="submit-button" type="submit" class="btn btn-primary comment-submit-button">
+            <spring:message code="message.student.comment.send" text=""/>
+        </button>
         <c:forEach var="comment" items="${comments}">
             <div class="form-group">
                 <label for="comment-${comment.commentId}">${comment.thesisUser.email}</label>
                 <div id="comment-${comment.commentId}">${comment.commentMessage}</div>
             </div>
         </c:forEach>
-        <div class="form-group">
-            <spring:message code="message.student.comment" text="" var="commentInputMessage"/>
-            <label for="commentInput">${commentInputMessage}</label>
-            <textarea id="commentInput" class="form-control" placeholder="${commentInputMessage}" rows="3" name="commentMessage"></textarea>
-        </div>
-        <button id="submit-button" type="submit" class="btn btn-primary">
-            <spring:message code="message.student.comment.send" text=""/>
-        </button>
     </form>
 </t:studentpage>
