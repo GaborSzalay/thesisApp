@@ -1,6 +1,8 @@
 package com.university.thesisapp.admin.adminpage.controller;
 
 import com.university.thesisapp.admin.adminpage.service.CreateUserService;
+import com.university.thesisapp.dao.persistence.model.ThesisUser;
+import com.university.thesisapp.homepage.controller.EmailSenderService;
 import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,10 +22,13 @@ public class CreateAdminController {
     private CreateAdminControllerViewResolver createAdminControllerViewResolver;
     @Autowired
     CreateUserService createUserService;
+    @Autowired
+    EmailSenderService emailSenderService;
 
     @RequestMapping(value = UrlProvider.CREATE_ADMIN_URL, method = RequestMethod.POST)
     public ModelAndView handleCreateAdminRequest(Model model, HttpServletRequest request) {
-        createUserService.createAdmin(request);
+        ThesisUser admin = createUserService.createAdmin(request);
+        emailSenderService.sendMailAfterRegistration(admin.getEmail(), request);
         return createAdminControllerViewResolver.resolveViewByRedirecting();
     }
 

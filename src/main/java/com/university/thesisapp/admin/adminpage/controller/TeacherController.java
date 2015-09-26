@@ -3,6 +3,8 @@ package com.university.thesisapp.admin.adminpage.controller;
 import com.google.common.primitives.Longs;
 import com.university.thesisapp.admin.adminpage.service.CreateUserService;
 import com.university.thesisapp.dao.persistence.dao.ThesisTeacherDao;
+import com.university.thesisapp.dao.persistence.model.ThesisTeacher;
+import com.university.thesisapp.homepage.controller.EmailSenderService;
 import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,8 @@ public class TeacherController {
     CreateUserService createUserService;
     @Autowired
     ThesisTeacherDao thesisTeacherDao;
+    @Autowired
+    EmailSenderService emailSenderService;
 
     @RequestMapping(value = UrlProvider.ADMIN_TEACHER_HTML, method = RequestMethod.GET)
     public ModelAndView showCreateTeacherForm(Model model, HttpServletRequest request) {
@@ -31,7 +35,8 @@ public class TeacherController {
 
     @RequestMapping(value = UrlProvider.ADMIN_TEACHER_HTML, method = RequestMethod.POST)
     public ModelAndView handleCreateTeacherRequest(Model model, HttpServletRequest request) {
-        createUserService.createTeacher(request);
+        ThesisTeacher teacher = createUserService.createTeacher(request);
+        emailSenderService.sendMailAfterRegistration(teacher.getThesisUser().getEmail(), request);
         return new ModelAndView(new RedirectView(UrlProvider.LIST_TEACHERS_URL), model.asMap());
     }
 

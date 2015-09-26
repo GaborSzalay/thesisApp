@@ -5,6 +5,7 @@ import com.university.thesisapp.dao.persistence.dao.ThesisStudentDao;
 import com.university.thesisapp.dao.persistence.dao.ThesisTeacherDao;
 import com.university.thesisapp.dao.persistence.dao.ThesisUserDao;
 import com.university.thesisapp.dao.persistence.model.ThesisStudent;
+import com.university.thesisapp.dao.persistence.model.ThesisTeacher;
 import com.university.thesisapp.dao.persistence.model.ThesisUser;
 import com.university.thesisapp.dao.persistence.provider.ThesisUserProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +27,18 @@ public class CreateUserService {
     @Autowired
     private ThesisStudentDao thesisStudentDao;
 
-    public void createAdmin(HttpServletRequest request) {
+    public ThesisUser createAdmin(HttpServletRequest request) {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String name = request.getParameter("name");
-        thesisUserDao.createThesisUser(email, password, ThesisAuthority.ADMIN.getRoleName(), name);
+        return thesisUserDao.createThesisUser(email, password, ThesisAuthority.ADMIN.getRoleName(), name);
     }
 
-    public void createTeacher(HttpServletRequest request) {
+    public ThesisTeacher createTeacher(HttpServletRequest request) {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String name = request.getParameter("name");
-        thesisTeacherDao.createThesisTeacher(email, password, name);
+        return thesisTeacherDao.createThesisTeacher(email, password, name);
     }
 
 

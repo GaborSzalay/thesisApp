@@ -38,7 +38,7 @@ public class CreateAccountController {
     public ModelAndView createAccount(HttpServletRequest request, Model model) {
         CreateAccountContext createAccountContext = createAccountContextFactory.create(request);
         createAccountService.registerStudent(createAccountContext);
-        emailSenderService.sendMailAfterRegistration(createAccountContext, request);
+        emailSenderService.sendMailAfterRegistration(createAccountContext.getEmail(), request);
         return createAccountViewResolver.resolveView(model);
     }
 

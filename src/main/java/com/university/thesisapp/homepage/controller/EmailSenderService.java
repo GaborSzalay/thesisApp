@@ -1,12 +1,10 @@
 package com.university.thesisapp.homepage.controller;
 
-import com.university.thesisapp.createaccount.context.CreateAccountContext;
 import com.university.thesisapp.dao.persistence.dao.ThesisUserDao;
 import com.university.thesisapp.dao.persistence.model.Comment;
 import com.university.thesisapp.dao.persistence.model.ThesisStudent;
 import com.university.thesisapp.dao.persistence.model.ThesisUser;
 import com.university.thesisapp.web.provider.UrlProvider;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -37,10 +35,10 @@ public class EmailSenderService {
         return "ThesisApp: " + comment.getThesisUser().getName() + " commented on - " + comment.getThesis().getTitleEn();
     }
 
-    public void sendMailAfterRegistration(CreateAccountContext createAccountContext, HttpServletRequest request) {
+    public void sendMailAfterRegistration(String email, HttpServletRequest request) {
         String subject = "ThesisApp: registration confirmation mail";
-        ThesisUser thesisUser = thesisUserDao.getThesisUserByEmail(createAccountContext.getEmail());
+        ThesisUser thesisUser = thesisUserDao.getThesisUserByEmail(email);
         String text = request.getHeader("origin") + UrlProvider.CREATE_ACCOUNT_URL + "?verification=" + thesisUser.getVerificationToken();
-        emailSenderDao.sendMail(createAccountContext.getEmail(), subject, text);
+        emailSenderDao.sendMail(email, subject, text);
     }
 }
