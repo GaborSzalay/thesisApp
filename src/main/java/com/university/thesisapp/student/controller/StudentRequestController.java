@@ -35,4 +35,11 @@ public class StudentRequestController {
         studentRequestDao.createStudentRequest(thesisStudent.getThesisStudentId(), Longs.tryParse(request.getParameter("thesis")));
         return studentRequestControllerViewResolver.resolveView(request, model);
     }
+
+    @RequestMapping(value = UrlProvider.STUDENT_CANCEL_REQUEST_URL, method = RequestMethod.GET)
+    public ModelAndView cancelStudentRequest(Model model, HttpServletRequest request) {
+        ThesisStudent thesisStudent = thesisStudentDao.findByThesisUser(thesisUserProvider.getSignedInUser());
+        studentRequestDao.cancelStudentRequest(thesisStudent.getThesisStudentId(), Longs.tryParse(request.getParameter("thesis")));
+        return studentRequestControllerViewResolver.resolveView(request, model);
+    }
 }

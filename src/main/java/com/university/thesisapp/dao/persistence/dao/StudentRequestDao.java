@@ -60,6 +60,17 @@ public class StudentRequestDao {
         return studentRequest;
     }
 
+    public StudentRequest findByStudentAndThesis(Long thesisStudentId, Long thesisId) {
+        List<StudentRequest> studentRequests = getAllStudentRequests();
+        StudentRequest foundStudentRequest = null;
+        for (StudentRequest studentRequest : studentRequests) {
+            if (studentRequest.getThesisStudent().getThesisStudentId().equals(thesisStudentId) && studentRequest.getThesis().getThesisId().equals(thesisId)) {
+                foundStudentRequest = studentRequest;
+            }
+        }
+        return foundStudentRequest;
+    }
+
     public List<StudentRequest> getAllStudentRequests() {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
         List<StudentRequest> studentRequests = entityManagerParams.getEntityManager().createQuery("SELECT s FROM StudentRequest s", StudentRequest.class).getResultList();
@@ -99,5 +110,10 @@ public class StudentRequestDao {
         for (StudentRequest studentRequest : allStudentRequests) {
             tryToDeleteStudentRequest(studentRequest.getStudentRequestId());
         }
+    }
+
+    public void cancelStudentRequest(Long thesisStudentId, Long thesisId) {
+        StudentRequest studentRequest = findByStudentAndThesis(thesisStudentId, thesisId);
+        setState(studentRequest.getStudentRequestId(), StudentRequestState.CANCELED);
     }
 }
