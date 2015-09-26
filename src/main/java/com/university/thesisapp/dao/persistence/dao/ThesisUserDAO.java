@@ -111,4 +111,30 @@ public class ThesisUserDao {
     public void setEntityManagerProvider(EntityManagerProvider entityManagerProvider) {
         this.entityManagerProvider = entityManagerProvider;
     }
+
+    public void enableUserByToken(String token) {
+        List<ThesisUser> allThesisUsers = getAllThesisUsers();
+        for (ThesisUser thesisUser : allThesisUsers) {
+            if (thesisUser.getVerificationToken().equals(token)) {
+                enableUser(thesisUser);
+            }
+        }
+    }
+
+    public void enableUserByEmail(String email) {
+        List<ThesisUser> allThesisUsers = getAllThesisUsers();
+        for (ThesisUser thesisUser : allThesisUsers) {
+            if (thesisUser.getEmail().equals(email)) {
+                enableUser(thesisUser);
+            }
+        }
+    }
+
+    private void enableUser(ThesisUser thesisUser) {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        ThesisUser user = getThesisUserByIdWithoutTransactionManagement(entityManagerParams, thesisUser.getThesisUserId());
+        user.setEnabled(true);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+    }
+
 }
