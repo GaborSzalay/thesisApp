@@ -3,7 +3,10 @@ package com.university.thesisapp.createaccount.controller;
 import com.university.thesisapp.createaccount.context.CreateAccountContext;
 import com.university.thesisapp.createaccount.context.CreateAccountContextFactory;
 import com.university.thesisapp.createaccount.view.CreateAccountViewResolver;
+import com.university.thesisapp.dao.persistence.dao.ThesisUserDao;
+import com.university.thesisapp.dao.persistence.model.ThesisUser;
 import com.university.thesisapp.homepage.controller.EmailSenderService;
+import com.university.thesisapp.util.Validation;
 import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,19 +30,28 @@ public class CreateAccountController {
     @Autowired
     private CreateAccountService createAccountService;
     @Autowired
-    EmailSenderService emailSenderService;
+    private EmailSenderService emailSenderService;
+    @Autowired
+    ThesisUserDao thesisUserDao;
 
     @RequestMapping(value = UrlProvider.CREATE_ACCOUNT_URL, method = RequestMethod.POST)
-    public ModelAndView sendCreateAccountMail(HttpServletRequest request, Model model) {
-        String email = request.getParameter("email");
-        emailSenderService.sendMailAfterRegistration(email);
+    public ModelAndView createAccount(HttpServletRequest request, Model model) {
+        CreateAccountContext createAccountContext = createAccountContextFactory.create(request);
+        createAccountService.registerStudent(createAccountContext);
+        emailSenderService.sendMailAfterRegistration(createAccountContext, request);
         return createAccountViewResolver.resolveView(model);
     }
 
     @RequestMapping(value = UrlProvider.CREATE_ACCOUNT_URL, method = RequestMethod.GET)
-    public ModelAndView createAccount(HttpServletRequest request, Model model) {
-        CreateAccountContext createAccountContext = createAccountContextFactory.create(request);
-        createAccountService.registerStudent(createAccountContext);
-        return createAccountViewResolver.resolveView(model);
+    public ModelAndView activateAccount(HttpServletRequest request, Model model) {
+        String verificationToken = request.getParameter("verification");
+        if (Validation.notEmpty(verificationToken)) {
+            ThesisUser thesisUser = thesisUserDao.enableUserByToken(verificationToken);
+            if (Validation.notEmpty(thesisUser)) {
+                request.getSession().setAttribute("email", thesisUser.getEmail());
+            }
+
+        }
+        return createAccountViewResolver.resolveViewActivationView(model);
     }
 }

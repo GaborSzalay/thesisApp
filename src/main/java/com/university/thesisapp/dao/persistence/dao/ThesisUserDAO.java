@@ -115,13 +115,16 @@ public class ThesisUserDao {
         this.entityManagerProvider = entityManagerProvider;
     }
 
-    public void enableUserByToken(String token) {
+    public ThesisUser enableUserByToken(String token) {
+        ThesisUser resultThesisUser = null;
         List<ThesisUser> allThesisUsers = getAllThesisUsers();
         for (ThesisUser thesisUser : allThesisUsers) {
             if (thesisUser.getVerificationToken().equals(token)) {
                 enableUser(thesisUser);
+                resultThesisUser = thesisUser;
             }
         }
+        return resultThesisUser;
     }
 
     public void enableUserByEmail(String email) {

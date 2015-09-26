@@ -20,6 +20,7 @@ public class SignInContextFactory {
     private static final String EMAIL = "email";
     private static final String ACCESS_DENIED = "accessDenied";
     private static final String EXPIRED_SESSION = "expiredSession";
+    private static final String ACTIVATED = "activated";
 
 
     public SignInContext create(HttpServletRequest request) {
@@ -50,6 +51,12 @@ public class SignInContextFactory {
                 signInContext.setShowAccessDeniedMessage(true);
             } else if (EXPIRED_SESSION.equals(state)) {
                 signInContext.setShowExpiredSessionMessage(true);
+            } else if (ACTIVATED.equals(state)) {
+                Object emailAttribute = session.getAttribute(EMAIL);
+                if (emailAttribute instanceof String) {
+                    signInContext.setActivatedEmail((String) emailAttribute);
+                    session.removeAttribute(EMAIL);
+                }
             }
         }
         return signInContext;

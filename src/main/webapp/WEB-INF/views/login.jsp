@@ -40,6 +40,11 @@
                     <spring:message code="messages.login.logout" text=""/>
                 </div>
             </c:if>
+            <c:if test="${not empty context.activatedEmail}">
+                <div class="bg-success">
+                    <spring:message code="messages.login.activated" text="" arguments="${context.activatedEmail}"/>
+                </div>
+            </c:if>
             <c:if test="${not empty context.createdEmail}">
                 <div id="created-account" class="bg-success">
                     <spring:message code="messages.login.created" text="" arguments="${context.createdEmail}"/>

@@ -1,10 +1,16 @@
 package com.university.thesisapp.homepage.controller;
 
+import com.university.thesisapp.createaccount.context.CreateAccountContext;
+import com.university.thesisapp.dao.persistence.dao.ThesisUserDao;
 import com.university.thesisapp.dao.persistence.model.Comment;
 import com.university.thesisapp.dao.persistence.model.ThesisStudent;
+import com.university.thesisapp.dao.persistence.model.ThesisUser;
+import com.university.thesisapp.web.provider.UrlProvider;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -14,6 +20,8 @@ import java.util.List;
 public class EmailSenderService {
     @Autowired
     EmailSenderDao emailSenderDao;
+    @Autowired
+    ThesisUserDao thesisUserDao;
 
     public void sendMailAfterComment(Comment comment) {
         String subject = getSubject(comment);
@@ -29,9 +37,10 @@ public class EmailSenderService {
         return "ThesisApp: " + comment.getThesisUser().getName() + " commented on - " + comment.getThesis().getTitleEn();
     }
 
-    public void sendMailAfterRegistration(String email) {
+    public void sendMailAfterRegistration(CreateAccountContext createAccountContext, HttpServletRequest request) {
         String subject = "ThesisApp: registration confirmation mail";
-        String text = "http://www.w3schools.com/html";
-        emailSenderDao.sendMail(email, subject, text);
+        ThesisUser thesisUser = thesisUserDao.getThesisUserByEmail(createAccountContext.getEmail());
+        String text = request.getHeader("origin") + UrlProvider.CREATE_ACCOUNT_URL + "?verification=" + thesisUser.getVerificationToken();
+        emailSenderDao.sendMail(createAccountContext.getEmail(), subject, text);
     }
 }

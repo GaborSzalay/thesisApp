@@ -15,4 +15,9 @@ public class CreateAccountViewResolver {
         RedirectView view = new RedirectView(UrlProvider.LOGIN_PAGE_URL_WITH_CREATED);
         return new ModelAndView(view, model.asMap());
     }
+
+    public ModelAndView resolveViewActivationView(Model model) {
+        RedirectView view = new RedirectView(UrlProvider.LOGIN_PAGE_URL_WITH_ACTIVATED);
+        return new ModelAndView(view, model.asMap());
+    }
 }
