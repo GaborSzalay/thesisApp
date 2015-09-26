@@ -11,8 +11,13 @@ import org.springframework.web.servlet.view.RedirectView;
  */
 @Component
 public class CreateAccountViewResolver {
-    public ModelAndView resolveView(Model model) {
-        RedirectView view = new RedirectView(UrlProvider.LOGIN_PAGE_URL_WITH_CREATED);
+    public ModelAndView resolveView(Model model, boolean registrationEnabled) {
+        RedirectView view = null;
+        if (registrationEnabled) {
+            view = new RedirectView(UrlProvider.LOGIN_PAGE_URL_WITH_CREATED);
+        } else {
+            view = new RedirectView(UrlProvider.LOGIN_PAGE_URL_WITH_EXISTING);
+        }
         return new ModelAndView(view, model.asMap());
     }
 

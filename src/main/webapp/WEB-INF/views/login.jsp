@@ -25,6 +25,11 @@
                     <spring:message code="messages.login.error.disabled" text=""/>
                 </div>
             </c:if>
+            <c:if test="${context.showExistingEmailMessage}">
+                <div class="bg-danger">
+                    <spring:message code="messages.login.error.existing" text=""/>
+                </div>
+            </c:if>
             <c:if test="${context.showAccessDeniedMessage}">
                 <div class="bg-danger">
                     <spring:message code="messages.login.error.access_denied" text=""/>

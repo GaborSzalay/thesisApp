@@ -3,6 +3,7 @@ package com.university.thesisapp.admin.adminpage.controller;
 import com.google.common.primitives.Longs;
 import com.university.thesisapp.admin.adminpage.service.CreateUserService;
 import com.university.thesisapp.dao.persistence.dao.ThesisTeacherDao;
+import com.university.thesisapp.dao.persistence.dao.ThesisUserDao;
 import com.university.thesisapp.dao.persistence.model.ThesisTeacher;
 import com.university.thesisapp.homepage.controller.EmailSenderService;
 import com.university.thesisapp.web.provider.UrlProvider;
@@ -27,6 +28,8 @@ public class TeacherController {
     ThesisTeacherDao thesisTeacherDao;
     @Autowired
     EmailSenderService emailSenderService;
+    @Autowired
+    ThesisUserDao thesisUserDao;
 
     @RequestMapping(value = UrlProvider.ADMIN_TEACHER_HTML, method = RequestMethod.GET)
     public ModelAndView showCreateTeacherForm(Model model, HttpServletRequest request) {
@@ -35,8 +38,10 @@ public class TeacherController {
 
     @RequestMapping(value = UrlProvider.ADMIN_TEACHER_HTML, method = RequestMethod.POST)
     public ModelAndView handleCreateTeacherRequest(Model model, HttpServletRequest request) {
-        ThesisTeacher teacher = createUserService.createTeacher(request);
-        emailSenderService.sendMailAfterRegistration(teacher.getThesisUser().getEmail(), request);
+        if (thesisUserDao.isRegistrationEnabled(request.getParameter("email"))) {
+            ThesisTeacher teacher = createUserService.createTeacher(request);
+            emailSenderService.sendMailAfterRegistration(teacher.getThesisUser().getEmail(), request);
+        }
         return new ModelAndView(new RedirectView(UrlProvider.LIST_TEACHERS_URL), model.asMap());
     }
 

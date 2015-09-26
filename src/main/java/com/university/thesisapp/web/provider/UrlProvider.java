@@ -6,6 +6,7 @@ package com.university.thesisapp.web.provider;
 public class UrlProvider {
     public static final String HOME_PAGE_URL = "/";
     public static final String LOGIN_PAGE_URL_WITH_CREATED = "/login?state=created";
+    public static final String LOGIN_PAGE_URL_WITH_EXISTING = "/login?state=existing";
     public static final String LOGIN_PAGE_URL_WITH_ACTIVATED = "/login?state=activated";
     public static final String ADMIN_HOME_PAGE_URL = "/admin/";
     public static final String TEACHER_HOME_PAGE_URL = "/teacher/";

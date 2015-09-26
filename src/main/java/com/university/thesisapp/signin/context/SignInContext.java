@@ -12,6 +12,7 @@ public class SignInContext {
     private String createdEmail;
     private boolean showUserDisabledMessage;
     private String activatedEmail;
+    private boolean showExistingEmailMessage;
 
     public String getRegistrationLink() {
         return registrationLink;
@@ -76,5 +77,13 @@ public class SignInContext {
 
     public String getActivatedEmail() {
         return activatedEmail;
+    }
+
+    public void setShowExistingEmailMessage(boolean showExistingEmailMessage) {
+        this.showExistingEmailMessage = showExistingEmailMessage;
+    }
+
+    public boolean isShowExistingEmailMessage() {
+        return showExistingEmailMessage;
     }
 }

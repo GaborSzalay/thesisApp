@@ -32,14 +32,18 @@ public class CreateAccountController {
     @Autowired
     private EmailSenderService emailSenderService;
     @Autowired
-    ThesisUserDao thesisUserDao;
+    private ThesisUserDao thesisUserDao;
+
 
     @RequestMapping(value = UrlProvider.CREATE_ACCOUNT_URL, method = RequestMethod.POST)
     public ModelAndView createAccount(HttpServletRequest request, Model model) {
         CreateAccountContext createAccountContext = createAccountContextFactory.create(request);
-        createAccountService.registerStudent(createAccountContext);
-        emailSenderService.sendMailAfterRegistration(createAccountContext.getEmail(), request);
-        return createAccountViewResolver.resolveView(model);
+        boolean registrationEnabled = thesisUserDao.isRegistrationEnabled(createAccountContext.getEmail());
+        if (registrationEnabled) {
+            createAccountService.registerStudent(createAccountContext);
+            emailSenderService.sendMailAfterRegistration(createAccountContext.getEmail(), request);
+        }
+        return createAccountViewResolver.resolveView(model, registrationEnabled);
     }
 
     @RequestMapping(value = UrlProvider.CREATE_ACCOUNT_URL, method = RequestMethod.GET)

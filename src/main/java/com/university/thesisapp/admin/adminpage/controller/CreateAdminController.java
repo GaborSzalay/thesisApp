@@ -1,6 +1,7 @@
 package com.university.thesisapp.admin.adminpage.controller;
 
 import com.university.thesisapp.admin.adminpage.service.CreateUserService;
+import com.university.thesisapp.dao.persistence.dao.ThesisUserDao;
 import com.university.thesisapp.dao.persistence.model.ThesisUser;
 import com.university.thesisapp.homepage.controller.EmailSenderService;
 import com.university.thesisapp.web.provider.UrlProvider;
@@ -24,11 +25,15 @@ public class CreateAdminController {
     CreateUserService createUserService;
     @Autowired
     EmailSenderService emailSenderService;
+    @Autowired
+    ThesisUserDao thesisUserDao;
 
     @RequestMapping(value = UrlProvider.CREATE_ADMIN_URL, method = RequestMethod.POST)
     public ModelAndView handleCreateAdminRequest(Model model, HttpServletRequest request) {
+        if (thesisUserDao.isRegistrationEnabled(request.getParameter("email"))) {
         ThesisUser admin = createUserService.createAdmin(request);
         emailSenderService.sendMailAfterRegistration(admin.getEmail(), request);
+        }
         return createAdminControllerViewResolver.resolveViewByRedirecting();
     }
 

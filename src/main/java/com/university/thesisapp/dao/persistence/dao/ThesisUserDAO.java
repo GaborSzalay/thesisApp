@@ -119,7 +119,7 @@ public class ThesisUserDao {
         ThesisUser resultThesisUser = null;
         List<ThesisUser> allThesisUsers = getAllThesisUsers();
         for (ThesisUser thesisUser : allThesisUsers) {
-            if (thesisUser.getVerificationToken().equals(token)) {
+            if (thesisUser.getVerificationToken().equals(token) && !thesisUser.isEnabled()) {
                 enableUser(thesisUser);
                 resultThesisUser = thesisUser;
             }
@@ -134,6 +134,17 @@ public class ThesisUserDao {
                 enableUser(thesisUser);
             }
         }
+    }
+
+    public boolean isRegistrationEnabled(String email) {
+        boolean registrationEnabled = true;
+        List<ThesisUser> allThesisUsers = getAllThesisUsers();
+        for (ThesisUser thesisUser : allThesisUsers) {
+            if (thesisUser.getEmail().equals(email)) {
+                registrationEnabled = false;
+            }
+        }
+        return registrationEnabled;
     }
 
     private void enableUser(ThesisUser thesisUser) {
