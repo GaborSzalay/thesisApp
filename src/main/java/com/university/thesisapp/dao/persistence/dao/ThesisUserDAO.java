@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -72,6 +74,7 @@ public class ThesisUserDao {
         thesisUser.setRegistrationDate(new Date());
         thesisUser.setName(name);
         thesisUser.setEnabled(false);
+        thesisUser.setVerificationToken(new BigInteger(130, new SecureRandom()).toString(32));
         entityManagerParams.getEntityManager().persist(thesisUser);
         return thesisUser;
     }

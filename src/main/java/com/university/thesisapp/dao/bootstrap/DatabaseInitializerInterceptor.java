@@ -40,12 +40,15 @@ public class DatabaseInitializerInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         if (empty(thesisUserDao.getAllThesisUsers())) {
-            thesisUserDao.createThesisUser("admin@thesis.hu", "test123", "ROLE_ADMIN", "Gipsz Jakab");
+            ThesisUser admin = thesisUserDao.createThesisUser("admin@thesis.hu", "test123", "ROLE_ADMIN", "Gipsz Jakab");
             logger.info("Test admin created.");
-            thesisUserDao.createThesisUser("student1@thesis.hu", "test123", "ROLE_STUDENT", "Tóth Ádám");
+            ThesisUser studdent1 = thesisUserDao.createThesisUser("student1@thesis.hu", "test123", "ROLE_STUDENT", "Tóth Ádám");
             logger.info("Test student 1 created.");
-            thesisUserDao.createThesisUser("student2@thesis.hu", "test123", "ROLE_STUDENT", "Tóth Béla");
+            ThesisUser student2 = thesisUserDao.createThesisUser("student2@thesis.hu", "test123", "ROLE_STUDENT", "Tóth Béla");
             logger.info("Test student 2 created.");
+            thesisUserDao.enableUserByEmail(admin.getEmail());
+            thesisUserDao.enableUserByEmail(studdent1.getEmail());
+            thesisUserDao.enableUserByEmail(student2.getEmail());
         }
 
         if (empty(courseDao.getAllCourses())) {
@@ -88,7 +91,8 @@ public class DatabaseInitializerInterceptor extends HandlerInterceptorAdapter {
         }
 
         if (empty(thesisTeacherDao.getAllThesisTeachers())) {
-            thesisTeacherDao.createThesisTeacher("teacher@thesis.hu", "test123", "Mézga Géza");
+            ThesisTeacher thesisTeacher = thesisTeacherDao.createThesisTeacher("teacher@thesis.hu", "test123", "Mézga Géza");
+            thesisUserDao.enableUserByEmail(thesisTeacher.getThesisUser().getEmail());
             logger.info("Test teacher created.");
         }
 
