@@ -10,6 +10,7 @@ public class SignInContext {
     private boolean showAccessDeniedMessage;
     private boolean showExpiredSessionMessage;
     private String createdEmail;
+    private boolean showUserDisabledMessage;
 
     public String getRegistrationLink() {
         return registrationLink;
@@ -58,5 +59,13 @@ public class SignInContext {
 
     public void setShowExpiredSessionMessage(boolean showExpiredSessionMessage) {
         this.showExpiredSessionMessage = showExpiredSessionMessage;
+    }
+
+    public void setShowUserDisabledMessage(boolean showUserDisabledMessage) {
+        this.showUserDisabledMessage = showUserDisabledMessage;
+    }
+
+    public boolean isShowUserDisabledMessage() {
+        return showUserDisabledMessage;
     }
 }

@@ -71,6 +71,7 @@ public class ThesisUserDao {
         thesisUser.setAuthority(authority);
         thesisUser.setRegistrationDate(new Date());
         thesisUser.setName(name);
+        thesisUser.setEnabled(false);
         entityManagerParams.getEntityManager().persist(thesisUser);
         return thesisUser;
     }

@@ -1,5 +1,6 @@
 package com.university.thesisapp.signin.context;
 
+import com.university.thesisapp.dao.persistence.service.AuthenticationErrorType;
 import com.university.thesisapp.util.Validation;
 import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.stereotype.Component;
@@ -22,16 +23,24 @@ public class SignInContextFactory {
 
 
     public SignInContext create(HttpServletRequest request) {
+        HttpSession session = request.getSession();
         SignInContext signInContext = new SignInContext();
         signInContext.setRegistrationLink(UrlProvider.REGISTRATION_URL);
         String state = request.getParameter(STATE);
         if (Validation.notEmpty(state)) {
             if (ERROR.equals(state)) {
-                signInContext.setShowErrorMessage(true);
+                Object errorType = session.getAttribute(AuthenticationErrorType.DISABLED.getKey());
+                if (Validation.notEmpty(errorType) && errorType instanceof String) {
+                    if (errorType.equals(AuthenticationErrorType.DISABLED.getValue())) {
+                        signInContext.setShowUserDisabledMessage(true);
+                    } else {
+                        signInContext.setShowErrorMessage(true);
+                    }
+                    session.removeAttribute(AuthenticationErrorType.DISABLED.getKey());
+                }
             } else if (LOGOUT.equals(state)) {
                 signInContext.setShowLogoutMessage(true);
             } else if (CREATED.equals(state)) {
-                HttpSession session = request.getSession();
                 Object emailAttribute = session.getAttribute(EMAIL);
                 if (emailAttribute instanceof String) {
                     signInContext.setCreatedEmail((String) emailAttribute);

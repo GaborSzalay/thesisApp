@@ -21,6 +21,8 @@ public class ThesisUser {
     private ThesisTeacher thesisTeacher;
     private List<Comment> comments;
     private String name;
+    private String verificationToken;
+    private Boolean enabled;
 
     @Id
     @Column(name = "thesis_user_id")
@@ -105,5 +107,23 @@ public class ThesisUser {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Column(name = "verification_token")
+    public String getVerificationToken() {
+        return verificationToken;
+    }
+
+    public void setVerificationToken(String verificationToken) {
+        this.verificationToken = verificationToken;
+    }
+
+    @Column(name = "enabled")
+    public Boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }

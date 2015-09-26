@@ -20,6 +20,11 @@
                     <spring:message code="messages.login.error.invalid_user" text=""/>
                 </div>
             </c:if>
+            <c:if test="${context.showUserDisabledMessage}">
+                <div class="bg-danger">
+                    <spring:message code="messages.login.error.disabled" text=""/>
+                </div>
+            </c:if>
             <c:if test="${context.showAccessDeniedMessage}">
                 <div class="bg-danger">
                     <spring:message code="messages.login.error.access_denied" text=""/>
