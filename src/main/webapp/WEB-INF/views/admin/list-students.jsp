@@ -7,6 +7,7 @@
     <table id="my-table" class="table table-hover">
         <thead>
             <tr>
+                <th><spring:message code="messages.table.name" text=""/></th>
                 <th><spring:message code="messages.table.email" text=""/></th>
                 <th><spring:message code="messages.table.major" text=""/></th>
                 <th><spring:message code="messages.table.course" text=""/></th>
@@ -17,6 +18,7 @@
         <tbody>
             <c:forEach var="student" items="${context.students}" varStatus="counter">
                 <tr>
+                    <td>${student.thesisUser.name}</td>
                     <td>${student.thesisUser.email}</td>
                     <td>${student.major.majorName}</td>
                     <td>${student.course.courseName}</td>
@@ -30,7 +32,9 @@
                                 <i class="fa fa-book disabled"></i>
                             </c:otherwise>
                         </c:choose>
-
+                        <c:if test="${!student.thesisUser.enabled}">
+                            <span class="user-inactive"><spring:message code="messages.table.inactive" text=""/></span>
+                        </c:if>
                     </td>
                 </tr>
             </c:forEach>

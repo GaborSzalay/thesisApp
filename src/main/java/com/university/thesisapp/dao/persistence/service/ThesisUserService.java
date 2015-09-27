@@ -39,7 +39,7 @@ public class ThesisUserService implements UserDetailsService {
             thesisUser = thesisUserDao.getThesisUserByEmail(email);
         }
 
-        if (Validation.empty(thesisUser) || !thesisUser.isEnabled()) {
+        if (Validation.empty(thesisUser) || !thesisUser.getEnabled()) {
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
             HttpServletRequest request = attributes.getRequest();
             if (Validation.empty(thesisUser)) {

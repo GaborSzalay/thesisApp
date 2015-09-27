@@ -119,7 +119,7 @@ public class ThesisUser {
     }
 
     @Column(name = "enabled")
-    public Boolean isEnabled() {
+    public Boolean getEnabled() {
         return enabled;
     }
 

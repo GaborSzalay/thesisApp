@@ -119,7 +119,7 @@ public class ThesisUserDao {
         ThesisUser resultThesisUser = null;
         List<ThesisUser> allThesisUsers = getAllThesisUsers();
         for (ThesisUser thesisUser : allThesisUsers) {
-            if (thesisUser.getVerificationToken().equals(token) && !thesisUser.isEnabled()) {
+            if (thesisUser.getVerificationToken().equals(token) && !thesisUser.getEnabled()) {
                 enableUser(thesisUser);
                 resultThesisUser = thesisUser;
             }

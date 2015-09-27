@@ -9,6 +9,7 @@
     <table id="my-table" class="table table-hover">
         <thead>
             <tr>
+                <th><spring:message code="messages.table.name" text=""/></th>
                 <th><spring:message code="messages.table.email" text=""/></th>
                 <th><spring:message code="messages.table.regdate" text=""/></th>
                 <th><spring:message code="messages.table.Thesis" text=""/></th>
@@ -17,11 +18,15 @@
         <tbody>
             <c:forEach var="teacher" items="${context.teachers}" varStatus="counter">
                 <tr>
+                    <td>${teacher.thesisUser.name}</td>
                     <td>${teacher.thesisUser.email}</td>
                     <td>${teacher.thesisUser.registrationDate}</td>
                     <td>
                         <a class="thesis-popup" href="/admin/list_thesises?teacher=${teacher.thesisTeacherId}"><i class="fa fa-list-ul"></i></a>
                         <a href="/admin/delete_teacher.html?teacher=${teacher.thesisTeacherId}" m><i class="fa fa-trash-o"></i></a>
+                        <c:if test="${!teacher.thesisUser.enabled}">
+                            <span class="user-inactive"><spring:message code="messages.table.inactive" text=""/></span>
+                        </c:if>
                     </td>
                 </tr>
             </c:forEach>
