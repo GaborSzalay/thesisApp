@@ -9,6 +9,7 @@ public class CreateAccountContext {
     private Long majorId;
     private Long courseId;
     private String name;
+    private String neptunCode;
 
     public String getEmail() {
         return email;
@@ -48,5 +49,13 @@ public class CreateAccountContext {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getNeptunCode() {
+        return neptunCode;
+    }
+
+    public void setNeptunCode(String neptunCode) {
+        this.neptunCode = neptunCode;
     }
 }

@@ -19,6 +19,7 @@ public class CreateAccountService {
         Long majorId = createAccountContext.getMajorId();
         Long courseId = createAccountContext.getCourseId();
         String name = createAccountContext.getName();
-        thesisStudentDao.createThesisStudent(email, password, majorId, courseId, name);
+        String neptunCode = createAccountContext.getNeptunCode();
+        thesisStudentDao.createThesisStudent(email, password, majorId, courseId, name, neptunCode);
     }
 }

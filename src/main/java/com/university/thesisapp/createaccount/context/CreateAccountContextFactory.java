@@ -20,6 +20,7 @@ public class CreateAccountContextFactory {
         createAccountContext.setMajorId(Longs.tryParse(request.getParameter("majorId")));
         createAccountContext.setCourseId(Longs.tryParse(request.getParameter("courseId")));
         createAccountContext.setName(request.getParameter("name"));
+        createAccountContext.setNeptunCode(request.getParameter("neptunCode"));
         return createAccountContext;
     }
 

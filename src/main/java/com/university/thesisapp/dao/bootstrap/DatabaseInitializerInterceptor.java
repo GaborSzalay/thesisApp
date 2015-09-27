@@ -82,9 +82,9 @@ public class DatabaseInitializerInterceptor extends HandlerInterceptorAdapter {
             List<Course> courses = courseDao.getAllCourses();
             List<Major> majors = majorDao.getAllMajors();
             if (isUsersValid(thesisUser1, thesisUser2) && isCoursesValid(courses) && isMajorsValid(majors)) {
-                thesisStudentDao.createThesisStudent(courses.get(1), majors.get(0), thesisUser2);
+                thesisStudentDao.createThesisStudent(courses.get(1), majors.get(0), thesisUser2, "ABC123");
                 logger.info("Test student 1 details created.");
-                thesisStudentDao.createThesisStudent(courses.get(0), majors.get(1), thesisUser1);
+                thesisStudentDao.createThesisStudent(courses.get(0), majors.get(1), thesisUser1, "DEF789");
                 logger.info("Test student 2 details created.");
             }
 

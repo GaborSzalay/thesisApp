@@ -26,20 +26,21 @@ public class ThesisStudentDao {
     @Autowired
     private ThesisDao thesisDao;
 
-    public ThesisStudent createThesisStudent(Course course, Major major, ThesisUser thesisUser) {
+    public ThesisStudent createThesisStudent(Course course, Major major, ThesisUser thesisUser, String neptunCode) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
         ThesisStudent thesisStudent = new ThesisStudent();
         thesisStudent.setCourse(course);
         thesisStudent.setMajor(major);
+        thesisStudent.setNeptunCode(neptunCode);
         thesisStudent.setThesisUser(thesisUserDao.getThesisUserByIdWithoutTransactionManagement(entityManagerParams, thesisUser.getThesisUserId()));
         entityManagerParams.getEntityManager().persist(thesisStudent);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesisStudent;
     }
 
-    public ThesisStudent createThesisStudent(String email, String password, Long majorId, Long courseId, String name) {
+    public ThesisStudent createThesisStudent(String email, String password, Long majorId, Long courseId, String name, String neptunCode) {
         ThesisUser thesisUser = thesisUserDao.createStudent(email, password, name);
-        return createThesisStudent(courseDao.findById(courseId), majorDao.findById(majorId), thesisUser);
+        return createThesisStudent(courseDao.findById(courseId), majorDao.findById(majorId), thesisUser, neptunCode);
     }
 
     public List<ThesisStudent> getAllThesisStudents() {

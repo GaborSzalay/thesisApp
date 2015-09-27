@@ -9,6 +9,7 @@
             <tr>
                 <th><spring:message code="messages.table.thesis" text=""/></th>
                 <th><spring:message code="messages.header.title.student" text=""/></th>
+                <th><spring:message code="messages.table.neptun" text=""/></tr>
                 <th><spring:message code="messages.table.major" text=""/></th>
                 <th><spring:message code="messages.table.creation_date" text=""/></th>
                 <th></th>
@@ -30,6 +31,7 @@
                         <a class="thesis-popup" href="/teacher/show_thesis.html?thesis=${studentRequest.thesis.thesisId}"><i class="fa fa-book enabled"></i></a>
                     </td>
                     <td>${studentRequest.thesisStudent.thesisUser.name}</td>
+                    <td>${studentRequest.thesisStudent.neptunCode}</td>
                     <td>${studentRequest.thesisStudent.major.majorName} <a class="inline-popup" href="#student-position-info-${studentRequest.thesis.thesisId}"><i class="fa fa-info-circle"></i></a></td>
                     <td>${studentRequest.creationDate}</td>
                     <td>

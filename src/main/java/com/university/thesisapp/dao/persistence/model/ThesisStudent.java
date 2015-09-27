@@ -18,6 +18,7 @@ public class ThesisStudent {
     private Course course;
     private Thesis thesis;
     private List<StudentRequest> studentRequests;
+    private String neptunCode;
 
     @Id
     @Column(name = "thesis_student_id")
@@ -74,5 +75,14 @@ public class ThesisStudent {
 
     public void setStudentRequests(List<StudentRequest> studentRequests) {
         this.studentRequests = studentRequests;
+    }
+
+    @Column(name = "neptun_code")
+    public String getNeptunCode() {
+        return neptunCode;
+    }
+
+    public void setNeptunCode(String neptunCode) {
+        this.neptunCode = neptunCode;
     }
 }
