@@ -17,6 +17,8 @@ public class CommentControllerViewResolver {
         String redirectUrl = "/";
         if (referrer.contains(UrlProvider.STUDENT_COMMENTS_URL)) {
             redirectUrl = UrlProvider.STUDENT_COMMENTS_URL;
+        } else if (referrer.contains(UrlProvider.TEACHER_COMMENTS_URL)) {
+            redirectUrl = UrlProvider.TEACHER_COMMENTS_URL + "?thesisId=" + request.getParameter("thesisId");
         }
         return new ModelAndView(new RedirectView(redirectUrl));
     }

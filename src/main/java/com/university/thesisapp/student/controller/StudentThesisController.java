@@ -39,7 +39,8 @@ public class StudentThesisController {
     @RequestMapping(value = UrlProvider.STUDENT_COMMENTS_URL, method = RequestMethod.GET)
     public ModelAndView showCommentsPage(Model model, HttpServletRequest request) {
         addThesisToModel(model);
-        return new ModelAndView("/student/comments", model.asMap());
+        model.addAttribute("commentTarget", "student_thesis");
+        return new ModelAndView("/shared/comments", model.asMap());
     }
 
     private void addThesisToModel(Model model) {

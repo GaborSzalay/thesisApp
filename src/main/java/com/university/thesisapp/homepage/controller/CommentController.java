@@ -25,7 +25,7 @@ public class CommentController {
     @Autowired
     private EmailSenderService emailSenderService;
 
-    @RequestMapping(value = UrlProvider.STUDENT_THESIS_CREATE_COMMENT_URL, method = RequestMethod.GET)
+    @RequestMapping(value = {UrlProvider.STUDENT_THESIS_CREATE_COMMENT_URL, UrlProvider.TEACHER_THESIS_CREATE_COMMENT_URL}, method = RequestMethod.GET)
     public ModelAndView createComment(Model model, HttpServletRequest request) {
         String thesisIdParameter = request.getParameter("thesisId");
         String commentMessage = request.getParameter("commentMessage");

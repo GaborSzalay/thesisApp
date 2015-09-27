@@ -2,6 +2,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <t:teacherpage title="messages.header.title.teacher" currentPage="ownThesises">
     <a class="thesis-popup btn btn-primary create-button" href="/teacher/create_thesis.html"><spring:message code="messages.teacher.menu.create_thesis" text=""/></a>
     <table id="my-table" class="table table-hover">
@@ -19,11 +20,27 @@
                 <tr>
                     <td>
                         <c:choose>
-                            <c:when test="${pageContext.response.locale == 'en'}">
-                                ${thesis.titleEn}
+                            <c:when test="${fn:length(thesis.thesisStudents) > 0}">
+                                <a href="/teacher/comments.html?thesisId=${thesis.thesisId}">
+                                    <c:choose>
+                                        <c:when test="${pageContext.response.locale == 'en'}">
+                                            ${thesis.titleEn}
+                                        </c:when>
+                                        <c:otherwise>
+                                            ${thesis.titleHu}
+                                        </c:otherwise>
+                                    </c:choose>
+                                </a>
                             </c:when>
                             <c:otherwise>
-                                ${thesis.titleHu}
+                                <c:choose>
+                                    <c:when test="${pageContext.response.locale == 'en'}">
+                                        ${thesis.titleEn}
+                                    </c:when>
+                                    <c:otherwise>
+                                        ${thesis.titleHu}
+                                    </c:otherwise>
+                                </c:choose>
                             </c:otherwise>
                         </c:choose>
                     </td>
