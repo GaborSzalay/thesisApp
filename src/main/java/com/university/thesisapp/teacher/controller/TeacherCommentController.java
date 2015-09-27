@@ -44,7 +44,8 @@ public class TeacherCommentController {
         Collections.sort(comments);
         model.addAttribute("comments", comments);
         model.addAttribute("thesis", thesis);
-        return new ModelAndView("/shared/comments", model.asMap());
+        model.addAttribute("menu", teacherMenuContext);
+        return new ModelAndView("/teacher/comments", model.asMap());
     }
 
 }

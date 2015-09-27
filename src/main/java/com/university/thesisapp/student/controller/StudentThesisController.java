@@ -40,7 +40,7 @@ public class StudentThesisController {
     public ModelAndView showCommentsPage(Model model, HttpServletRequest request) {
         addThesisToModel(model);
         model.addAttribute("commentTarget", "student_thesis");
-        return new ModelAndView("/shared/comments", model.asMap());
+        return new ModelAndView("/student/comments", model.asMap());
     }
 
     private void addThesisToModel(Model model) {

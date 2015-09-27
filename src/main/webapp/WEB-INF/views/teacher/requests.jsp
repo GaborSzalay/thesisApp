@@ -27,8 +27,9 @@
                                 ${studentRequest.thesis.titleHu}
                             </c:otherwise>
                         </c:choose>
-                        <a class="thesis-popup" href="/teacher/show_thesis.html?thesis=${studentRequest.thesis.thesisId}"><i class="fa fa-book enabled"></i></a></td>
-                    <td>${studentRequest.thesisStudent.thesisUser.email}</td>
+                        <a class="thesis-popup" href="/teacher/show_thesis.html?thesis=${studentRequest.thesis.thesisId}"><i class="fa fa-book enabled"></i></a>
+                    </td>
+                    <td>${studentRequest.thesisStudent.thesisUser.name}</td>
                     <td>${studentRequest.thesisStudent.major.majorName} <a class="inline-popup" href="#student-position-info-${studentRequest.thesis.thesisId}"><i class="fa fa-info-circle"></i></a></td>
                     <td>${studentRequest.creationDate}</td>
                     <td>
