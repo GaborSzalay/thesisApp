@@ -3,9 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <t:teacherpage title="messages.header.title.teacher" currentPage="ownThesises">
-
     <a class="thesis-popup btn btn-primary create-button" href="/teacher/create_thesis.html"><spring:message code="messages.teacher.menu.create_thesis" text=""/></a>
-
     <table id="my-table" class="table table-hover">
         <thead>
             <tr>
@@ -19,7 +17,16 @@
             <c:forEach var="thesis" items="${context.thesises}" varStatus="counter">
                 <c:set var="studentPosition" value="${context.studentPositions.get(thesis.thesisId)}"/>
                 <tr>
-                    <td>${thesis.titleEn}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale == 'en'}">
+                                ${thesis.titleEn}
+                            </c:when>
+                            <c:otherwise>
+                                ${thesis.titleHu}
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
                     <td>${thesis.descriptionEn}</td>
                     <td>
                         ${studentPosition.maxPositions} / ${studentPosition.appointedPositions} / ${studentPosition.openPositions}  <a class="inline-popup" href="#student-position-info-${thesis.thesisId}"><i class="fa fa-info-circle"></i></a>

@@ -16,7 +16,16 @@
         <tbody>
             <c:forEach var="thesis" items="${theses}" varStatus="counter">
                 <tr>
-                    <td>${thesis.titleEn}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale == 'en'}">
+                                ${thesis.titleEn}
+                            </c:when>
+                            <c:otherwise>
+                                ${thesis.titleHu}
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
                     <td>${thesis.descriptionEn}</td>
                     <td><a class="thesis-popup" href="/student/show_thesis.html?thesis=${thesis.thesisId}"><i class="fa fa-book enabled"></i></a></td>
                     <td>

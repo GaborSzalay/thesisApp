@@ -5,13 +5,22 @@
 <table class="thesis-popup-page table table-hover">
     <thead>
         <tr>
-            <th><spring:message code="messages.table.list.thesis" text="" arguments="${teacher.thesisUser.email}"/></th>
+            <th><spring:message code="messages.table.list.thesis" text="" arguments="${teacher.thesisUser.name}"/></th>
         </tr>
     </thead>
     <tbody>
         <c:forEach var="thesis" items="${teacher.thesises}" varStatus="counter">
             <tr>
-                <td>${thesis.titleEn}</td>
+                <td>
+                    <c:choose>
+                        <c:when test="${pageContext.response.locale == 'en'}">
+                            ${thesis.titleEn}
+                        </c:when>
+                        <c:otherwise>
+                            ${thesis.titleHu}
+                        </c:otherwise>
+                    </c:choose>
+                </td>
             </tr>
         </c:forEach>
     </tbody>
