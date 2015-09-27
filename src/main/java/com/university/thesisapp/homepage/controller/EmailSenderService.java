@@ -2,6 +2,7 @@ package com.university.thesisapp.homepage.controller;
 
 import com.university.thesisapp.dao.persistence.dao.ThesisUserDao;
 import com.university.thesisapp.dao.persistence.model.Comment;
+import com.university.thesisapp.dao.persistence.model.Thesis;
 import com.university.thesisapp.dao.persistence.model.ThesisStudent;
 import com.university.thesisapp.dao.persistence.model.ThesisUser;
 import com.university.thesisapp.web.provider.UrlProvider;
@@ -39,6 +40,20 @@ public class EmailSenderService {
         String subject = "ThesisApp: registration confirmation mail";
         ThesisUser thesisUser = thesisUserDao.getThesisUserByEmail(email);
         String text = request.getHeader("origin") + UrlProvider.CREATE_ACCOUNT_URL + "?verification=" + thesisUser.getVerificationToken();
+        emailSenderDao.sendMail(email, subject, text);
+    }
+
+    public void sendMailAfterSentStudentRequest(ThesisStudent thesisStudent, Thesis thesis) {
+        String email = thesis.getThesisTeacher().getThesisUser().getEmail();
+        String subject = "ThesisApp: Student join-in request is being arrived";
+        String text = thesisStudent.getThesisUser().getName() + " (" + thesisStudent.getNeptunCode() + ") sent join-in request for: " + thesis.getTitleEn();
+        emailSenderDao.sendMail(email, subject, text);
+    }
+
+    public void sendMailAfterCancelledStudentRequest(ThesisStudent thesisStudent, Thesis thesis) {
+        String email = thesis.getThesisTeacher().getThesisUser().getEmail();
+        String subject = "ThesisApp: Student join-in request is being cancelled";
+        String text = thesisStudent.getThesisUser().getName() + " (" + thesisStudent.getNeptunCode() + ") cancelled join-in request for: " + thesis.getTitleEn();
         emailSenderDao.sendMail(email, subject, text);
     }
 }

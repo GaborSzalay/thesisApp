@@ -2,9 +2,12 @@ package com.university.thesisapp.student.controller;
 
 import com.google.common.primitives.Longs;
 import com.university.thesisapp.dao.persistence.dao.StudentRequestDao;
+import com.university.thesisapp.dao.persistence.dao.ThesisDao;
 import com.university.thesisapp.dao.persistence.dao.ThesisStudentDao;
+import com.university.thesisapp.dao.persistence.model.Thesis;
 import com.university.thesisapp.dao.persistence.model.ThesisStudent;
 import com.university.thesisapp.dao.persistence.provider.ThesisUserProvider;
+import com.university.thesisapp.homepage.controller.EmailSenderService;
 import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,11 +31,17 @@ public class StudentRequestController {
     private ThesisUserProvider thesisUserProvider;
     @Autowired
     private StudentRequestDao studentRequestDao;
+    @Autowired
+    private ThesisDao thesisDao;
+    @Autowired
+    private EmailSenderService emailSenderService;
 
     @RequestMapping(value = UrlProvider.STUDENT_STUDENT_REQUEST_HTML, method = RequestMethod.GET)
     public ModelAndView handleStudentRequest(Model model, HttpServletRequest request) {
         ThesisStudent thesisStudent = thesisStudentDao.findByThesisUser(thesisUserProvider.getSignedInUser());
         studentRequestDao.createStudentRequest(thesisStudent.getThesisStudentId(), Longs.tryParse(request.getParameter("thesis")));
+        Thesis thesis = thesisDao.findById(Longs.tryParse(request.getParameter("thesis")));
+        emailSenderService.sendMailAfterSentStudentRequest(thesisStudent, thesis);
         return studentRequestControllerViewResolver.resolveView(request, model);
     }
 
@@ -40,6 +49,8 @@ public class StudentRequestController {
     public ModelAndView cancelStudentRequest(Model model, HttpServletRequest request) {
         ThesisStudent thesisStudent = thesisStudentDao.findByThesisUser(thesisUserProvider.getSignedInUser());
         studentRequestDao.cancelStudentRequest(thesisStudent.getThesisStudentId(), Longs.tryParse(request.getParameter("thesis")));
+        Thesis thesis = thesisDao.findById(Longs.tryParse(request.getParameter("thesis")));
+        emailSenderService.sendMailAfterCancelledStudentRequest(thesisStudent, thesis);
         return studentRequestControllerViewResolver.resolveView(request, model);
     }
 }
