@@ -171,7 +171,7 @@ body {
     box-shadow: inset 0 1px 6px rgba(0,0,0,0.075);
     padding: 17px 17px;
     position: relative;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .thesis-popup-page select {
@@ -321,6 +321,12 @@ body {
 .clearfix:after {
     clear: both;
 }
+
+.table.comment-page {
+    border-collapse: inherit;
+    padding: 10px 17px;
+}
+
 
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
