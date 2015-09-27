@@ -9,7 +9,7 @@
             <tr>
                 <th><spring:message code="messages.table.thesis" text=""/></th>
                 <th><spring:message code="messages.header.title.student" text=""/></th>
-                <th><spring:message code="messages.table.neptun" text=""/></tr>
+                <th><spring:message code="messages.table.neptun" text=""/></th>
                 <th><spring:message code="messages.table.major" text=""/></th>
                 <th><spring:message code="messages.table.creation_date" text=""/></th>
                 <th></th>
