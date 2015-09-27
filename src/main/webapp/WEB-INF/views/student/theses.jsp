@@ -26,7 +26,16 @@
                             </c:otherwise>
                         </c:choose>
                     </td>
-                    <td>${thesis.descriptionEn}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale == 'en'}">
+                                ${thesis.descriptionEn}
+                            </c:when>
+                            <c:otherwise>
+                                ${thesis.descriptionHu}
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
                     <td><a class="thesis-popup" href="/student/show_thesis.html?thesis=${thesis.thesisId}"><i class="fa fa-book enabled"></i></a></td>
                     <td>
                         <c:set var="currentStudentRequestState" value="NEW"/>

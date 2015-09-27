@@ -27,7 +27,16 @@
                             </c:otherwise>
                         </c:choose>
                     </td>
-                    <td>${thesis.descriptionEn}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${pageContext.response.locale == 'en'}">
+                                ${thesis.descriptionEn}
+                            </c:when>
+                            <c:otherwise>
+                                ${thesis.descriptionHu}
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
                     <td>
                         ${studentPosition.maxPositions} / ${studentPosition.appointedPositions} / ${studentPosition.openPositions}  <a class="inline-popup" href="#student-position-info-${thesis.thesisId}"><i class="fa fa-info-circle"></i></a>
                     </td>

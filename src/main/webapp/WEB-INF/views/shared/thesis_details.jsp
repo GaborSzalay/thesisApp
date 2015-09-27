@@ -39,11 +39,16 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="descriptionHuInput"><spring:message code="message.thesis.description.hu" text=""/></label>
-        <div id="descriptionHuInput">${thesis.descriptionHu}</div>
-    </div>
-    <div class="form-group">
-        <label for="descriptionEnInput"><spring:message code="message.thesis.description.en" text=""/></label>
-        <div id="descriptionEnInput">${thesis.descriptionEn}</div>
+        <label for="descriptionInput"><spring:message code="message.thesis.description" text=""/></label>
+        <div id="descriptionInput">
+            <c:choose>
+                <c:when test="${pageContext.response.locale == 'en'}">
+                    ${thesis.descriptionEn}
+                </c:when>
+                <c:otherwise>
+                    ${thesis.descriptionHu}
+                </c:otherwise>
+            </c:choose>
+        </div>
     </div>
 </div>
