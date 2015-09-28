@@ -1,6 +1,7 @@
 package com.university.thesisapp.teacher.controller;
 
 import com.google.common.primitives.Longs;
+import com.university.thesisapp.dao.persistence.ThesisStatus;
 import com.university.thesisapp.dao.persistence.dao.StudentRequestDao;
 import com.university.thesisapp.dao.persistence.dao.ThesisDao;
 import com.university.thesisapp.dao.persistence.dao.ThesisStudentDao;
@@ -94,6 +95,9 @@ public class JoinInRequestController {
         if (studentRequest.getThesis().getThesisTeacher().getThesisTeacherId().equals(teacherId)) {
             thesisStudentDao.registerThesis(studentRequest.getThesisStudent().getThesisStudentId(), studentRequest.getThesis().getThesisId());
             studentRequestDao.setState(studentRequest.getStudentRequestId(), StudentRequestState.ACCEPTED);
+            if (ThesisStatus.NEW.getType().equals(studentRequest.getThesis().getStatus())) {
+                thesisDao.setStatus(studentRequest.getThesis().getThesisId(), ThesisStatus.IN_PROGRESS);
+            }
         }
         return joinInRequestControllerViewResolver.resolveView(request, model);
     }

@@ -27,6 +27,7 @@ public class Thesis {
     private ThesisTeacher thesisTeacher;
     private List<StudentRequest> studentRequests;
     private List<Comment> comments;
+    private String status;
 
     @Id
     @Column(name = "thesis_id")
@@ -162,5 +163,14 @@ public class Thesis {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    @Column(name = "status")
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
