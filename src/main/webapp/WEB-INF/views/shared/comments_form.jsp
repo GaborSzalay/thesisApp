@@ -4,14 +4,16 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <form class="comment-page" action="/${commentTarget}/create_comment.html" method="GET" accept-charset="UTF-8">
     <input type="hidden" name="thesisId" value="${thesis.thesisId}">
-    <div class="form-group">
-        <spring:message code="message.student.comment" text="" var="commentInputMessage"/>
-        <label for="commentInput">${commentInputMessage}</label>
-        <textarea id="commentInput" class="form-control" placeholder="${commentInputMessage}" rows="3" name="commentMessage"></textarea>
-    </div>
-    <button id="submit-button" type="submit" class="btn btn-primary comment-submit-button">
-        <spring:message code="message.student.comment.send" text=""/>
-    </button>
+    <c:if test="${thesis.status == 'IN_PROGRESS'}">
+        <div class="form-group">
+            <spring:message code="message.student.comment" text="" var="commentInputMessage"/>
+            <label for="commentInput">${commentInputMessage}</label>
+            <textarea id="commentInput" class="form-control" placeholder="${commentInputMessage}" rows="3" name="commentMessage"></textarea>
+        </div>
+        <button id="submit-button" type="submit" class="btn btn-primary comment-submit-button">
+            <spring:message code="message.student.comment.send" text=""/>
+        </button>
+    </c:if>
     <c:forEach var="comment" items="${comments}">
         <div class="form-group">
             <label for="comment-${comment.commentId}">${comment.thesisUser.name}</label>
