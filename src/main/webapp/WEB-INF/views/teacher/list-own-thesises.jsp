@@ -62,13 +62,25 @@
                         ${studentPosition.maxPositions} / ${studentPosition.appointedPositions} / ${studentPosition.openPositions}  <a class="inline-popup" href="#student-position-info-${thesis.thesisId}"><i class="fa fa-info-circle"></i></a>
                     </td>
                     <td>
-                        <c:if test="${enableModifyTheses}">
-                            <a class="thesis-popup" href="/teacher/create_thesis.html?editThesis=${thesis.thesisId}"><i class="fa fa-pencil"></i></a>
-                            <i class="fa fa-trash-o"></i>
-                        </c:if>
+                        <c:choose>
+                            <c:when test="${enableModifyTheses}">
+                                <a class="thesis-popup" href="/teacher/create_thesis.html?editThesis=${thesis.thesisId}"><i class="fa fa-pencil"></i></a>
+                                <i class="fa fa-trash-o"></i>
+                            </c:when>
+                            <c:otherwise>
+                                <c:choose>
+                                    <c:when test="${thesis.status == 'ACCEPTED'}">
+                                        <span class="label label-success"><spring:message code="messages.table.teacher.thesis.status.accepted" text=""/></span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span class="label label-danger"><spring:message code="messages.table.teacher.thesis.status.declined" text=""/></span>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:otherwise>
+                        </c:choose>
                         <c:if test="${enableModifyThesesStatus}">
-                            <a class="btn btn-primary" href="/teacher/"><spring:message code="messages.table.teacher.request.accept" text=""/></a>
-                            <a class="btn btn-danger" href="/teacher/"><spring:message code="messages.table.teacher.request.decline" text=""/></a>
+                            <a class="btn btn-primary" href="/teacher/accept_thesis.html?thesis=${thesis.thesisId}"><spring:message code="messages.table.teacher.thesis.status.accept" text=""/></a>
+                            <a class="btn btn-danger" href="/teacher/decline_thesis.html?thesis=${thesis.thesisId}"><spring:message code="messages.table.teacher.thesis.status.decline" text=""/></a>
                         </c:if>
                     </td>
                 </tr>
