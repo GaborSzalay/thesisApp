@@ -43,7 +43,7 @@ public class TeacherOwnThesisesController {
     @RequestMapping(value = UrlProvider.TEACHER_CLOSED_OWN_THESIS_LIST_PAGE_URL, method = RequestMethod.GET)
     public ModelAndView listClosedOwnThesises(Model model, HttpServletRequest request) {
         TeacherMenuContext teacherMenuContext = teacherMenuContextFactory.create();
-        model.addAttribute("currentMenu", "closedProgressThesises");
+        model.addAttribute("currentMenu", "closedThesises");
         TeacherOwnThesisesContext teacherOwnThesisesContext = teacherOwnThesisesContextFactory.create(ThesisStatus.ACCEPTED);
         return teacherOwnThesisesControllerViewResolver.resolveView(model, teacherMenuContext, teacherOwnThesisesContext);
     }

@@ -4,7 +4,11 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <t:teacherpage title="messages.header.title.teacher" currentPage="${currentMenu}">
-    <a class="thesis-popup btn btn-primary create-button" href="/teacher/create_thesis.html"><spring:message code="messages.teacher.menu.create_thesis" text=""/></a>
+    <c:set var="enableModifyTheses" value="${currentMenu != 'closedThesises'}"/>
+    <c:set var="enableModifyThesesStatus" value="${currentMenu == 'inProgressThesises'}"/>
+    <c:if test="${enableModifyTheses}">
+        <a class="thesis-popup btn btn-primary create-button" href="/teacher/create_thesis.html"><spring:message code="messages.teacher.menu.create_thesis" text=""/></a>
+    </c:if>
     <table id="my-table" class="table table-hover">
         <thead>
             <tr>
@@ -58,8 +62,14 @@
                         ${studentPosition.maxPositions} / ${studentPosition.appointedPositions} / ${studentPosition.openPositions}  <a class="inline-popup" href="#student-position-info-${thesis.thesisId}"><i class="fa fa-info-circle"></i></a>
                     </td>
                     <td>
-                        <a class="thesis-popup" href="/teacher/create_thesis.html?editThesis=${thesis.thesisId}"><i class="fa fa-pencil"></i></a>
-                        <i class="fa fa-trash-o"></i>
+                        <c:if test="${enableModifyTheses}">
+                            <a class="thesis-popup" href="/teacher/create_thesis.html?editThesis=${thesis.thesisId}"><i class="fa fa-pencil"></i></a>
+                            <i class="fa fa-trash-o"></i>
+                        </c:if>
+                        <c:if test="${enableModifyThesesStatus}">
+                            <a class="btn btn-primary" href="/teacher/"><spring:message code="messages.table.teacher.request.accept" text=""/></a>
+                            <a class="btn btn-danger" href="/teacher/"><spring:message code="messages.table.teacher.request.decline" text=""/></a>
+                        </c:if>
                     </td>
                 </tr>
             </c:forEach>

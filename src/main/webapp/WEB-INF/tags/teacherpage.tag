@@ -34,7 +34,7 @@
                             <ul class="dropdown-menu">
                                 <li class="${currentPage == 'newOwnThesises' ? 'active' : ''}"><a href="${menu.listOwnThesisesLink}"><spring:message code="messages.teacher.menu.thesis.new" text=""/></a></li>
                                 <li class="${currentPage == 'inProgressThesises' ? 'active' : ''}"><a href="/teacher/list_in_progress_own_thesises.html"><spring:message code="messages.teacher.menu.thesis.in_progress" text=""/></a></li>
-                                <li class="${currentPage == 'closedProgressThesises' ? 'active' : ''}"><a href="/teacher/list_closed_own_thesises.html"><spring:message code="messages.teacher.menu.thesis.closed" text=""/></a></li>
+                                <li class="${currentPage == 'closedThesises' ? 'active' : ''}"><a href="/teacher/list_closed_own_thesises.html"><spring:message code="messages.teacher.menu.thesis.closed" text=""/></a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
