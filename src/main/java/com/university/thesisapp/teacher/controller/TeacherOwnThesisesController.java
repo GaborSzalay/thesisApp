@@ -1,5 +1,6 @@
 package com.university.thesisapp.teacher.controller;
 
+import com.university.thesisapp.dao.persistence.ThesisStatus;
 import com.university.thesisapp.teacher.context.*;
 import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,27 @@ public class TeacherOwnThesisesController {
     @Autowired
     private TeacherOwnThesisesContextFactory teacherOwnThesisesContextFactory;
 
-    @RequestMapping(value = UrlProvider.TEACHER_OWN_THESIS_LIST_PAGE_URL, method = RequestMethod.GET)
-    public ModelAndView listOwnThesises(Model model, HttpServletRequest request) {
+    @RequestMapping(value = UrlProvider.TEACHER_NEW_OWN_THESIS_LIST_PAGE_URL, method = RequestMethod.GET)
+    public ModelAndView listNewOwnThesises(Model model, HttpServletRequest request) {
         TeacherMenuContext teacherMenuContext = teacherMenuContextFactory.create();
-        TeacherOwnThesisesContext teacherOwnThesisesContext = teacherOwnThesisesContextFactory.create();
+        model.addAttribute("currentMenu", "newOwnThesises");
+        TeacherOwnThesisesContext teacherOwnThesisesContext = teacherOwnThesisesContextFactory.create(ThesisStatus.NEW);
+        return teacherOwnThesisesControllerViewResolver.resolveView(model, teacherMenuContext, teacherOwnThesisesContext);
+    }
+
+    @RequestMapping(value = UrlProvider.TEACHER_IN_PROGRESS_OWN_THESIS_LIST_PAGE_URL, method = RequestMethod.GET)
+    public ModelAndView listInProgressOwnThesises(Model model, HttpServletRequest request) {
+        TeacherMenuContext teacherMenuContext = teacherMenuContextFactory.create();
+        model.addAttribute("currentMenu", "inProgressThesises");
+        TeacherOwnThesisesContext teacherOwnThesisesContext = teacherOwnThesisesContextFactory.create(ThesisStatus.IN_PROGRESS);
+        return teacherOwnThesisesControllerViewResolver.resolveView(model, teacherMenuContext, teacherOwnThesisesContext);
+    }
+
+    @RequestMapping(value = UrlProvider.TEACHER_CLOSED_OWN_THESIS_LIST_PAGE_URL, method = RequestMethod.GET)
+    public ModelAndView listClosedOwnThesises(Model model, HttpServletRequest request) {
+        TeacherMenuContext teacherMenuContext = teacherMenuContextFactory.create();
+        model.addAttribute("currentMenu", "closedProgressThesises");
+        TeacherOwnThesisesContext teacherOwnThesisesContext = teacherOwnThesisesContextFactory.create(ThesisStatus.ACCEPTED);
         return teacherOwnThesisesControllerViewResolver.resolveView(model, teacherMenuContext, teacherOwnThesisesContext);
     }
 }

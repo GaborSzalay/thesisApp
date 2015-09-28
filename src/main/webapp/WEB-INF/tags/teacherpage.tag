@@ -29,7 +29,14 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="${currentPage == 'ownThesises' ? 'active' : ''}"><a href="${menu.listOwnThesisesLink}"><spring:message code="messages.teacher.menu.own_thesises" text=""/></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><spring:message code="messages.teacher.menu.own_thesises" text=""/> <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="${currentPage == 'newOwnThesises' ? 'active' : ''}"><a href="${menu.listOwnThesisesLink}"><spring:message code="messages.teacher.menu.thesis.new" text=""/></a></li>
+                                <li class="${currentPage == 'inProgressThesises' ? 'active' : ''}"><a href="/teacher/list_in_progress_own_thesises.html"><spring:message code="messages.teacher.menu.thesis.in_progress" text=""/></a></li>
+                                <li class="${currentPage == 'closedProgressThesises' ? 'active' : ''}"><a href="/teacher/list_closed_own_thesises.html"><spring:message code="messages.teacher.menu.thesis.closed" text=""/></a></li>
+                            </ul>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><spring:message code="messages.teacher.menu.requests" text=""/> <span class="caret"></span></a>
                             <ul class="dropdown-menu">

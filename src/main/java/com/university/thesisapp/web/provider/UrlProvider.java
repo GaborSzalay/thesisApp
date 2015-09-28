@@ -13,7 +13,9 @@ public class UrlProvider {
     public static final String CREATE_THESIS_PAGE_URL = "/teacher/create_thesis.html";
     public static final String CREATE_ADMIN_URL = "/admin/create_admin.html";
     public static final String DELETE_ADMIN_URL = "/admin/delete_admin.html";
-    public static final String TEACHER_OWN_THESIS_LIST_PAGE_URL = "/teacher/list_own_thesises.html";
+    public static final String TEACHER_NEW_OWN_THESIS_LIST_PAGE_URL = "/teacher/list_new_own_thesises.html";
+    public static final String TEACHER_IN_PROGRESS_OWN_THESIS_LIST_PAGE_URL = "/teacher/list_in_progress_own_thesises.html";
+    public static final String TEACHER_CLOSED_OWN_THESIS_LIST_PAGE_URL = "/teacher/list_closed_own_thesises.html";
     public static final String REGISTRATION_URL = "/registration.html";
     public static final String CREATE_ACCOUNT_URL = "/create_account.html";
     public static final String LIST_ADMINS_URL = "/admin/list_admins.html";

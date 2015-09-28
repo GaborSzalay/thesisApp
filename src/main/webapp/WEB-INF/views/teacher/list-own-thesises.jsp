@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<t:teacherpage title="messages.header.title.teacher" currentPage="ownThesises">
+<t:teacherpage title="messages.header.title.teacher" currentPage="${currentMenu}">
     <a class="thesis-popup btn btn-primary create-button" href="/teacher/create_thesis.html"><spring:message code="messages.teacher.menu.create_thesis" text=""/></a>
     <table id="my-table" class="table table-hover">
         <thead>

@@ -11,7 +11,7 @@ public class TeacherMenuContextFactory {
     public TeacherMenuContext create() {
         TeacherMenuContext teacherMenuContext = new TeacherMenuContext();
         teacherMenuContext.setCreateThesisLink(UrlProvider.CREATE_THESIS_PAGE_URL);
-        teacherMenuContext.setListOwnThesisesLink(UrlProvider.TEACHER_OWN_THESIS_LIST_PAGE_URL);
+        teacherMenuContext.setListOwnThesisesLink(UrlProvider.TEACHER_NEW_OWN_THESIS_LIST_PAGE_URL);
         return teacherMenuContext;
     }
 }

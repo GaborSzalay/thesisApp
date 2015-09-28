@@ -86,6 +86,17 @@ public class ThesisDao {
         return thesis;
     }
 
+    public List<Thesis> getThesisesByTeacherAndStatus(ThesisTeacher thesisTeacher, ThesisStatus thesisStatus) {
+        List<Thesis> thesisesByTeacherAndStatus = new ArrayList<Thesis>();
+        List<Thesis> thesisesByTeacher = getThesisesByTeacher(thesisTeacher);
+        for (Thesis thesis : thesisesByTeacher) {
+            if (thesis.getStatus().equals(thesisStatus.getType())) {
+                thesisesByTeacherAndStatus.add(thesis);
+            }
+        }
+        return thesisesByTeacherAndStatus;
+    }
+
     public List<Thesis> getThesisesByTeacher(ThesisTeacher thesisTeacher) {
         List<Thesis> ownThesises = new ArrayList<Thesis>();
         List<Thesis> allThesises = getAllThesises();

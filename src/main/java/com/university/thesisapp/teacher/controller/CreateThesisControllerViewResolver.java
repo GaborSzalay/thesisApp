@@ -25,7 +25,7 @@ public class CreateThesisControllerViewResolver {
 
     public ModelAndView resolveCreationView(Model model) {
 
-        View view = new RedirectView(UrlProvider.TEACHER_OWN_THESIS_LIST_PAGE_URL);
+        View view = new RedirectView(UrlProvider.TEACHER_NEW_OWN_THESIS_LIST_PAGE_URL);
         return new ModelAndView(view, model.asMap());
     }
 }

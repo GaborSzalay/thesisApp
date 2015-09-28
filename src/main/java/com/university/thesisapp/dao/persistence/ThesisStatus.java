@@ -18,4 +18,8 @@ public enum ThesisStatus {
     public String getType() {
         return type;
     }
+
+    public static boolean isClosed(ThesisStatus thesisStatus) {
+        return (thesisStatus == ACCEPTED) || (thesisStatus == DECLINED);
+    }
 }
