@@ -3,6 +3,7 @@ package com.university.thesisapp.teacher.controller;
 import com.google.common.primitives.Longs;
 import com.university.thesisapp.dao.persistence.ThesisStatus;
 import com.university.thesisapp.dao.persistence.dao.ThesisDao;
+import com.university.thesisapp.homepage.controller.EmailSenderService;
 import com.university.thesisapp.teacher.context.*;
 import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class TeacherOwnThesisesController {
     private TeacherOwnThesisesContextFactory teacherOwnThesisesContextFactory;
     @Autowired
     private ThesisDao thesisDao;
+    @Autowired
+    private EmailSenderService emailSenderService;
 
     @RequestMapping(value = UrlProvider.TEACHER_NEW_OWN_THESIS_LIST_PAGE_URL, method = RequestMethod.GET)
     public ModelAndView listNewOwnThesises(Model model, HttpServletRequest request) {
@@ -55,13 +58,17 @@ public class TeacherOwnThesisesController {
 
     @RequestMapping(value = UrlProvider.TEACHER_ACCEPT_THESIS_URL, method = RequestMethod.GET)
     public ModelAndView acceptThesises(Model model, HttpServletRequest request) {
-        thesisDao.setStatus(Longs.tryParse(request.getParameter("thesis")), ThesisStatus.ACCEPTED);
+        Long thesisId = Longs.tryParse(request.getParameter("thesis"));
+        thesisDao.setStatus(thesisId, ThesisStatus.ACCEPTED);
+        emailSenderService.sendMailAfterAcceptedThesis(thesisDao.findById(thesisId));
         return new ModelAndView(new RedirectView(UrlProvider.TEACHER_CLOSED_OWN_THESIS_LIST_PAGE_URL));
     }
 
     @RequestMapping(value = UrlProvider.TEACHER_DECLINE_THESIS_URL, method = RequestMethod.GET)
     public ModelAndView declineThesises(Model model, HttpServletRequest request) {
-        thesisDao.setStatus(Longs.tryParse(request.getParameter("thesis")), ThesisStatus.DECLINED);
+        Long thesisId = Longs.tryParse(request.getParameter("thesis"));
+        thesisDao.setStatus(thesisId, ThesisStatus.DECLINED);
+        emailSenderService.sendMailAfterDeclinedThesis(thesisDao.findById(thesisId));
         return new ModelAndView(new RedirectView(UrlProvider.TEACHER_CLOSED_OWN_THESIS_LIST_PAGE_URL));
     }
 }

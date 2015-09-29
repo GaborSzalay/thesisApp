@@ -18,18 +18,14 @@ import java.util.List;
 @Component
 public class EmailSenderService {
     @Autowired
-    EmailSenderDao emailSenderDao;
+    private EmailSenderDao emailSenderDao;
     @Autowired
-    ThesisUserDao thesisUserDao;
+    private ThesisUserDao thesisUserDao;
 
     public void sendMailAfterComment(Comment comment) {
         String subject = getSubject(comment);
         String text = getSubject(comment) + "\n\n" + comment.getCommentMessage();
-        List<ThesisStudent> thesisStudents = comment.getThesis().getThesisStudents();
-        for (ThesisStudent thesisStudent : thesisStudents) {
-            emailSenderDao.sendMail(thesisStudent.getThesisUser().getEmail(), subject, text);
-        }
-        emailSenderDao.sendMail(comment.getThesis().getThesisTeacher().getThesisUser().getEmail(), subject, text);
+        sendAllForThesis(comment.getThesis(), subject, text);
     }
 
     private String getSubject(Comment comment) {
@@ -55,5 +51,25 @@ public class EmailSenderService {
         String subject = "ThesisApp: Student join-in request is being cancelled";
         String text = thesisStudent.getThesisUser().getName() + " (" + thesisStudent.getNeptunCode() + ") cancelled join-in request for: " + thesis.getTitleEn();
         emailSenderDao.sendMail(email, subject, text);
+    }
+
+    public void sendMailAfterAcceptedThesis(Thesis thesis) {
+        String subject = "ThesisApp: " + thesis.getTitleEn() + " has been closed.";
+        String text = thesis.getTitleEn() + " has been ACCEPTED by " + thesis.getThesisTeacher().getThesisUser().getName();
+        sendAllForThesis(thesis, subject, text);
+    }
+
+    public void sendMailAfterDeclinedThesis(Thesis thesis) {
+        String subject = "ThesisApp: " + thesis.getTitleEn() + " has been closed.";
+        String text = thesis.getTitleEn() + " has been DECLINED by " + thesis.getThesisTeacher().getThesisUser().getName();
+        sendAllForThesis(thesis, subject, text);
+    }
+
+    private void sendAllForThesis(Thesis thesis, String subject, String text) {
+        List<ThesisStudent> thesisStudents = thesis.getThesisStudents();
+        for (ThesisStudent thesisStudent : thesisStudents) {
+            emailSenderDao.sendMail(thesisStudent.getThesisUser().getEmail(), subject, text);
+        }
+        emailSenderDao.sendMail(thesis.getThesisTeacher().getThesisUser().getEmail(), subject, text);
     }
 }
