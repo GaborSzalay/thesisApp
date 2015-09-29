@@ -248,6 +248,14 @@ body {
     position: absolute;
     right: 17px;
 }
+
+#status-report {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 44px;
+    text-align: center;
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
