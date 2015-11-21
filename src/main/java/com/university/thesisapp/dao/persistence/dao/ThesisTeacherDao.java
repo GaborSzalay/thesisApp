@@ -23,7 +23,7 @@ public class ThesisTeacherDao {
 
     public ThesisTeacher createThesisTeacher(String email, String password, String name) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisUser thesisUser = thesisUserDao.createThesisUserWithoutTransactionManagement(entityManagerParams, email, password, ThesisAuthority.TEACHER.getRoleName(), name);
+        ThesisUser thesisUser = thesisUserDao.createThesisUser(entityManagerParams, email, password, ThesisAuthority.TEACHER.getRoleName(), name);
         ThesisTeacher thesisTeacher = new ThesisTeacher();
         thesisTeacher.setThesisUser(thesisUser);
         entityManagerParams.getEntityManager().persist(thesisTeacher);
@@ -79,24 +79,4 @@ public class ThesisTeacherDao {
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesisTeacher;
     }
-
-    public void tryToDeleteThesisTeacher(Long thesisTeacherId) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisTeacher thesisTeacher = entityManagerParams.getEntityManager().find(ThesisTeacher.class, thesisTeacherId);
-        if (Validation.notEmpty(thesisTeacher)) {
-            Long thesisUserId = thesisTeacher.getThesisUser().getThesisUserId();
-            entityManagerParams.getEntityManager().remove(thesisTeacher);
-            thesisUserDao.tryToDeleteThesisUser(thesisUserId);
-        }
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
-    }
-
-    public void tryToDeleteAllThesisTeachers() {
-        List<ThesisTeacher> allThesisTeachers = getAllThesisTeachers();
-        for (ThesisTeacher thesisTeacher : allThesisTeachers) {
-            tryToDeleteThesisTeacher(thesisTeacher.getThesisTeacherId());
-        }
-    }
-
-
 }

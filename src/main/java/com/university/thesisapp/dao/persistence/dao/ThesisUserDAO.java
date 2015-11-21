@@ -24,14 +24,14 @@ public class ThesisUserDao {
     @Autowired
     private EntityManagerProvider entityManagerProvider;
 
-    public ThesisUser getThesisUserByIdWithoutTransactionManagement(EntityManagerParams entityManagerParams, long id) {
+    public ThesisUser getThesisUserById(EntityManagerParams entityManagerParams, long id) {
         ThesisUser thesisUser = entityManagerParams.getEntityManager().find(ThesisUser.class, id);
         return thesisUser;
     }
 
     public ThesisUser getThesisUserById(long id) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisUser thesisUser = getThesisUserByIdWithoutTransactionManagement(entityManagerParams, id);
+        ThesisUser thesisUser = getThesisUserById(entityManagerParams, id);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesisUser;
     }
@@ -66,7 +66,7 @@ public class ThesisUserDao {
         return thesisUsers;
     }
 
-    public ThesisUser createThesisUserWithoutTransactionManagement(EntityManagerParams entityManagerParams, String email, String password, String authority, String name) {
+    public ThesisUser createThesisUser(EntityManagerParams entityManagerParams, String email, String password, String authority, String name) {
         ThesisUser thesisUser = new ThesisUser();
         thesisUser.setEmail(email);
         thesisUser.setPassword(getHashedPassword(password));
@@ -81,7 +81,7 @@ public class ThesisUserDao {
 
     public ThesisUser createThesisUser(String email, String password, String authority, String name) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisUser thesisUser = createThesisUserWithoutTransactionManagement(entityManagerParams, email, password, authority, name);
+        ThesisUser thesisUser = createThesisUser(entityManagerParams, email, password, authority, name);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesisUser;
     }
@@ -93,26 +93,6 @@ public class ThesisUserDao {
     private String getHashedPassword(String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         return passwordEncoder.encode(password);
-    }
-
-    public void tryToDeleteThesisUser(Long thesisUserId) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisUser thesisUser = entityManagerParams.getEntityManager().find(ThesisUser.class, thesisUserId);
-        if (Validation.notEmpty(thesisUser)) {
-            entityManagerParams.getEntityManager().remove(thesisUser);
-        }
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
-    }
-
-    public void tryToDeleteAllThesisUsers() {
-        List<ThesisUser> allThesisUsers = getAllThesisUsers();
-        for (ThesisUser thesisUser : allThesisUsers) {
-            tryToDeleteThesisUser(thesisUser.getThesisUserId());
-        }
-    }
-
-    public void setEntityManagerProvider(EntityManagerProvider entityManagerProvider) {
-        this.entityManagerProvider = entityManagerProvider;
     }
 
     public ThesisUser enableUserByToken(String token) {
@@ -149,9 +129,13 @@ public class ThesisUserDao {
 
     private void enableUser(ThesisUser thesisUser) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisUser user = getThesisUserByIdWithoutTransactionManagement(entityManagerParams, thesisUser.getThesisUserId());
+        ThesisUser user = getThesisUserById(entityManagerParams, thesisUser.getThesisUserId());
         user.setEnabled(true);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+    }
+
+    public void setEntityManagerProvider(EntityManagerProvider entityManagerProvider) {
+        this.entityManagerProvider = entityManagerProvider;
     }
 
 }

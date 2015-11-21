@@ -4,7 +4,6 @@ import com.google.common.primitives.Longs;
 import com.university.thesisapp.dao.persistence.model.Course;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
-import com.university.thesisapp.util.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +34,7 @@ public class CourseDao {
 
     public void editCourse(Long courseId, String name, String code) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        List<Course> courses = getAllCoursesWithoutTransactionManagement(entityManagerParams);
+        List<Course> courses = getAllCourses(entityManagerParams);
         Course course = findById(courseId, courses);
         course.setCourseName(name);
         course.setCourseCode(code);
@@ -66,12 +65,12 @@ public class CourseDao {
 
     public List<Course> getAllCourses() {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        List<Course> courses = getAllCoursesWithoutTransactionManagement(entityManagerParams);
+        List<Course> courses = getAllCourses(entityManagerParams);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return courses;
     }
 
-    public List<Course> getAllCoursesWithoutTransactionManagement(EntityManagerParams entityManagerParams) {
+    public List<Course> getAllCourses(EntityManagerParams entityManagerParams) {
         return entityManagerParams.getEntityManager().createQuery("SELECT c FROM Course c", Course.class).getResultList();
     }
 
@@ -90,19 +89,4 @@ public class CourseDao {
         return resultCourse;
     }
 
-    public void tryToDeleteCourse(Long courseId) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        Course course = entityManagerParams.getEntityManager().find(Course.class, courseId);
-        if (Validation.notEmpty(course)) {
-            entityManagerParams.getEntityManager().remove(course);
-        }
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
-    }
-
-    public void tryToDeleteAllCourses() {
-        List<Course> allCourses = getAllCourses();
-        for (Course course : allCourses) {
-            tryToDeleteCourse(course.getCourseId());
-        }
-    }
 }

@@ -75,13 +75,13 @@ public class ThesisDao {
         return thesises;
     }
 
-    public Thesis findByIdWithOutTransactionManagement(long thesisId, EntityManagerParams entityManagerParams) {
+    public Thesis findById(long thesisId, EntityManagerParams entityManagerParams) {
         return entityManagerParams.getEntityManager().find(Thesis.class, thesisId);
     }
 
     public Thesis findById(long thesisId) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        Thesis thesis = findByIdWithOutTransactionManagement(thesisId, entityManagerParams);
+        Thesis thesis = findById(thesisId, entityManagerParams);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return thesis;
     }
@@ -118,25 +118,9 @@ public class ThesisDao {
         return result;
     }
 
-    public void tryToDeleteThesis(Long thesisId) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        Thesis thesis = entityManagerParams.getEntityManager().find(Thesis.class, thesisId);
-        if (Validation.notEmpty(thesis)) {
-            entityManagerParams.getEntityManager().remove(thesis);
-        }
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
-    }
-
-    public void tryToDeleteAllTheses() {
-        List<Thesis> theses = getAllThesises();
-        for (Thesis thesis : theses) {
-            tryToDeleteThesis(thesis.getThesisId());
-        }
-    }
-
     public void setStatus(Long thesisId, ThesisStatus thesisStatus) {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        Thesis thesis = findByIdWithOutTransactionManagement(thesisId, entityManagerParams);
+        Thesis thesis = findById(thesisId, entityManagerParams);
         thesis.setStatus(thesisStatus.getType());
         entityManagerParams.getEntityManager().persist(thesis);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);

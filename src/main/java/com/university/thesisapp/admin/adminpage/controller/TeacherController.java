@@ -1,6 +1,5 @@
 package com.university.thesisapp.admin.adminpage.controller;
 
-import com.google.common.primitives.Longs;
 import com.university.thesisapp.admin.adminpage.service.CreateUserService;
 import com.university.thesisapp.dao.persistence.dao.ThesisTeacherDao;
 import com.university.thesisapp.dao.persistence.dao.ThesisUserDao;
@@ -42,12 +41,6 @@ public class TeacherController {
             ThesisTeacher teacher = createUserService.createTeacher(request);
             emailSenderService.sendMailAfterRegistration(teacher.getThesisUser().getEmail(), request);
         }
-        return new ModelAndView(new RedirectView(UrlProvider.LIST_TEACHERS_URL), model.asMap());
-    }
-
-    @RequestMapping(value = UrlProvider.ADMIN_DELETE_TEACHER_HTML, method = RequestMethod.GET)
-    public ModelAndView deleteTeacher(Model model, HttpServletRequest request) {
-        thesisTeacherDao.tryToDeleteThesisTeacher(Longs.tryParse(request.getParameter("teacher")));
         return new ModelAndView(new RedirectView(UrlProvider.LIST_TEACHERS_URL), model.asMap());
     }
 }
