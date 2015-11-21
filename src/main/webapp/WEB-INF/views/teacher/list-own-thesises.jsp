@@ -65,7 +65,6 @@
                         <c:choose>
                             <c:when test="${enableModifyTheses}">
                                 <a class="thesis-popup" href="/teacher/create_thesis.html?editThesis=${thesis.thesisId}"><i class="fa fa-pencil"></i></a>
-                                <i class="fa fa-trash-o"></i>
                             </c:when>
                             <c:otherwise>
                                 <c:choose>
