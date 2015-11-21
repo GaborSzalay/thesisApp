@@ -1,7 +1,9 @@
 package com.university.thesisapp.admin.coursepage.controller;
 
+import com.google.common.primitives.Longs;
 import com.university.thesisapp.admin.homepage.context.AdminMenuContextFactory;
 import com.university.thesisapp.dao.persistence.dao.CourseDao;
+import com.university.thesisapp.util.Validation;
 import com.university.thesisapp.web.provider.UrlProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,11 +34,24 @@ public class CourseController {
 
     @RequestMapping(value = UrlProvider.CREATE_COURSE_URL, method = RequestMethod.GET)
     public ModelAndView showCreateCourseForm(Model model, HttpServletRequest request) {
+        String editCourseParameter = request.getParameter("editCourse");
+        if (Validation.notEmpty(editCourseParameter)) {
+            Long courseId = Longs.tryParse(editCourseParameter);
+            request.setAttribute("course", courseDao.findById(courseId));
+        }
         return new ModelAndView("admin/create_course_form");
     }
 
     @RequestMapping(value = UrlProvider.CREATE_COURSE_URL, method = RequestMethod.POST)
     public ModelAndView handleCreateCourseRequest(Model model, HttpServletRequest request) {
+        String name = request.getParameter("name");
+        String code = request.getParameter("code");
+        String courseId = request.getParameter("courseId");
+        if (Validation.notEmpty(courseId)) {
+            courseDao.editCourse(Longs.tryParse(courseId), name, code);
+        } else {
+            courseDao.createCourse(name, code);
+        }
         return new ModelAndView(new RedirectView(UrlProvider.LIST_COURSES_URL));
     }
 }

@@ -20,6 +20,7 @@
                     <td>${course.courseName}</td>
                     <td>${course.courseCode}</td>
                     <td>${course.lastModifiedDate}</td>
+                    <td><a class="thesis-popup" href="/admin/course.html?editCourse=${course.courseId}"><i class="fa fa-pencil"></i></a></td>
                 </tr>
             </c:forEach>
         </tbody>

@@ -33,6 +33,17 @@ public class CourseDao {
         return course;
     }
 
+    public void editCourse(Long courseId, String name, String code) {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        List<Course> courses = getAllCoursesWithoutTransactionManagement(entityManagerParams);
+        Course course = findById(courseId, courses);
+        course.setCourseName(name);
+        course.setCourseCode(code);
+        course.setLastModifiedDate(new Date());
+        entityManagerParams.getEntityManager().persist(course);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+    }
+
     public List<Course> findByIds(List<Long> courseIds) {
         List<Course> courses = new ArrayList<Course>();
         List<Course> allCourses = getAllCourses();
@@ -55,13 +66,21 @@ public class CourseDao {
 
     public List<Course> getAllCourses() {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        List<Course> courses = entityManagerParams.getEntityManager().createQuery("SELECT c FROM Course c", Course.class).getResultList();
+        List<Course> courses = getAllCoursesWithoutTransactionManagement(entityManagerParams);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return courses;
     }
 
+    public List<Course> getAllCoursesWithoutTransactionManagement(EntityManagerParams entityManagerParams) {
+        return entityManagerParams.getEntityManager().createQuery("SELECT c FROM Course c", Course.class).getResultList();
+    }
+
     public Course findById(Long courseId) {
         List<Course> courses = getAllCourses();
+        return findById(courseId, courses);
+    }
+
+    public Course findById(Long courseId, List<Course> courses) {
         Course resultCourse = null;
         for (Course course : courses) {
             if (course.getCourseId().equals(courseId)) {
