@@ -32,13 +32,21 @@ public class MajorDao {
 
     public List<Major> getAllMajors() {
         EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        List<Major> majors = entityManagerParams.getEntityManager().createQuery("SELECT m FROM Major m", Major.class).getResultList();
+        List<Major> majors = getAllMajors(entityManagerParams);
         entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
         return majors;
     }
 
+    public List<Major> getAllMajors(EntityManagerParams entityManagerParams) {
+        return entityManagerParams.getEntityManager().createQuery("SELECT m FROM Major m", Major.class).getResultList();
+    }
+
     public Major findById(Long id) {
         List<Major> majors = getAllMajors();
+        return findById(id, majors);
+    }
+
+    public Major findById(Long id, List<Major> majors) {
         Major resultMajor = null;
         for (Major major : majors) {
             if (major.getMajorId().equals(id)) {
@@ -62,5 +70,15 @@ public class MajorDao {
         for (Major major : allMajors) {
             tryToDeleteMajor(major.getMajorId());
         }
+    }
+
+    public void editMajor(Long majorId, String majorName) {
+        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        List<Major> majors = getAllMajors(entityManagerParams);
+        Major major = findById(majorId, majors);
+        major.setMajorName(majorName);
+        major.setLastModifiedDate(new Date());
+        entityManagerParams.getEntityManager().persist(major);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
     }
 }

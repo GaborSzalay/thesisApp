@@ -18,6 +18,7 @@
                 <tr>
                     <td>${major.majorName}</td>
                     <td>${major.lastModifiedDate}</td>
+                    <td><a class="thesis-popup" href="/admin/major.html?editMajor=${major.majorId}"><i class="fa fa-pencil"></i></a></td>
                 </tr>
             </c:forEach>
         </tbody>

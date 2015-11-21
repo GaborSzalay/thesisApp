@@ -47,4 +47,5 @@ public class UrlProvider {
     public static final String STUDENT_CANCEL_REQUEST_URL = "/student/cancel_request.html";
     public static final String TEACHER_ACCEPT_THESIS_URL = "/teacher/accept_thesis.html";
     public static final String TEACHER_DECLINE_THESIS_URL = "/teacher/decline_thesis.html";
+    public static final String ADMIN_MAJOR_URL = "/admin/major.html";
 }

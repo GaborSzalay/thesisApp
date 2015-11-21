@@ -23,7 +23,6 @@
                     <td>${teacher.thesisUser.registrationDate}</td>
                     <td>
                         <a class="thesis-popup" href="/admin/list_thesises?teacher=${teacher.thesisTeacherId}"><i class="fa fa-list-ul"></i></a>
-                        <a href="/admin/delete_teacher.html?teacher=${teacher.thesisTeacherId}" m><i class="fa fa-trash-o"></i></a>
                         <c:if test="${!teacher.thesisUser.enabled}">
                             <span class="user-inactive"><spring:message code="messages.table.inactive" text=""/></span>
                         </c:if>

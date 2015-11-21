@@ -22,7 +22,6 @@
                     <td>${admin.email}</td>
                     <td>${admin.registrationDate}</td>
                     <td>
-                        <a href="/admin/delete_admin.html?admin=${admin.thesisUserId}"><i class="fa fa-trash-o"></i></a>
                         <c:if test="${!admin.enabled}">
                             <span class="user-inactive"><spring:message code="messages.table.inactive" text=""/></span>
                         </c:if>
