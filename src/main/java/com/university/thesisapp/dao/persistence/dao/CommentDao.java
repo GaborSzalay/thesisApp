@@ -1,7 +1,7 @@
 package com.university.thesisapp.dao.persistence.dao;
 
 import com.university.thesisapp.dao.persistence.model.Comment;
-import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
+import com.university.thesisapp.dao.persistence.provider.EntityManagerHolder;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
 import com.university.thesisapp.dao.persistence.provider.ThesisUserProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +22,14 @@ public class CommentDao {
     EntityManagerProvider entityManagerProvider;
 
     public Comment createComment(String commentMessage, Long thesisId) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
         Comment comment = new Comment();
         comment.setCreationDate(new Date());
         comment.setThesisUser(thesisUserProvider.getSignedInUser());
         comment.setThesis(thesisDao.findById(thesisId));
         comment.setCommentMessage(commentMessage);
-        entityManagerParams.getEntityManager().persist(comment);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        entityManagerHolder.getEntityManager().persist(comment);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return comment;
     }
 }

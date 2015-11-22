@@ -2,7 +2,7 @@ package com.university.thesisapp.dao.persistence.dao;
 
 import com.google.common.primitives.Longs;
 import com.university.thesisapp.dao.persistence.model.Course;
-import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
+import com.university.thesisapp.dao.persistence.provider.EntityManagerHolder;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,27 +20,27 @@ public class CourseDao {
     private EntityManagerProvider entityManagerProvider;
 
     public Course createCourse(String courseName, String courseCode) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
         Date date = new Date();
         Course course = new Course();
         course.setCourseName(courseName);
         course.setCourseCode(courseCode);
         course.setCreationDate(date);
         course.setLastModifiedDate(date);
-        entityManagerParams.getEntityManager().persist(course);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        entityManagerHolder.getEntityManager().persist(course);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return course;
     }
 
     public void editCourse(Long courseId, String name, String code) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        List<Course> courses = getAllCourses(entityManagerParams);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        List<Course> courses = getAllCourses(entityManagerHolder);
         Course course = findById(courseId, courses);
         course.setCourseName(name);
         course.setCourseCode(code);
         course.setLastModifiedDate(new Date());
-        entityManagerParams.getEntityManager().persist(course);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        entityManagerHolder.getEntityManager().persist(course);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
     }
 
     public List<Course> findByIds(List<Long> courseIds) {
@@ -64,13 +64,13 @@ public class CourseDao {
     }
 
     public List<Course> getAllCourses() {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        List<Course> courses = getAllCourses(entityManagerParams);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        List<Course> courses = getAllCourses(entityManagerHolder);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return courses;
     }
 
-    public List<Course> getAllCourses(EntityManagerParams entityManagerParams) {
+    public List<Course> getAllCourses(EntityManagerHolder entityManagerParams) {
         return entityManagerParams.getEntityManager().createQuery("SELECT c FROM Course c", Course.class).getResultList();
     }
 

@@ -2,7 +2,7 @@ package com.university.thesisapp.dao.persistence.dao;
 
 import com.university.thesisapp.dao.persistence.model.Major;
 import com.university.thesisapp.dao.persistence.model.StudentLimit;
-import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
+import com.university.thesisapp.dao.persistence.provider.EntityManagerHolder;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
 import com.university.thesisapp.util.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +22,20 @@ public class StudentLimitDao {
     private MajorDao majorDao;
 
     public StudentLimit createStudentLimit(Major major, Long limitOfStudents) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
         StudentLimit studentLimit = new StudentLimit();
         Date date = new Date();
         studentLimit.setCreationDate(date);
         studentLimit.setLastModifiedDate(date);
         studentLimit.setLimitOfStudents(limitOfStudents);
         studentLimit.setMajor(major);
-        entityManagerParams.getEntityManager().persist(studentLimit);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        entityManagerHolder.getEntityManager().persist(studentLimit);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return studentLimit;
     }
 
     public StudentLimit provideStudentLimit(Long majorId, Long limitOfStudents) {
         StudentLimit resultStudentLimit = null;
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
         List<StudentLimit> studentLimits = getAllStudentLimits();
         for (StudentLimit studentLimit : studentLimits) {
             if (studentLimit.getMajor().getMajorId().equals(majorId) && studentLimit.getLimitOfStudents().equals(limitOfStudents)) {
@@ -50,9 +49,9 @@ public class StudentLimitDao {
     }
 
     public List<StudentLimit> getAllStudentLimits() {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        List<StudentLimit> studentLimits = entityManagerParams.getEntityManager().createQuery("SELECT s FROM StudentLimit s", StudentLimit.class).getResultList();
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        List<StudentLimit> studentLimits = entityManagerHolder.getEntityManager().createQuery("SELECT s FROM StudentLimit s", StudentLimit.class).getResultList();
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return studentLimits;
     }
 

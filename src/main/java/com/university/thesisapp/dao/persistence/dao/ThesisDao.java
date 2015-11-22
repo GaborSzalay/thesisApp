@@ -2,7 +2,7 @@ package com.university.thesisapp.dao.persistence.dao;
 
 import com.university.thesisapp.dao.persistence.ThesisStatus;
 import com.university.thesisapp.dao.persistence.model.*;
-import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
+import com.university.thesisapp.dao.persistence.provider.EntityManagerHolder;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
 import com.university.thesisapp.dao.persistence.provider.ThesisUserProvider;
 import com.university.thesisapp.util.Validation;
@@ -27,9 +27,9 @@ public class ThesisDao {
 
     public Thesis creaateThesis(Thesis thesis) {
         Date date = new Date();
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
         if (Validation.notEmpty(thesis.getThesisId())) {
-            Thesis existingThesis = entityManagerParams.getEntityManager().find(Thesis.class, thesis.getThesisId());
+            Thesis existingThesis = entityManagerHolder.getEntityManager().find(Thesis.class, thesis.getThesisId());
             existingThesis.setLastModifiedDate(date);
             existingThesis.setTitleHu(thesis.getTitleHu());
             existingThesis.setTitleEn(thesis.getTitleEn());
@@ -42,14 +42,14 @@ public class ThesisDao {
             thesis.setCreationDate(date);
             thesis.setStatus(ThesisStatus.NEW.getType());
             thesis.setThesisTeacher(thesisTeacherDao.getThesisTeacherByThesisUser(thesisUserProvider.getSignedInUser()));
-            entityManagerParams.getEntityManager().persist(thesis);
+            entityManagerHolder.getEntityManager().persist(thesis);
         }
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return thesis;
     }
 
     public Thesis creaateThesis(String titleHu, String titleEn, String descriptionHu, String descriptionEn, Long requiredSemesters, List<Course> courses, List<StudentLimit> studentLimits, ThesisTeacher thesisTeacher) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
         Thesis thesis = new Thesis();
         Date date = new Date();
         thesis.setCreationDate(date);
@@ -63,26 +63,26 @@ public class ThesisDao {
         thesis.setStudentLimits(studentLimits);
         thesis.setStatus(ThesisStatus.NEW.getType());
         thesis.setThesisTeacher(thesisTeacher);
-        entityManagerParams.getEntityManager().persist(thesis);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        entityManagerHolder.getEntityManager().persist(thesis);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return thesis;
     }
 
     public List<Thesis> getAllThesises() {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        List<Thesis> thesises = entityManagerParams.getEntityManager().createQuery("SELECT t FROM Thesis t", Thesis.class).getResultList();
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        List<Thesis> thesises = entityManagerHolder.getEntityManager().createQuery("SELECT t FROM Thesis t", Thesis.class).getResultList();
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return thesises;
     }
 
-    public Thesis findById(long thesisId, EntityManagerParams entityManagerParams) {
+    public Thesis findById(long thesisId, EntityManagerHolder entityManagerParams) {
         return entityManagerParams.getEntityManager().find(Thesis.class, thesisId);
     }
 
     public Thesis findById(long thesisId) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        Thesis thesis = findById(thesisId, entityManagerParams);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        Thesis thesis = findById(thesisId, entityManagerHolder);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return thesis;
     }
 
@@ -119,10 +119,10 @@ public class ThesisDao {
     }
 
     public void setStatus(Long thesisId, ThesisStatus thesisStatus) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        Thesis thesis = findById(thesisId, entityManagerParams);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        Thesis thesis = findById(thesisId, entityManagerHolder);
         thesis.setStatus(thesisStatus.getType());
-        entityManagerParams.getEntityManager().persist(thesis);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        entityManagerHolder.getEntityManager().persist(thesis);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
     }
 }

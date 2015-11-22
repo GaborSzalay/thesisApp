@@ -2,7 +2,7 @@ package com.university.thesisapp.dao.persistence.dao;
 
 import com.university.thesisapp.ThesisAuthority;
 import com.university.thesisapp.dao.persistence.model.*;
-import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
+import com.university.thesisapp.dao.persistence.provider.EntityManagerHolder;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
 import com.university.thesisapp.util.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,28 +22,28 @@ public class ThesisTeacherDao {
     private ThesisUserDao thesisUserDao;
 
     public ThesisTeacher createThesisTeacher(String email, String password, String name) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisUser thesisUser = thesisUserDao.createThesisUser(entityManagerParams, email, password, ThesisAuthority.TEACHER.getRoleName(), name);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        ThesisUser thesisUser = thesisUserDao.createThesisUser(entityManagerHolder, email, password, ThesisAuthority.TEACHER.getRoleName(), name);
         ThesisTeacher thesisTeacher = new ThesisTeacher();
         thesisTeacher.setThesisUser(thesisUser);
-        entityManagerParams.getEntityManager().persist(thesisTeacher);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        entityManagerHolder.getEntityManager().persist(thesisTeacher);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return thesisTeacher;
     }
 
     public ThesisTeacher createThesisTeacher(ThesisUser thesisUser) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
         ThesisTeacher thesisTeacher = new ThesisTeacher();
         thesisTeacher.setThesisUser(thesisUser);
-        entityManagerParams.getEntityManager().persist(thesisTeacher);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        entityManagerHolder.getEntityManager().persist(thesisTeacher);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return thesisTeacher;
     }
 
     public List<ThesisTeacher> getAllThesisTeachers() {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        List<ThesisTeacher> thesisTeachers = entityManagerParams.getEntityManager().createQuery("SELECT t FROM ThesisTeacher t", ThesisTeacher.class).getResultList();
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        List<ThesisTeacher> thesisTeachers = entityManagerHolder.getEntityManager().createQuery("SELECT t FROM ThesisTeacher t", ThesisTeacher.class).getResultList();
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return thesisTeachers;
     }
 
@@ -74,9 +74,9 @@ public class ThesisTeacherDao {
     }
 
     public ThesisTeacher getThesisTeacherById(Long teacherId) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisTeacher thesisTeacher = entityManagerParams.getEntityManager().find(ThesisTeacher.class, teacherId);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        ThesisTeacher thesisTeacher = entityManagerHolder.getEntityManager().find(ThesisTeacher.class, teacherId);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return thesisTeacher;
     }
 }

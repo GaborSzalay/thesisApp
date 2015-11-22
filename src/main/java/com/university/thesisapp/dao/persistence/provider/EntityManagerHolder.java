@@ -5,10 +5,10 @@ import javax.persistence.EntityManager;
 /**
  * Created by Gábor on 2015.07.13..
  */
-public class EntityManagerParams {
+public class EntityManagerHolder {
     private EntityManager entityManager;
 
-    public EntityManagerParams(EntityManager entityManager) {
+    public EntityManagerHolder(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

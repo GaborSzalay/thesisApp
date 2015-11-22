@@ -4,7 +4,7 @@ import com.university.thesisapp.dao.persistence.model.StudentRequest;
 import com.university.thesisapp.dao.persistence.model.StudentRequestState;
 import com.university.thesisapp.dao.persistence.model.Thesis;
 import com.university.thesisapp.dao.persistence.model.ThesisStudent;
-import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
+import com.university.thesisapp.dao.persistence.provider.EntityManagerHolder;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class StudentRequestDao {
     private ThesisDao thesisDao;
 
     public void createStudentRequest(Long studentId, Long thesisId) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
         ThesisStudent thesisStudent = thesisStudentDao.findById(studentId);
         Thesis thesis = thesisDao.findById(thesisId);
         StudentRequest studentRequest = new StudentRequest();
@@ -37,8 +37,8 @@ public class StudentRequestDao {
         studentRequest.setThesis(thesis);
         studentRequest.setThesisStudent(thesisStudent);
         studentRequest.setCurrentState(SENT.getState());
-        entityManagerParams.getEntityManager().persist(studentRequest);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        entityManagerHolder.getEntityManager().persist(studentRequest);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
     }
 
     public List<StudentRequest> getSentStudentRequestsByTeacherId(long teacherId) {
@@ -53,9 +53,9 @@ public class StudentRequestDao {
     }
 
     public StudentRequest findById(long studentRequestId) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        StudentRequest studentRequest = entityManagerParams.getEntityManager().find(StudentRequest.class, studentRequestId);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        StudentRequest studentRequest = entityManagerHolder.getEntityManager().find(StudentRequest.class, studentRequestId);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return studentRequest;
     }
 
@@ -71,17 +71,17 @@ public class StudentRequestDao {
     }
 
     public List<StudentRequest> getAllStudentRequests() {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        List<StudentRequest> studentRequests = entityManagerParams.getEntityManager().createQuery("SELECT s FROM StudentRequest s", StudentRequest.class).getResultList();
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        List<StudentRequest> studentRequests = entityManagerHolder.getEntityManager().createQuery("SELECT s FROM StudentRequest s", StudentRequest.class).getResultList();
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return studentRequests;
     }
 
     public void setState(Long studentRequestId, StudentRequestState studentRequestState) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        StudentRequest studentRequest = entityManagerParams.getEntityManager().find(StudentRequest.class, studentRequestId);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        StudentRequest studentRequest = entityManagerHolder.getEntityManager().find(StudentRequest.class, studentRequestId);
         studentRequest.setCurrentState(studentRequestState.getState());
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
     }
 
     public List<StudentRequest> getDeclinedStudentRequestsByTeacherId(long teacherId) {

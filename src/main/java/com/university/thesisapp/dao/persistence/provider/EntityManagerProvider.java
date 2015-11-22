@@ -14,18 +14,18 @@ import javax.persistence.Persistence;
 public class EntityManagerProvider {
     private static EntityManagerFactory entityManagerFactory = null;
 
-    public EntityManagerParams createEntityManagerWithTransaction() {
+    public EntityManagerHolder createEntityManagerWithTransaction() {
         if (Validation.empty(entityManagerFactory)) {
             entityManagerFactory = Persistence.createEntityManagerFactory("jcg-JPA");
         }
 
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
-        return new EntityManagerParams(entityManager);
+        return new EntityManagerHolder(entityManager);
     }
 
-    public void commitTransactionAndCloseConnection(EntityManagerParams entityManagerParams) {
-        EntityManager entityManager = entityManagerParams.getEntityManager();
+    public void commitTransactionAndCloseConnection(EntityManagerHolder entityManagerHolder) {
+        EntityManager entityManager = entityManagerHolder.getEntityManager();
         entityManager.getTransaction().commit();
         entityManager.close();
     }

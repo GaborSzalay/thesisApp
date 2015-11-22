@@ -2,7 +2,7 @@ package com.university.thesisapp.dao.persistence.dao;
 
 import com.university.thesisapp.ThesisAuthority;
 import com.university.thesisapp.dao.persistence.model.ThesisUser;
-import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
+import com.university.thesisapp.dao.persistence.provider.EntityManagerHolder;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
 import com.university.thesisapp.util.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +24,15 @@ public class ThesisUserDao {
     @Autowired
     private EntityManagerProvider entityManagerProvider;
 
-    public ThesisUser getThesisUserById(EntityManagerParams entityManagerParams, long id) {
+    public ThesisUser getThesisUserById(EntityManagerHolder entityManagerParams, long id) {
         ThesisUser thesisUser = entityManagerParams.getEntityManager().find(ThesisUser.class, id);
         return thesisUser;
     }
 
     public ThesisUser getThesisUserById(long id) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisUser thesisUser = getThesisUserById(entityManagerParams, id);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        ThesisUser thesisUser = getThesisUserById(entityManagerHolder, id);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return thesisUser;
     }
 
@@ -60,13 +60,13 @@ public class ThesisUserDao {
     }
 
     public List<ThesisUser> getAllThesisUsers() {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        List<ThesisUser> thesisUsers = entityManagerParams.getEntityManager().createQuery("SELECT t FROM ThesisUser t", ThesisUser.class).getResultList();
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        List<ThesisUser> thesisUsers = entityManagerHolder.getEntityManager().createQuery("SELECT t FROM ThesisUser t", ThesisUser.class).getResultList();
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return thesisUsers;
     }
 
-    public ThesisUser createThesisUser(EntityManagerParams entityManagerParams, String email, String password, String authority, String name) {
+    public ThesisUser createThesisUser(EntityManagerHolder entityManagerParams, String email, String password, String authority, String name) {
         ThesisUser thesisUser = new ThesisUser();
         thesisUser.setEmail(email);
         thesisUser.setPassword(getHashedPassword(password));
@@ -80,9 +80,9 @@ public class ThesisUserDao {
     }
 
     public ThesisUser createThesisUser(String email, String password, String authority, String name) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisUser thesisUser = createThesisUser(entityManagerParams, email, password, authority, name);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        ThesisUser thesisUser = createThesisUser(entityManagerHolder, email, password, authority, name);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return thesisUser;
     }
 
@@ -128,10 +128,10 @@ public class ThesisUserDao {
     }
 
     private void enableUser(ThesisUser thesisUser) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisUser user = getThesisUserById(entityManagerParams, thesisUser.getThesisUserId());
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        ThesisUser user = getThesisUserById(entityManagerHolder, thesisUser.getThesisUserId());
         user.setEnabled(true);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
     }
 
     public void setEntityManagerProvider(EntityManagerProvider entityManagerProvider) {

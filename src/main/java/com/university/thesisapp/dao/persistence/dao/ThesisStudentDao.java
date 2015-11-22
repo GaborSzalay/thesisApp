@@ -2,7 +2,7 @@ package com.university.thesisapp.dao.persistence.dao;
 
 import com.university.thesisapp.ThesisAuthority;
 import com.university.thesisapp.dao.persistence.model.*;
-import com.university.thesisapp.dao.persistence.provider.EntityManagerParams;
+import com.university.thesisapp.dao.persistence.provider.EntityManagerHolder;
 import com.university.thesisapp.dao.persistence.provider.EntityManagerProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,14 +26,14 @@ public class ThesisStudentDao {
     private ThesisDao thesisDao;
 
     public ThesisStudent createThesisStudent(Course course, Major major, ThesisUser thesisUser, String neptunCode) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
         ThesisStudent thesisStudent = new ThesisStudent();
         thesisStudent.setCourse(course);
         thesisStudent.setMajor(major);
         thesisStudent.setNeptunCode(neptunCode);
-        thesisStudent.setThesisUser(thesisUserDao.getThesisUserById(entityManagerParams, thesisUser.getThesisUserId()));
-        entityManagerParams.getEntityManager().persist(thesisStudent);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        thesisStudent.setThesisUser(thesisUserDao.getThesisUserById(entityManagerHolder, thesisUser.getThesisUserId()));
+        entityManagerHolder.getEntityManager().persist(thesisStudent);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return thesisStudent;
     }
 
@@ -43,16 +43,16 @@ public class ThesisStudentDao {
     }
 
     public List<ThesisStudent> getAllThesisStudents() {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        List<ThesisStudent> thesisStudents = entityManagerParams.getEntityManager().createQuery("SELECT t FROM ThesisStudent t", ThesisStudent.class).getResultList();
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        List<ThesisStudent> thesisStudents = entityManagerHolder.getEntityManager().createQuery("SELECT t FROM ThesisStudent t", ThesisStudent.class).getResultList();
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return thesisStudents;
     }
 
     public ThesisStudent findById(long id) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisStudent thesisStudent = entityManagerParams.getEntityManager().find(ThesisStudent.class, id);
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        ThesisStudent thesisStudent = entityManagerHolder.getEntityManager().find(ThesisStudent.class, id);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
         return thesisStudent;
     }
 
@@ -68,12 +68,12 @@ public class ThesisStudentDao {
     }
 
     public void registerThesis(Long thesisStudentId, Long thesisId) {
-        EntityManagerParams entityManagerParams = entityManagerProvider.createEntityManagerWithTransaction();
-        ThesisStudent thesisStudent = entityManagerParams.getEntityManager().find(ThesisStudent.class, thesisStudentId);
+        EntityManagerHolder entityManagerHolder = entityManagerProvider.createEntityManagerWithTransaction();
+        ThesisStudent thesisStudent = entityManagerHolder.getEntityManager().find(ThesisStudent.class, thesisStudentId);
         Thesis thesis = thesisDao.findById(thesisId);
         thesisStudent.setThesis(thesis);
         thesisStudent.getThesisUser().setAuthority(ThesisAuthority.STUDENT_THESIS.getRoleName());
-        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerParams);
+        entityManagerProvider.commitTransactionAndCloseConnection(entityManagerHolder);
     }
 
 }
